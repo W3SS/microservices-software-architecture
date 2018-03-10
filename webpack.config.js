@@ -12,7 +12,7 @@ module.exports = function makeWebpackConfig() {
   config.mode = 'development',
 
   config.entry = {
-    app: './src/app/app.js'
+    app: './src/index.js'
   };
 
   config.output = {
@@ -31,15 +31,7 @@ module.exports = function makeWebpackConfig() {
       exclude: /node_modules/
     }, {
       test: /\.css$/,
-      loader: 'style-loader'
-      // loader: ExtractTextPlugin.extract({
-      //   fallback: 'style-loader',
-      //   use: ["css-loader"]
-      //   loader: [
-      //     {loader: 'css-loader', query: {sourceMap: true}},
-      //     {loader: 'postcss-loader'}
-      //   ],
-      // })
+      loader: ['style-loader', 'css-loader']
     }, {
       test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
       loader: 'file-loader'
@@ -65,14 +57,11 @@ module.exports = function makeWebpackConfig() {
       template: './src/index.html',
       inject: 'body'
     })
-
-    // new ExtractTextPlugin({filename: 'css/[name].css', disable: true, allChunks: true})
   )
 
   config.devServer = {
     contentBase: './src/dist/',
-    // stats: 'minimal',
-    // host: '0.0.0.0'
+    hot: true
   };
 
   return config;
