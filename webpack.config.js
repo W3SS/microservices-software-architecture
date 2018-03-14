@@ -9,6 +9,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = function makeWebpackConfig() {
   var config = {};
 
+  config.devtool = "source-map";
+
   config.mode = 'development',
 
   config.entry = {
