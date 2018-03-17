@@ -5,13 +5,11 @@
         <md-list-item class="md-3-line" ng-repeat="sport in $ctrl.sportsList">
 
           <div class="md-list-item-text">
-            <h3>{{sport.title}}</h3>
+            <a href="#">{{sport.title}}</a>
           </div>
 
           <div class="md-secondary-container">
-            <!-- 'read one' button will be here -->
-            <!-- 'edit' button will be here -->
-            <!-- 'delete' button will be here -->
+              <!--<md-button class="md-raised md-primary">Edit</md-button>-->
           </div>
           <md-divider ng-if="!$last"></md-divider>
         </md-list-item>

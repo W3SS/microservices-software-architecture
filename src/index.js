@@ -5,6 +5,6 @@ import uiRouter from '@uirouter/angularjs';
 
 import '../node_modules/angular-material/angular-material.css';
 
-angular.module("crud", [angularMaterial, uiRouter, appModule]).config(["$compileProvider", "$stateProvider", function ($compileProvider, $stateProvider) {
+angular.module("crud", [angularMaterial, uiRouter, appModule]).config(["$compileProvider", function ($compileProvider) {
   $compileProvider.debugInfoEnabled(false);
 }]);
