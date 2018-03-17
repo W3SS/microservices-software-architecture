@@ -1,0 +1,8 @@
+md-toolbar.toolbar-login {
+    background-color: rgb(37, 172, 195);
+}
+
+md-card.login-form {
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
