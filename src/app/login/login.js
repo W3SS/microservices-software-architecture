@@ -15,10 +15,8 @@ const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvid
 
 loginModule.component("loginComponent", {
     template,
-    controller: function ($scope) {
-        $scope.isObjectEmpty = function (obj) {
-            return Object.keys(obj).length === 0;
-        }
+    controller: function () {
+      
     }
 });
 

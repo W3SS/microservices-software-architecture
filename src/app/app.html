@@ -1,10 +1,12 @@
-<div class="app background">
-  <md-toolbar class="toolbar-login">
-    <h2 class="md-toolbar-tools">
-      <span>Full Bleed</span>
-    </h2>
+<div class="app">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button ui-sref="home" class="md-raised">Home</md-button>
+      <span flex=""></span>
+      <md-button ui-sref="login" class="md-raised">Login</md-button>
+    </div>
   </md-toolbar>
-  <a ui-sref="login">Login</a>
 
+  <md-progress-linear ng-if="$root.isLoading" class="md-warn loading-bar" md-mode="indeterminate"></md-progress-linear>
   <ui-view></ui-view>
 </div>

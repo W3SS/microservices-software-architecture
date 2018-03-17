@@ -11,7 +11,7 @@ module.exports = function makeWebpackConfig() {
 
   config.devtool = "source-map";
 
-  config.mode = 'development',
+  config.mode = 'development';
 
   config.entry = {
     app: './src/index.js'
@@ -59,11 +59,10 @@ module.exports = function makeWebpackConfig() {
       template: './src/index.html',
       inject: 'body'
     })
-  )
+  );
 
   config.devServer = {
-    contentBase: './src/dist/',
-    hot: true
+    contentBase: './src/dist/'
   };
 
   return config;

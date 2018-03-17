@@ -1,11 +1,3 @@
-.background {
-    background-image: url('demo3.jpeg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-}
-
-md-toolbar.toolbar-login {
-    background-color: rgb(37, 172, 195);
+.app .loading-bar {
+    position: absolute;
 }
