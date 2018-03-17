@@ -9,14 +9,21 @@ const homeModule = angular.module(moduleName, [uiRouter]).config(["$stateProvide
     $stateProvider.state({
         name: 'home',
         url: '/home',
-        component: 'homeComponent'
+        component: 'homeComponent',
+        resolve: {
+            sportsList: function (apiService) {
+                return apiService.fetchSportsList();
+            }
+        }
     });
 }]);
 
 homeModule.component("homeComponent", {
     template,
+    bindings: {
+        sportsList: "<"
+    },
     controller: function () {
-
     }
 });
 
