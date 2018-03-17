@@ -4,8 +4,10 @@ import uiRouter from '@uirouter/angularjs';
 import template from './home.html';
 import './home.css';
 
+import items from './items/items';
+
 const moduleName = "home";
-const homeModule = angular.module(moduleName, [uiRouter]).config(["$stateProvider", function ($stateProvider) {
+const homeModule = angular.module(moduleName, [uiRouter, items]).config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
         name: 'home',
         url: '/home',
