@@ -1,3 +1,15 @@
 <div class="items">
-    test
+    <md-list>
+        <md-list-item class="md-3-line" ng-repeat="sport in $ctrl.items">
+
+            <div class="md-list-item-text">
+                <a ui-sref="item({itemId: $index})">{{sport.title}}</a>
+            </div>
+
+            <div class="md-secondary-container">
+                <!--<md-button class="md-raised md-primary">Edit</md-button>-->
+            </div>
+            <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+    </md-list>
 </div>

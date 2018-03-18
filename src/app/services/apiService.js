@@ -21,6 +21,21 @@ angular.module(moduleName, []).service(moduleName, function ($http, $q, $timeout
         }
     ];
 
+    let items2 = [
+        {
+            title: "Ball2"
+        },
+        {
+            title: "Shorts2"
+        }
+    ];
+
+    let categoryDescription = [
+        {
+            description: "This is a description"
+        }
+    ];
+
     this.fetchSportsList = () => {
         return $q((resolve) => {
             $timeout(() => {
@@ -32,10 +47,28 @@ angular.module(moduleName, []).service(moduleName, function ($http, $q, $timeout
     this.fetchCategoryItems = (categoryId) => {
         return $q((resolve) => {
             $timeout(() => {
+                switch (categoryId) {
+                    case 0:
+                        resolve(items);
+                        break;
+                    case 1:
+                        resolve(items2);
+                        break;
+                    default:
+                        console.log("wrong id");
+                }
                 resolve(items);
             }, 500);
         });
     };
+
+    this.fetchCategoryItemDescription = (itemId) => {
+        return $q((resolve) => {
+            $timeout(() => {
+                resolve(categoryDescription);
+            }, 100);
+        });
+    }
 });
 
 export default moduleName;
