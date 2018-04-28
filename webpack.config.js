@@ -62,7 +62,8 @@ module.exports = function makeWebpackConfig() {
   );
 
   config.devServer = {
-    contentBase: './src/dist/'
+    contentBase: './src/dist/',
+      port: 9000
   };
 
   return config;

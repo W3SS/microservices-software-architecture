@@ -27,6 +27,8 @@
     "angular": "^1.6.9",
     "angular-animate": "^1.6.9",
     "angular-aria": "^1.6.9",
-    "angular-material": "^1.1.8"
+    "angular-material": "^1.1.8",
+    "angular-messages": "^1.6.9",
+    "angularjs-social-login": "^2.6.1"
   }
 }

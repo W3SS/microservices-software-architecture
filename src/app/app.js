@@ -7,9 +7,11 @@ import homeModule from './home/home';
 import itemModule from './item/item';
 
 import apiService from './services/apiService';
+import 'angularjs-social-login';
+
 
 class AppCtrl {
-    constructor($transitions, $rootScope) {
+    constructor($transitions, $rootScope, socialLoginService) {
         this.url = 'https://github.com/preboot/angular-webpack';
 
         $transitions.onBefore("*", (TransitionService) => {
@@ -17,8 +19,18 @@ class AppCtrl {
             TransitionService.promise
                 .catch(() => {})
                 .finally(() => { $rootScope.isLoading = false; });
-        })
+        });
 
+        this.logout = () => {
+            socialLoginService.logout();
+        };
+
+        $rootScope.$on('event:social-sign-out-success', function(event, logoutStatus){
+            let auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(() => {
+                console.log('User signed out.');
+            });
+        })
     }
 }
 
@@ -33,7 +45,9 @@ angular.module(MODULE_NAME, [
     loginModule,
     homeModule,
     apiService,
-    itemModule
+    itemModule,
+    'socialLogin'
 ]).component('app', app);
+
 
 export default MODULE_NAME;
