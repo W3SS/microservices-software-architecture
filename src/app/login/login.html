@@ -1,37 +1,51 @@
 <div layout="row" layout-align="center" class="login">
-    <md-card flex-gt-sm="50" flex-gt-md="33" class="login-form">
+    <md-card flex-gt-sm="10" flex-gt-md="20" class="login-form">
 
         <md-toolbar class="toolbar-login">
             <div class="md-toolbar-tools">
-                <h2><span>Login Form</span></h2>
+                <h2><span>Login</span></h2>
             </div>
         </md-toolbar>
         <md-card-content>
-            <form name="Form">
+            <form name="Form" style="margin-top: -16px">
+                <div >
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Email</label>
+                        <input required name="email" ng-model="user.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/"/>
+                    </md-input-container>
 
-                <md-input-container class="md-block" flex-gt-sm>
-                    <label>Email</label>
-                    <input required name="email" ng-model="user.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/"/>
-                    <div ng-messages="!isObjectEmpty(Form.email.$error)" >
-                        <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-                            Your email must be between 10 and 100 characters
-                            long and look like an e-mail address.
-                        </div>
+                    <md-input-container class="md-block">
+                        <input required="true" name="password" ng-model="$ctrl.password" type="password" placeholder="Enter Password" md-maxlength="20">
+                    </md-input-container>
+                </div>
+                <div style="margin-top: -16px">
+                    <div class="md-toolbar-tools">
+                        <md-button ng-disabled="!Form.$valid" class="md-raised md-primary" style="margin-left: -16px">Log In</md-button>
+                            <span flex></span>
+                        <md-button class="md-raised" style="margin-right: -16px">Sign Up</md-button>
                     </div>
-                </md-input-container>
+                    <!--<md-divider class="md-block"></md-divider>-->
+                    <!--<div>
+                        <md-divider class="md-block" flex="40" style="display: inline"></md-divider>
 
-                <md-input-container class="md-block">
-                    <input required="true" name="password" ng-model="$ctrl.password" type="password" placeholder="Enter Password" md-maxlength="16">
-
-                    <div ng-messages="Form.password.$error">
-                        <!--<div ng-message="required">Please enter your password.</div>
-                        <div ng-message="md-maxlength">Too long.</div>-->
+                        <md-divider class="md-block" flex="40" style="display: inline"></md-divider>
+                    </div>-->
+                    <div layout="row" layout-xs="column" style="margin-top: 20px">
+                      <div flex="45">
+                        <md-divider></md-divider>
+                      </div>
+                        <p flex class="or-title">OR</p>
+                      <div flex="45">
+                        <md-divider></md-divider>
+                      </div>
                     </div>
-                </md-input-container>
+                    <div layout="row" layout-align="center" style="margin-top: 10px">
+                        <button g-login class="g-login" type="button">
+                            <img src="gs.png" class="g-login-icon" />
+                        </button>
+                    </div>
+                </div>
 
-                <md-button ng-disabled="!Form.$valid" class="md-raised md-primary">Log In</md-button>
-                <md-button class="md-raised">Sign Up</md-button>
-                <md-button g-login type="button">Google Login</md-button>
             </form>
         </md-card-content>
 

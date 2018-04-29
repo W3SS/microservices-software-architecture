@@ -1,3 +1,21 @@
 .login {
     margin-top: 50px;
 }
+
+.g-login {
+    background-repeat:no-repeat;
+    width: 186px;
+    height: 40px;
+}
+
+.g-login-icon {
+    margin-left: -11px;
+    margin-top: -6px;
+}
+
+.or-title {
+    margin-top: -7px;
+    padding-left: 10px;
+    font-size: 13px;
+    color: #808184;
+}
