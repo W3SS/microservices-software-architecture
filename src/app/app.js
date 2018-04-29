@@ -4,7 +4,7 @@ import './app.css';
 
 import loginModule from './login/login';
 import homeModule from './home/home';
-import itemModule from './home/items/item/item';
+import itemModule from './home/item/item';
 
 import apiService from './services/apiService';
 import 'angularjs-social-login';
