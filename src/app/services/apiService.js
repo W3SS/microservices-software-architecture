@@ -48,10 +48,10 @@ angular.module(moduleName, []).service(moduleName, function ($http, $q, $timeout
         return $q((resolve) => {
             $timeout(() => {
                 switch (categoryId) {
-                    case 0:
+                    case 'Volleyball':
                         resolve(items);
                         break;
-                    case 1:
+                    case 'Basketball':
                         resolve(items2);
                         break;
                     default:

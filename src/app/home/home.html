@@ -5,7 +5,7 @@
                 <md-list-item class="md-3-line" ng-repeat="sport in $ctrl.sportsList">
 
                     <div class="md-list-item-text">
-                        <a ui-sref="items({categoryId: $index})">{{sport.title}}</a>
+                        <a ui-sref="items({categoryTitle: sport.title})">{{sport.title}}</a>
                     </div>
 
                     <div class="md-secondary-container">

@@ -10,7 +10,7 @@ const moduleName = "home";
 const homeModule = angular.module(moduleName, [uiRouter, items]).config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
         name: 'home',
-        url: '',
+        url: '/catalog',
         component: 'homeComponent',
         resolve: {
             sportsList: function (apiService) {
@@ -19,7 +19,7 @@ const homeModule = angular.module(moduleName, [uiRouter, items]).config(["$state
         }
     });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/catalog');
 }]);
 
 homeModule.component("homeComponent", {

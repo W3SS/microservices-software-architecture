@@ -8,12 +8,12 @@ const moduleName = "items";
 const itemsModule = angular.module(moduleName, [uiRouter]).config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
         name: moduleName,
-        url: "/{categoryId:int}/items/",
+        url: "/{categoryTitle:string}/items/",
         parent: "home",
         component: "itemsComponent",
         resolve: {
             items: function (apiService, $stateParams) {
-                return apiService.fetchCategoryItems($stateParams.categoryId);
+                return apiService.fetchCategoryItems($stateParams.categoryTitle);
             }
         }
     });

@@ -9,6 +9,7 @@ const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvid
     $stateProvider.state({
         name: 'item',
         url: '/item/{itemId:int}',
+        parent: "home",
         component: 'itemComponent',
         resolve: {
             itemDescription: function (apiService) {
