@@ -7,10 +7,10 @@ import './home.css';
 import items from './items/items';
 
 const moduleName = "home";
-const homeModule = angular.module(moduleName, [uiRouter, items]).config(["$stateProvider", function ($stateProvider) {
+const homeModule = angular.module(moduleName, [uiRouter, items]).config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
         name: 'home',
-        url: '/home',
+        url: '',
         component: 'homeComponent',
         resolve: {
             sportsList: function (apiService) {
@@ -18,6 +18,8 @@ const homeModule = angular.module(moduleName, [uiRouter, items]).config(["$state
             }
         }
     });
+
+    $urlRouterProvider.otherwise('/');
 }]);
 
 homeModule.component("homeComponent", {

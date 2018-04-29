@@ -8,46 +8,40 @@
         </md-toolbar>
         <md-card-content>
             <form name="Form" style="margin-top: -16px">
-                <div >
-                    <md-input-container class="md-block" flex-gt-sm>
-                        <label>Email</label>
-                        <input required name="email" ng-model="user.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/"/>
-                    </md-input-container>
-
-                    <md-input-container class="md-block">
-                        <input required="true" name="password" ng-model="$ctrl.password" type="password" placeholder="Enter Password" md-maxlength="20">
-                    </md-input-container>
-                </div>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Email</label>
+                    <input required name="email"
+                           ng-model="$ctrl.user.email" type="email"
+                           minlength="10" maxlength="100"
+                           ng-pattern="/^.+@.+\..+$/"/>
+                </md-input-container>
+                <md-input-container class="md-block" style="margin-top: -20px">
+                    <input required name="password"
+                           ng-model="$ctrl.password" type="password"
+                           placeholder="Enter Password" md-maxlength="20">
+                </md-input-container>
                 <div style="margin-top: -16px">
                     <div class="md-toolbar-tools">
-                        <md-button ng-disabled="!Form.$valid" class="md-raised md-primary" style="margin-left: -16px">Log In</md-button>
-                            <span flex></span>
+                        <md-button ui-sref="home" ng-disabled="!Form.$valid" class="md-raised md-primary" style="margin-left: -16px">Log In</md-button>
+                        <span flex></span>
                         <md-button class="md-raised" style="margin-right: -16px">Sign Up</md-button>
                     </div>
-                    <!--<md-divider class="md-block"></md-divider>-->
-                    <!--<div>
-                        <md-divider class="md-block" flex="40" style="display: inline"></md-divider>
-
-                        <md-divider class="md-block" flex="40" style="display: inline"></md-divider>
-                    </div>-->
                     <div layout="row" layout-xs="column" style="margin-top: 20px">
-                      <div flex="45">
-                        <md-divider></md-divider>
-                      </div>
+                        <div flex="45">
+                            <md-divider></md-divider>
+                        </div>
                         <p flex class="or-title">OR</p>
-                      <div flex="45">
-                        <md-divider></md-divider>
-                      </div>
+                        <div flex="45">
+                            <md-divider></md-divider>
+                        </div>
                     </div>
-                    <div layout="row" layout-align="center" style="margin-top: 10px">
+                    <div layout="row" layout-align="center">
                         <button g-login class="g-login" type="button">
-                            <img src="gs.png" class="g-login-icon" />
+                            <img src="gs.png" class="g-login-icon"/>
                         </button>
                     </div>
                 </div>
-
             </form>
         </md-card-content>
-
     </md-card>
 </div>
