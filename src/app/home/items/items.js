@@ -8,7 +8,7 @@ const moduleName = "items";
 const itemsModule = angular.module(moduleName, [uiRouter]).config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
         name: moduleName,
-        url: "/{categoryTitle:string}/items/",
+        url: "/{categoryTitle:string}/items",
         parent: "home",
         component: "itemsComponent",
         resolve: {
