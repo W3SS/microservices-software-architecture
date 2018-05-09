@@ -9,6 +9,9 @@ angular.module(moduleName, []).service(moduleName, function ($http, $q, $timeout
         },
         {
             title: "Basketball"
+        },
+        {
+            title: "Snowboarding"
         }
     ];
 
@@ -27,6 +30,15 @@ angular.module(moduleName, []).service(moduleName, function ($http, $q, $timeout
         },
         {
             title: "Shorts2"
+        }
+    ];
+
+    let items3 = [
+        {
+            title: "Snowboard"
+        },
+        {
+            title: "Goggles"
         }
     ];
 
@@ -53,6 +65,9 @@ angular.module(moduleName, []).service(moduleName, function ($http, $q, $timeout
                         break;
                     case 'Basketball':
                         resolve(items2);
+                        break;
+                    case 'Snowboarding':
+                        resolve(items3);
                         break;
                     default:
                         console.log("wrong id");

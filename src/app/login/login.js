@@ -8,7 +8,7 @@ const moduleName = "login";
 const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
         name: 'login',
-        url: '/catalog/login',
+        url: '/login',
         component: 'loginComponent'
     });
 }]);

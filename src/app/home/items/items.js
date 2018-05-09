@@ -14,6 +14,9 @@ const itemsModule = angular.module(moduleName, [uiRouter]).config(["$stateProvid
         resolve: {
             items: function (apiService, $stateParams) {
                 return apiService.fetchCategoryItems($stateParams.categoryTitle);
+            },
+            categoryTitle: function ($stateParams) {
+                return $stateParams.categoryTitle;
             }
         }
     });
@@ -22,7 +25,8 @@ const itemsModule = angular.module(moduleName, [uiRouter]).config(["$stateProvid
 itemsModule.component("itemsComponent", {
     template,
     bindings: {
-        items: "<"
+        items: "<",
+        categoryTitle: "<"
     },
     controller: function () {
     }
