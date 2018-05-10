@@ -11,7 +11,7 @@
 <div ng-cloak>
   <md-content class="md-padding" layout-align="center"layout="row">
 
-      <md-card flex-gt-sm="50" flex-gt-md="50">
+      <md-card flex-gt-sm="50" flex-gt-md="30">
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">Action buttons</span>
@@ -32,8 +32,8 @@
           </p>
         </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button>Action 1</md-button>
-          <md-button>Action 2</md-button>
+          <md-button class="md-raised" ng-click="$ctrl.next()" >Edit</md-button>
+          <md-button class="md-raised">Delete</md-button>
         </md-card-actions>
       </md-card>
   </md-content>

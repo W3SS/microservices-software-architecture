@@ -1,15 +1,15 @@
 import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 
-import template from './item.html';
-import './item.css';
+import template from './editItem.html';
+import './editItem.css';
 
-const moduleName = "item";
+const moduleName = "editItem";
 const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
-        name: 'item',
-        url: '/catalog/:categoryTitle/:itemId',
-        component: 'itemComponent',
+        name: 'editItem',
+        url: '/catalog/edit',
+        component: 'editItemComponent',
         resolve: {
             itemDescription: function (apiService) {
                 return apiService.fetchCategoryItemDescription();
@@ -18,14 +18,14 @@ const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvid
     });
 }]);
 
-loginModule.component("itemComponent", {
+loginModule.component("editItemComponent", {
     template,
     itemDescription: {
         sportsList: "<"
     },
     controller: function ($state) {
         this.next = () => {
-            $state.go('editItem');
+            $state.go('home');
         }
     }
 });
