@@ -20,8 +20,8 @@ const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvid
 
 loginModule.component("itemComponent", {
     template,
-    itemDescription: {
-        sportsList: "<"
+    bindings: {
+        itemDescription: "<"
     },
     controller: function ($state) {
         this.next = () => {
