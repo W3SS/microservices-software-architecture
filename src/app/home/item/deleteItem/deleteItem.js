@@ -1,27 +1,27 @@
 import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 
-import template from './editItem.html';
-import './editItem.css';
+import template from './deleteItem.html';
+import './deleteItem.css';
 
-const moduleName = "editItem";
+const moduleName = "deleteItem";
 const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
-        name: 'editItem',
-        url: '/catalog/:itemId/edit',
-        component: 'editItemComponent',
+        name: 'deleteItem',
+        url: '/catalog/:itemId/delete',
+        component: 'deleteItemComponent',
         resolve: {
-            itemDescription: function (apiService) {
+            test: function (apiService) {
                 return apiService.fetchCategoryItemDescription();
             }
         }
     });
 }]);
 
-loginModule.component("editItemComponent", {
+loginModule.component("deleteItemComponent", {
     template,
     bindings: {
-        itemDescription: "<"
+        test: "<"
     },
     controller: function ($state) {
 

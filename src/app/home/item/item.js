@@ -28,8 +28,12 @@ loginModule.component("itemComponent", {
         itemId: "<"
     },
     controller: function ($state) {
-        this.next = () => {
+        this.editItem = () => {
             $state.go('editItem', { itemId: this.itemId });
+        };
+
+        this.deleteItem = () => {
+            $state.go('deleteItem', { itemId: this.itemId });
         }
     }
 });

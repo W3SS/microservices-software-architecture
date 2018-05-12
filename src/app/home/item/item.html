@@ -1,13 +1,3 @@
-<!--
-<div layout="column" ng-cloak>
-  <md-content class="md-padding">
-    <p>
-      Click the button below to open the dialog with an autocomplete.
-    </p>
-
-  </md-content>
-</div>-->
-
 <div ng-cloak>
   <md-content class="md-padding" layout-align="center"layout="row">
 
@@ -32,8 +22,8 @@
           </p>
         </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button class="md-raised" ng-click="$ctrl.next()" >Edit</md-button>
-          <md-button class="md-raised">Delete</md-button>
+          <md-button class="md-raised" ng-click="$ctrl.editItem()" >Edit</md-button>
+          <md-button class="md-raised" ng-click="$ctrl.deleteItem()">Delete</md-button>
         </md-card-actions>
       </md-card>
   </md-content>
