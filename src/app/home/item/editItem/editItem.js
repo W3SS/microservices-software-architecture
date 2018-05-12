@@ -8,7 +8,7 @@ const moduleName = "editItem";
 const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
         name: 'editItem',
-        url: '/catalog/edit',
+        url: '/catalog/:itemId/edit',
         component: 'editItemComponent',
         resolve: {
             itemDescription: function (apiService) {

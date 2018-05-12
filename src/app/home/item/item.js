@@ -13,6 +13,9 @@ const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvid
         resolve: {
             itemDescription: function (apiService) {
                 return apiService.fetchCategoryItemDescription();
+            },
+            itemId: function ($stateParams) {
+                return $stateParams.itemId;
             }
         }
     });
@@ -21,11 +24,12 @@ const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvid
 loginModule.component("itemComponent", {
     template,
     bindings: {
-        itemDescription: "<"
+        itemDescription: "<",
+        itemId: "<"
     },
     controller: function ($state) {
         this.next = () => {
-            $state.go('editItem');
+            $state.go('editItem', { itemId: this.itemId });
         }
     }
 });
