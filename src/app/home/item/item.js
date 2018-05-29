@@ -18,7 +18,9 @@ class Item {
 }
 
 const moduleName = "item";
-const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvider", function ($stateProvider) {
+const loginModule = angular.module(moduleName, [uiRouter]);
+
+loginModule.config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
         name: 'item',
         url: '/catalog/:categoryTitle/:itemId',

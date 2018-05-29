@@ -4,7 +4,7 @@ import uiRouter from '@uirouter/angularjs';
 import template from './login.html';
 import './login.css';
 
-import 'angular-cookies'
+import 'angular-cookies';
 
 
 class Login {
@@ -25,9 +25,12 @@ class Login {
                 console.log(error);
             });
         };
+
+        this.logout = () => {
+            $cookies.remove('token');
+        }
     }
 }
-
 
 const moduleName = "login";
 const loginModule = angular.module(moduleName, [uiRouter, 'ngCookies']);

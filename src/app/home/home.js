@@ -8,8 +8,14 @@ import items from './items/items';
 
 
 class Home {
-    constructor() {
-
+    constructor(apiService) {
+        this.getResource = () => {
+            apiService.getResource().then((response) => {
+                console.log(response)
+            }).catch((error) => {
+                console.log(error)
+            })
+        }
     }
 }
 

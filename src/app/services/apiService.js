@@ -1,9 +1,32 @@
 import angular from 'angular';
+import 'angular-cookies';
 
 const moduleName = "apiService";
 const baseUrl = 'http://localhost:5000';
 
-angular.module(moduleName, []).service(moduleName, function ($http, $q, $timeout) {
+const apiService = angular.module(moduleName, ['ngCookies']);
+
+apiService.factory('httpRequestInterceptor', function ($cookies) {
+    return {
+        request: function (config) {
+            let token = $cookies.get('token');
+
+            if (token) {
+               config.headers['Authorization'] = 'Bearer ' + token;
+            }
+
+            config.headers['Accept'] = 'application/json';
+            return config;
+        }
+    };
+});
+
+apiService.config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push('httpRequestInterceptor');
+}]);
+
+
+apiService.service(moduleName, function ($http, $q, $timeout, $cookies) {
     let sportsList = [
         {
             title: "Volleyball"
@@ -95,7 +118,14 @@ angular.module(moduleName, []).service(moduleName, function ($http, $q, $timeout
                 'Content-type': 'application/json'
             }
         });
-    }
+    };
+
+    this.getResource = () => {
+        return $http({
+            method: 'GET',
+            url: baseUrl + '/protected'
+        });
+    };
 });
 
 export default moduleName;
