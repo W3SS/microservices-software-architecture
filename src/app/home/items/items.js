@@ -4,6 +4,13 @@ import uiRouter from '@uirouter/angularjs';
 import template from './items.html';
 import './items.css';
 
+
+class Items {
+    constructor() {
+
+    }
+}
+
 const moduleName = "items";
 const itemsModule = angular.module(moduleName, [uiRouter]).config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
@@ -28,8 +35,7 @@ itemsModule.component("itemsComponent", {
         items: "<",
         categoryTitle: "<"
     },
-    controller: function () {
-    }
+    controller: Items
 });
 
 export default moduleName;

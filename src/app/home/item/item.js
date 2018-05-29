@@ -4,6 +4,19 @@ import uiRouter from '@uirouter/angularjs';
 import template from './item.html';
 import './item.css';
 
+
+class Item {
+    constructor($state) {
+        this.editItem = () => {
+            $state.go('editItem', { itemId: this.itemId });
+        };
+
+        this.deleteItem = () => {
+            $state.go('deleteItem', { itemId: this.itemId });
+        }
+    }
+}
+
 const moduleName = "item";
 const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
@@ -27,15 +40,7 @@ loginModule.component("itemComponent", {
         itemDescription: "<",
         itemId: "<"
     },
-    controller: function ($state) {
-        this.editItem = () => {
-            $state.go('editItem', { itemId: this.itemId });
-        };
-
-        this.deleteItem = () => {
-            $state.go('deleteItem', { itemId: this.itemId });
-        }
-    }
+    controller: Item
 });
 
 export default moduleName;

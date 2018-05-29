@@ -4,6 +4,13 @@ import uiRouter from '@uirouter/angularjs';
 import template from './login.html';
 import './login.css';
 
+
+class Login {
+    constructor() {
+
+    }
+}
+
 const moduleName = "login";
 const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
@@ -15,9 +22,7 @@ const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvid
 
 loginModule.component("loginComponent", {
     template,
-    controller: function () {
-      
-    }
+    controller: Login
 });
 
 export default moduleName;
