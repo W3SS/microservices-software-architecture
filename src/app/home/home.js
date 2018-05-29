@@ -6,6 +6,13 @@ import './home.css';
 
 import items from './items/items';
 
+
+class Home {
+    constructor() {
+
+    }
+}
+
 const moduleName = "home";
 const homeModule = angular.module(moduleName, [uiRouter, items]).config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
@@ -27,8 +34,7 @@ homeModule.component("homeComponent", {
     bindings: {
         sportsList: "<"
     },
-    controller: function () {
-    }
+    controller: Home
 });
 
 export default moduleName;

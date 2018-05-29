@@ -4,9 +4,11 @@ import uiRouter from '@uirouter/angularjs';
 import template from './login.html';
 import './login.css';
 
+import 'angular-cookies'
+
 
 class Login {
-    constructor(apiService, $state) {
+    constructor(apiService, $state, $cookies) {
         this.password = '';
         this.email = '';
 
@@ -14,6 +16,7 @@ class Login {
             apiService.fetchToken(this.email, this.password).then((response) => {
                 if (response.data.token) {
                     console.log('token = ' + response.data.token);
+                    $cookies.put('token', response.data.token);
                     $state.go('home');
                 } else {
                     console.log('no token');
@@ -25,8 +28,11 @@ class Login {
     }
 }
 
+
 const moduleName = "login";
-const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvider", function ($stateProvider) {
+const loginModule = angular.module(moduleName, [uiRouter, 'ngCookies']);
+
+loginModule.config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
         name: 'login',
         url: '/login',
