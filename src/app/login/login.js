@@ -6,8 +6,22 @@ import './login.css';
 
 
 class Login {
-    constructor() {
+    constructor(apiService, $state) {
+        this.password = '';
+        this.email = '';
 
+        this.login = () => {
+            apiService.fetchToken(this.email, this.password).then((response) => {
+                if (response.data.token) {
+                    console.log('token = ' + response.data.token);
+                    $state.go('home');
+                } else {
+                    console.log('no token');
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
+        };
     }
 }
 

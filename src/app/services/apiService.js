@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 const moduleName = "apiService";
+const baseUrl = 'http://localhost:5000';
 
 angular.module(moduleName, []).service(moduleName, function ($http, $q, $timeout) {
     let sportsList = [
@@ -82,6 +83,17 @@ angular.module(moduleName, []).service(moduleName, function ($http, $q, $timeout
             $timeout(() => {
                 resolve(categoryDescription);
             }, 100);
+        });
+    };
+
+    this.fetchToken = (userName, password) => {
+        return $http({
+            method: 'POST',
+            url: baseUrl + '/login',
+            data: JSON.stringify({username: 'test', password: 'test'}),
+            headers: {
+                'Content-type': 'application/json'
+            }
         });
     }
 });

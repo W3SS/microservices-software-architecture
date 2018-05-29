@@ -11,7 +11,7 @@
                 <md-input-container class="md-block" flex-gt-sm>
                     <label>Email</label>
                     <input required name="email"
-                           ng-model="$ctrl.user.email" type="email"
+                           ng-model="$ctrl.email" type="email"
                            minlength="10" maxlength="100"
                            ng-pattern="/^.+@.+\..+$/"/>
                 </md-input-container>
@@ -22,7 +22,7 @@
                 </md-input-container>
                 <div style="margin-top: -16px">
                     <div class="md-toolbar-tools">
-                        <md-button ui-sref="home" ng-disabled="!Form.$valid" class="md-raised md-primary" style="margin-left: -16px">Log In</md-button>
+                        <md-button ng-click="$ctrl.login()" ng-disabled="!Form.$valid" class="md-raised md-primary" style="margin-left: -16px">Log In</md-button>
                         <span flex></span>
                         <md-button class="md-raised" style="margin-right: -16px">Sign Up</md-button>
                     </div>
