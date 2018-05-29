@@ -1,1 +1,7 @@
 node_modules/*
+.idea/angularjs-material.iml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/workspace.xml
+node_modules/
