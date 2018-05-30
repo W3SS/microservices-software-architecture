@@ -27,6 +27,10 @@ class Login {
 
         this.register = () => {
             $state.go('register');
+        };
+
+        this.isNotAuthenticated = () => {
+            return !authHelper.isUserAuthenticated();
         }
     }
 }
