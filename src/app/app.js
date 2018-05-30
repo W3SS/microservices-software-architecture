@@ -7,15 +7,17 @@ import homeModule from './home/home';
 import itemModule from './home/item/item';
 import editItemModule from './home/item/editItem/editItem';
 import deleteItemModule from './home/item/deleteItem/deleteItem';
+import userRegisterModule from './register/register';
 
 import apiService from './services/apiService';
 import authHelper from './services/helpers/authHelper';
 
 import 'angularjs-social-login';
+import 'angular-cookies';
 
 
 class AppCtrl {
-    constructor($transitions, $rootScope, socialLoginService) {
+    constructor($transitions, $rootScope, socialLoginService, $cookies) {
         this.url = 'https://github.com/preboot/angular-webpack';
 
         $transitions.onBefore("*", (TransitionService) => {
@@ -26,7 +28,9 @@ class AppCtrl {
         });
 
         this.logout = () => {
-            socialLoginService.logout();
+            //socialLoginService.logout();
+            $cookies.remove('token');
+            $cookies.remove('exp');
         };
 
         $rootScope.$on('event:social-sign-out-success', function(event, logoutStatus){
@@ -47,6 +51,7 @@ const MODULE_NAME = 'app';
 
 angular.module(MODULE_NAME, [
     loginModule,
+    userRegisterModule,
     homeModule,
     apiService,
     authHelper,

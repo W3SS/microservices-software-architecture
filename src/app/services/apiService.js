@@ -1,5 +1,4 @@
 import angular from 'angular';
-import 'angular-cookies';
 
 const moduleName = "apiService";
 const baseUrl = 'http://localhost:5000';

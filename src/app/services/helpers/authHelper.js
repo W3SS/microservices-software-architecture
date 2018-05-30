@@ -10,7 +10,6 @@ authHelper.service(moduleName, function ($cookies) {
 
         if (expTime) {
             return expTime > (Date.now() / 1000);
-
         } else {
             return false;
         }

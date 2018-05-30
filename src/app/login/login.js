@@ -4,8 +4,6 @@ import uiRouter from '@uirouter/angularjs';
 import template from './login.html';
 import './login.css';
 
-import 'angular-cookies';
-
 
 class Login {
     constructor(apiService, authHelper, $state, $cookies) {
@@ -17,7 +15,7 @@ class Login {
                 if (response.data.token && response.data.exp) {
                     $cookies.put('token', response.data.token);
                     $cookies.put('exp', response.data.exp);
-                    console.log('user auth' + authHelper.isUserAuthenticated());
+                    console.log('user auth = ' + authHelper.isUserAuthenticated());
                     $state.go('home');
                 } else {
                     console.log('no token');
@@ -27,9 +25,8 @@ class Login {
             });
         };
 
-        this.logout = () => {
-            $cookies.remove('token');
-            $cookies.remove('exp');
+        this.register = () => {
+            $state.go('register');
         }
     }
 }

@@ -1,0 +1,49 @@
+<div layout="row" layout-align="center" class="login">
+    <md-card flex-gt-sm="60" flex-gt-md="33" class="login-form">
+
+        <md-toolbar class="toolbar-login">
+            <div class="md-toolbar-tools">
+                <h2><span>User Registration</span></h2>
+            </div>
+        </md-toolbar>
+        <md-card-content>
+            <form name="Form">
+                <md-input-container class="md-block" flex-gt-xs>
+                    <input required name="conferenceName" ng-model="$ctrl.conferenceName" minlength="1"
+                           placeholder="Conference name" md-maxlength="150">
+                </md-input-container>
+                <div layout="row" layout-align="start" style="margin-top: -25px">
+                    <p>Choose your conference room</p>
+                </div>
+                <md-input-container class="md-block" flex-gt-sm required>
+                    <label>Room</label>
+                    <md-select ng-model="$ctrl.currentRoomName" ng-change="$ctrl.onValueChanged()">
+                        <md-option ng-repeat="state in $ctrl.rooms" value="{{state.abbrev}}">
+                            {{state.abbrev}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <div layout="row">
+                    <md-input-container flex="50">
+                        <label>Location</label>
+                        <input required name="clientName" ng-model="$ctrl.currentLocation" readonly>
+                    </md-input-container>
+
+                    <md-input-container flex="50">
+                        <label>Max seats</label>
+                        <input required name="clientName" ng-model="$ctrl.currentSeats" readonly>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-align="start" style="margin-top: -25px">
+                    <p>Choose the date and the time</p>
+                </div>
+                <div layout-gt-xs="row" style="margin-left: -15px">
+                    <md-datepicker ng-model="$ctrl.date" md-placeholder="Enter date" required></md-datepicker>
+                    <md-time-picker ng-model="$ctrl.time" message="message" read-only="readonly" mandatory="required"
+                                    no-meridiem no-auto-switch required style="margin-top: -15px"></md-time-picker>
+                </div>
+                <md-button ui-sref="home({roomId: 0})" ng-click="$ctrl.registerConference()" ng-disabled="!Form.$valid" class="md-raised md-primary" style="margin-left: -2px">Register</md-button>
+            </form>
+        </md-card-content>
+    </md-card>
+</div>
