@@ -3,8 +3,6 @@
 Crud angularjs application
 
 
-## Setup
-
 ### Nodejs
 The app is based on npm packaging, to run the app you need nodejs to be installed
 
