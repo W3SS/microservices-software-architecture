@@ -71,11 +71,12 @@ apiService.service(moduleName, function ($http, $q, $timeout, $cookies) {
     ];
 
     this.fetchSportsList = () => {
-        return $q((resolve) => {
+        /*return $q((resolve) => {
             $timeout(() => {
                 resolve(sportsList);
             }, 1000);
-        });
+        });*/
+        return sportsList;
     };
 
     this.fetchCategoryItems = (categoryId) => {
