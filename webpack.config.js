@@ -35,7 +35,7 @@ module.exports = function makeWebpackConfig() {
       test: /\.css$/,
       loader: ['style-loader', 'css-loader']
     }, {
-      test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+      test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|ico)$/,
       loader: 'file-loader'
     }, {
       test: /\.html$/,
@@ -57,7 +57,8 @@ module.exports = function makeWebpackConfig() {
   config.plugins.push(
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      inject: 'body'
+      inject: 'body',
+      favicon: 'src/images/favicon.ico'
     })
   );
 
