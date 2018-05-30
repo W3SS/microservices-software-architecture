@@ -5,10 +5,9 @@ Crud angularjs application
 
 ### Nodejs
 The app is based on npm packaging, to run the app you need nodejs to be installed
+ https://nodejs.org/en/download/package-manager
 
-https://nodejs.org/en/download/package-manager
-
-## Usage
+### Usage
 
 Clone the repository
 
