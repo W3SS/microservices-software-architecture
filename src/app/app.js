@@ -9,7 +9,7 @@ import editItemModule from './home/item/editItem/editItem';
 import deleteItemModule from './home/item/deleteItem/deleteItem';
 
 import apiService from './services/apiService';
-import authHelper from './services/authHelper';
+import authHelper from './services/helpers/authHelper';
 
 import 'angularjs-social-login';
 

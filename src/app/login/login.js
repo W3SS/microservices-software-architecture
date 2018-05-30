@@ -8,17 +8,16 @@ import 'angular-cookies';
 
 
 class Login {
-    constructor(apiService, $state, $cookies) {
+    constructor(apiService, authHelper, $state, $cookies) {
         this.password = '';
         this.email = '';
 
         this.login = () => {
             apiService.fetchToken(this.email, this.password).then((response) => {
                 if (response.data.token && response.data.exp) {
-                    console.log('token = ' + response.data.token);
-                    console.log('exp = ' + response.data.exp);
                     $cookies.put('token', response.data.token);
                     $cookies.put('exp', response.data.exp);
+                    console.log('user auth' + authHelper.isUserAuthenticated());
                     $state.go('home');
                 } else {
                     console.log('no token');
