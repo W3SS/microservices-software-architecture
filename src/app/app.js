@@ -17,7 +17,7 @@ import 'angular-cookies';
 
 
 class AppCtrl {
-    constructor($transitions, $rootScope, socialLoginService, $cookies) {
+    constructor($transitions, $rootScope, socialLoginService, $cookies, authHelper) {
         this.url = 'https://github.com/preboot/angular-webpack';
 
         $transitions.onBefore("*", (TransitionService) => {
@@ -28,7 +28,7 @@ class AppCtrl {
         });
 
         this.logout = () => {
-            //socialLoginService.logout();
+            socialLoginService.logout();
             $cookies.remove('token');
             $cookies.remove('exp');
         };
@@ -38,7 +38,11 @@ class AppCtrl {
             auth2.signOut().then(() => {
                 console.log('User signed out.');
             });
-        })
+        });
+
+        this.isAuthenticated = () => {
+            return authHelper.isUserAuthenticated();
+        };
     }
 }
 

@@ -1,8 +1,8 @@
 <div class="app">
   <md-toolbar>
+    <!--ng-if="!$ctrl.isAuthenticated()"-->
     <div class="md-toolbar-tools">
       <md-button ui-sref="login" class="md-raised">Login</md-button>
-        <span flex></span>
       <md-button ui-sref="home" ng-click="$ctrl.logout()" class="md-raised">Logout</md-button>
     </div>
   </md-toolbar>
