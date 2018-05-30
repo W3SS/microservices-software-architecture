@@ -15,7 +15,6 @@ apiService.factory('httpRequestInterceptor', function ($cookies) {
                config.headers['Authorization'] = 'Bearer ' + token;
             }
 
-            config.headers['Content-type'] = 'application/json';
             return config;
         }
     };
@@ -113,7 +112,10 @@ apiService.service(moduleName, function ($http, $q, $timeout, $cookies) {
         return $http({
             method: 'POST',
             url: baseUrl + '/login',
-            data: JSON.stringify({username: 'test', password: 'test'})
+            data: JSON.stringify({username: 'test', password: 'test'}),
+            headers: {
+                'Content-type': 'application/json'
+            }
         });
     };
 

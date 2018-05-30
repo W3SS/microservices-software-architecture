@@ -9,6 +9,8 @@ import editItemModule from './home/item/editItem/editItem';
 import deleteItemModule from './home/item/deleteItem/deleteItem';
 
 import apiService from './services/apiService';
+import authHelper from './services/authHelper';
+
 import 'angularjs-social-login';
 
 
@@ -47,6 +49,7 @@ angular.module(MODULE_NAME, [
     loginModule,
     homeModule,
     apiService,
+    authHelper,
     itemModule,
     editItemModule,
     deleteItemModule,

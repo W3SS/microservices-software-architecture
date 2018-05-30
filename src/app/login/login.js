@@ -16,7 +16,7 @@ class Login {
             apiService.fetchToken(this.email, this.password).then((response) => {
                 if (response.data.token && response.data.exp) {
                     console.log('token = ' + response.data.token);
-                    console.log(response.data.exp);
+                    console.log('exp = ' + response.data.exp);
                     $cookies.put('token', response.data.token);
                     $cookies.put('exp', response.data.exp);
                     $state.go('home');
@@ -30,6 +30,7 @@ class Login {
 
         this.logout = () => {
             $cookies.remove('token');
+            $cookies.remove('exp');
         }
     }
 }
