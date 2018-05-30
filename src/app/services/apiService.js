@@ -13,7 +13,6 @@ apiService.factory('httpRequestInterceptor', function ($cookies) {
             if (token) {
                config.headers['Authorization'] = 'Bearer ' + token;
             }
-
             return config;
         }
     };
@@ -112,11 +111,36 @@ apiService.service(moduleName, function ($http, $q, $timeout, $cookies) {
         return $http({
             method: 'POST',
             url: baseUrl + '/login',
-            data: JSON.stringify({username: 'test', password: 'test'}),
+            data: JSON.stringify({
+                username: 'test',
+                password: 'test'
+            }),
             headers: {
                 'Content-type': 'application/json'
             }
         });
+    };
+
+    this.oauth2Login = (userDetails) => {
+        if (userDetails) {
+            return $http({
+                method: 'POST',
+                url: baseUrl + '/oauth',
+                data: JSON.stringify({
+                    token: userDetails.token,
+                    name: userDetails.name,
+                    email: userDetails.email
+                }),
+                params: {
+                    provider: userDetails.provider
+                },
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            });
+        } else {
+          console.log('no user data');
+        }
     };
 
     this.getResource = () => {

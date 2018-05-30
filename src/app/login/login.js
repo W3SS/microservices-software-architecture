@@ -6,7 +6,7 @@ import './login.css';
 
 
 class Login {
-    constructor(apiService, authHelper, $state, $cookies, $rootScope, $scope) {
+    constructor(apiService, authHelper, $state, $cookies, $rootScope) {
         this.password = '';
         this.email = '';
 
@@ -34,15 +34,22 @@ class Login {
         };
 
         let succeededLogin = $rootScope.$on('event:social-sign-in-success', function(event, userDetails) {
-            console.log('social-login');
-            console.log(event);
             console.log(userDetails);
+            $state.go('home');
+            /*apiService.oauth2Login(userDetails).then((response) => {
+                $cookies.put('token', response.data.token);
+                $cookies.put('exp', response.data.exp);
+                console.log('user auth = ' + authHelper.isUserAuthenticated());
+                $state.go('home');
+            }).catch((error)=> {
+                console.log(error);
+            });*/
         });
 
         // unsubscribe on destroy
-        $scope.$on('$destroy', () => {
+        this.$onDestroy = () => {
             succeededLogin();
-        });
+        };
     }
 }
 
