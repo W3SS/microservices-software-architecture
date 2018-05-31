@@ -38,6 +38,7 @@ class Login {
             apiService.oauth2Login(userDetails).then((response) => {
                 $cookies.put('token', response.data.token);
                 $cookies.put('exp', response.data.exp);
+                $cookies.put('provider', 'google');
                 console.log('exp = ' + response.data.exp);
                 console.log('user auth = ' + authHelper.isUserAuthenticated());
                 $state.go('home');

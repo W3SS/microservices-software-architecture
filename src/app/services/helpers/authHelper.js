@@ -13,6 +13,12 @@ authHelper.service(moduleName, function ($cookies) {
         } else {
             return false;
         }
+    };
+
+    this.isUserAuthenticatedByGoogle = () => {
+        let googleAuth = $cookies.get('google');
+
+        return !!googleAuth;
     }
 });
 

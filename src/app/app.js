@@ -28,14 +28,21 @@ class AppCtrl {
         });
 
         this.logout = () => {
-            socialLoginService.logout();
-            $cookies.remove('token');
-            $cookies.remove('exp');
+            if (authHelper.isUserAuthenticatedByGoogle()) {
+                socialLoginService.logout();
+            } else {
+                $cookies.remove('token');
+                $cookies.remove('exp');
+            }
         };
 
         $rootScope.$on('event:social-sign-out-success', function(event, logoutStatus){
             let auth2 = gapi.auth2.getAuthInstance();
+
             auth2.signOut().then(() => {
+                $cookies.remove('token');
+                $cookies.remove('exp');
+                $cookies.remove('provider');
                 console.log('User signed out.');
             });
         });

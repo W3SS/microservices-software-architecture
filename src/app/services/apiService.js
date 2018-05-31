@@ -143,6 +143,13 @@ apiService.service(moduleName, function ($http, $q, $timeout, $cookies) {
         }
     };
 
+    this.logout = () => {
+        return $http({
+            method: 'DELETE',
+            url: baseUrl + '/logout'
+        });
+    };
+
     this.getResource = () => {
         return $http({
             method: 'GET',
