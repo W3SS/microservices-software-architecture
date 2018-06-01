@@ -12,12 +12,12 @@ import userRegisterModule from './register/register';
 import apiService from './services/apiService';
 import authService from './services/authService';
 
-import 'angularjs-social-login';
 import 'angular-cookies';
+import 'angularjs-social-login';
 
 
 class AppCtrl {
-    constructor($transitions, $rootScope, socialLoginService, $cookies, authService) {
+    constructor($transitions, $rootScope, $cookies, authService) {
         this.url = 'https://github.com/preboot/angular-webpack';
 
         $transitions.onBefore("*", (TransitionService) => {
@@ -28,24 +28,8 @@ class AppCtrl {
         });
 
         this.logout = () => {
-            if (authService.isUserAuthenticatedByGoogle()) {
-                socialLoginService.logout();
-            } else {
-                $cookies.remove('token');
-                $cookies.remove('exp');
-            }
+            authService.logout();
         };
-
-        $rootScope.$on('event:social-sign-out-success', function(event, logoutStatus){
-            let auth2 = gapi.auth2.getAuthInstance();
-
-            auth2.signOut().then(() => {
-                $cookies.remove('token');
-                $cookies.remove('exp');
-                $cookies.remove('provider');
-                console.log('User signed out.');
-            });
-        });
 
         this.isAuthenticated = () => {
             return authService.isUserAuthenticated();
