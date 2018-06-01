@@ -38,6 +38,7 @@ class Login {
         let succeededLogin = $rootScope.$on('event:social-sign-in-success', function(event, userDetails) {
             apiService.oauth2Login(userDetails).then((response) => {
                 $cookies.put('token', response.data.token);
+                $cookies.put('providerToken', userDetails.token);
                 $cookies.put('exp', response.data.exp);
                 $cookies.put('provider', 'google');
                 console.log('exp = ' + response.data.exp);

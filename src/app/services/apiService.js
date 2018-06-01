@@ -147,6 +147,26 @@ class ApiService {
             });
         };
 
+        this.logoutOauth = (oauthToken, provider) => {
+            if (oauthToken && provider) {
+                return $http({
+                    method: 'DELETE',
+                    url: baseUrl + '/logout/oauth',
+                    data: JSON.stringify({
+                            token: oauthToken
+                    }),
+                    params: {
+                        provider: provider
+                    },
+                    headers: {
+                        'Content-type': 'application/json'
+                    }
+                });
+            } else {
+                console.log('missing parameters');
+            }
+        };
+
         this.getResource = () => {
             return $http({
                 method: 'GET',

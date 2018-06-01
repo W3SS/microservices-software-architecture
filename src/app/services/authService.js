@@ -45,12 +45,20 @@ class AuthService {
 
         $rootScope.$on('event:social-sign-out-success', function(event, logoutStatus){
             let auth2 = gapi.auth2.getAuthInstance();
+            let providerToken = $cookies.get('providerToken');
+            let provider = $cookies.get('provider');
 
             auth2.signOut().then(() => {
-                $cookies.remove('token');
-                $cookies.remove('exp');
-                $cookies.remove('provider');
-                console.log('User signed out.');
+                apiService.logoutOauth(providerToken, provider).then((response) => {
+                    $cookies.remove('token');
+                    $cookies.remove('exp');
+                    $cookies.remove('provider');
+                    $cookies.remove('providerToken');
+                    console.log('User signed out.');
+                }).catch((error) => {
+                    console.log('oauth logout error on the backend');
+                    console.log(error);
+                });
             });
         });
     }
