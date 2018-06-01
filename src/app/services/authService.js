@@ -1,10 +1,10 @@
 import angular from 'angular';
 
-const moduleName = "authHelper";
+const moduleName = "authService";
 
-const authHelper = angular.module(moduleName, ['ngCookies']);
+const authService = angular.module(moduleName, ['ngCookies']);
 
-authHelper.service(moduleName, function ($cookies) {
+authService.service(moduleName, function ($cookies) {
     this.isUserAuthenticated = () => {
         let expTime = $cookies.get('exp');
 
@@ -19,6 +19,10 @@ authHelper.service(moduleName, function ($cookies) {
         let googleAuth = $cookies.get('google');
 
         return !!googleAuth;
+    };
+
+    this.logout = () => {
+
     }
 });
 

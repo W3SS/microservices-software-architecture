@@ -10,14 +10,14 @@ import deleteItemModule from './home/item/deleteItem/deleteItem';
 import userRegisterModule from './register/register';
 
 import apiService from './services/apiService';
-import authHelper from './services/helpers/authHelper';
+import authService from './services/authService';
 
 import 'angularjs-social-login';
 import 'angular-cookies';
 
 
 class AppCtrl {
-    constructor($transitions, $rootScope, socialLoginService, $cookies, authHelper) {
+    constructor($transitions, $rootScope, socialLoginService, $cookies, authService) {
         this.url = 'https://github.com/preboot/angular-webpack';
 
         $transitions.onBefore("*", (TransitionService) => {
@@ -28,7 +28,7 @@ class AppCtrl {
         });
 
         this.logout = () => {
-            if (authHelper.isUserAuthenticatedByGoogle()) {
+            if (authService.isUserAuthenticatedByGoogle()) {
                 socialLoginService.logout();
             } else {
                 $cookies.remove('token');
@@ -48,7 +48,7 @@ class AppCtrl {
         });
 
         this.isAuthenticated = () => {
-            return authHelper.isUserAuthenticated();
+            return authService.isUserAuthenticated();
         };
     }
 }
@@ -65,7 +65,7 @@ angular.module(MODULE_NAME, [
     userRegisterModule,
     homeModule,
     apiService,
-    authHelper,
+    authService,
     itemModule,
     editItemModule,
     deleteItemModule,

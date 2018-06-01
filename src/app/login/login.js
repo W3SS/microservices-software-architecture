@@ -6,7 +6,7 @@ import './login.css';
 
 
 class Login {
-    constructor(apiService, authHelper, $state, $cookies, $rootScope) {
+    constructor(apiService, authService, $state, $cookies, $rootScope) {
         this.password = '';
         this.email = '';
 
@@ -16,7 +16,7 @@ class Login {
                     $cookies.put('token', response.data.token);
                     $cookies.put('exp', response.data.exp);
                     console.log('exp = ' + response.data.exp);
-                    console.log('user auth = ' + authHelper.isUserAuthenticated());
+                    console.log('user auth = ' + authService.isUserAuthenticated());
                     $state.go('home');
                 } else {
                     console.log('no token');
@@ -31,7 +31,7 @@ class Login {
         };
 
         this.isAuthenticated = () => {
-            return authHelper.isUserAuthenticated();
+            return authService.isUserAuthenticated();
         };
 
         let succeededLogin = $rootScope.$on('event:social-sign-in-success', function(event, userDetails) {
@@ -40,7 +40,7 @@ class Login {
                 $cookies.put('exp', response.data.exp);
                 $cookies.put('provider', 'google');
                 console.log('exp = ' + response.data.exp);
-                console.log('user auth = ' + authHelper.isUserAuthenticated());
+                console.log('user auth = ' + authService.isUserAuthenticated());
                 $state.go('home');
             }).catch((error)=> {
                 console.log(error);

@@ -6,7 +6,7 @@ import './item.css';
 
 
 class Item {
-    constructor($state, authHelper) {
+    constructor($state, authService) {
         this.editItem = () => {
             $state.go('editItem', { itemId: this.itemId });
         };
@@ -16,7 +16,7 @@ class Item {
         };
 
         this.isAccessible = () => {
-            return !authHelper.isUserAuthenticated();
+            return !authService.isUserAuthenticated();
         }
     }
 }
