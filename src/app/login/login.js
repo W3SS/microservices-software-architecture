@@ -15,6 +15,7 @@ class Login {
                 if (response.data.token && response.data.exp) {
                     $cookies.put('token', response.data.token);
                     $cookies.put('exp', response.data.exp);
+                    console.log('token = ' + response.data.token);
                     console.log('exp = ' + response.data.exp);
                     console.log('user auth = ' + authService.isUserAuthenticated());
                     $state.go('home');

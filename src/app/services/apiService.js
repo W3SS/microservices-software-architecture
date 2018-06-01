@@ -2,7 +2,21 @@ import angular from 'angular';
 
 const moduleName = "apiService";
 const baseUrl = 'http://localhost:5000';
-const apiService = angular.module(moduleName, ['ngCookies']);
+const apiService = angular.module(moduleName, ['ngCookies'])
+    .factory('httpRequestInterceptor', function ($cookies) {
+        return {
+            request: function (config) {
+                let token = $cookies.get('token');
+
+                if (token) {
+                   config.headers['Authorization'] = 'Bearer ' + token;
+                }
+                return config;
+            }
+        };
+    }).config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.interceptors.push('httpRequestInterceptor');
+    }]);
 
 
 class ApiService {
@@ -141,23 +155,6 @@ class ApiService {
         };
     }
 }
-
-apiService.factory('httpRequestInterceptor', function ($cookies) {
-    return {
-        request: function (config) {
-            let token = $cookies.get('token');
-
-            if (token) {
-               config.headers['Authorization'] = 'Bearer ' + token;
-            }
-            return config;
-        }
-    };
-});
-
-apiService.config(['$httpProvider', function ($httpProvider) {
-    $httpProvider.interceptors.push('httpRequestInterceptor');
-}]);
 
 apiService.service(moduleName, ApiService);
 

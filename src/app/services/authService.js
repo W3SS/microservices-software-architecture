@@ -5,7 +5,9 @@ const authService = angular.module(moduleName, ['ngCookies']);
 
 
 class AuthService {
-    constructor($cookies, socialLoginService, $rootScope) {
+    constructor($cookies, socialLoginService, $rootScope, apiService) {
+        let self = this;
+
         this.isUserAuthenticated = () => {
             let expTime = $cookies.get('exp');
 
@@ -26,7 +28,13 @@ class AuthService {
             if (this.isUserAuthenticatedByGoogle()) {
                 socialLoginService.logout();
             } else {
-                this.removeRevokedToken();
+                apiService.logout().then((response) => {
+                    this.removeRevokedToken();
+                    console.log('logged out successfully ')
+                }).catch((error) => {
+                    console.log('logout error');
+                    console.log(error);
+                });
             }
         };
 
@@ -39,7 +47,8 @@ class AuthService {
             let auth2 = gapi.auth2.getAuthInstance();
 
             auth2.signOut().then(() => {
-                this.removeRevokedToken();
+                $cookies.remove('token');
+                $cookies.remove('exp');
                 $cookies.remove('provider');
                 console.log('User signed out.');
             });
