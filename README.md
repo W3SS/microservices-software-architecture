@@ -34,7 +34,7 @@ Run the backend and start to use the app
 ```
 python backend/python app.py
 ```
-http://localhost:9000/
+The client is running on http://localhost:9000/
 
  ### License
 
