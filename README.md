@@ -29,6 +29,10 @@ Run the app
 npm run server
 ```
 
+Run the backend
+
+python backend/python
+```
 
  ### License
 
