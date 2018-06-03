@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from flask import Flask, jsonify, request, abort
 from sqlalchemy.orm import relationship, sessionmaker
 from email_validator import validate_email, EmailNotValidError
