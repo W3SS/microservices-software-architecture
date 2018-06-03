@@ -29,7 +29,7 @@ Run the app
 npm run server
 ```
 
-Run the backend and start to use the app
+Run the backend and start using the app
 
 ```
 python backend/python app.py
