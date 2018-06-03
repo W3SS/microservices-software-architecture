@@ -31,6 +31,7 @@ npm run server
 
 Run the backend
 
+```
 python backend/python
 ```
 
