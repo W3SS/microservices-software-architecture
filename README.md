@@ -29,11 +29,12 @@ Run the app
 npm run server
 ```
 
-Run the backend
+Run the backend and start to use the app
 
 ```
-python backend/python
+python backend/python app.py
 ```
+http://localhost:9000/
 
  ### License
 
