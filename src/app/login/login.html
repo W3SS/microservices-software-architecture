@@ -9,16 +9,16 @@
         <md-card-content>
             <form name="Form" style="margin-top: -16px">
                 <md-input-container class="md-block" flex-gt-sm>
-                    <label>Email</label>
-                    <input required name="email"
-                           ng-model="$ctrl.email" type="email"
-                           minlength="10" maxlength="100"
-                           ng-pattern="/^.+@.+\..+$/"/>
+                    <label>Username</label>
+                    <input required name="username"
+                           ng-model="$ctrl.user.username" type="text"
+                           minlength="2" maxlength="254">
                 </md-input-container>
                 <md-input-container class="md-block" style="margin-top: -20px">
+                    <label>Password</label>
                     <input required name="password"
                            ng-model="$ctrl.password" type="password"
-                           placeholder="Enter Password" md-maxlength="20">
+                           md-maxlength="20">
                 </md-input-container>
                 <div style="margin-top: -16px">
                     <div class="md-toolbar-tools">

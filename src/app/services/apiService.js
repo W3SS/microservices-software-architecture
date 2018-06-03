@@ -125,7 +125,6 @@ class ApiService {
                     url: baseUrl + '/oauth',
                     data: JSON.stringify({
                         token: userDetails.token,
-                        name: userDetails.name,
                         email: userDetails.email
                     }),
                     params: {
@@ -172,6 +171,25 @@ class ApiService {
                 method: 'GET',
                 url: baseUrl + '/protected'
             });
+        };
+
+        this.userRegister = (user) => {
+            if (user) {
+                return $http({
+                    method: 'POST',
+                    url: baseUrl + '/register',
+                    data: JSON.stringify({
+                        username: user.username,
+                        password: user.password,
+                        email: user.email
+                    }),
+                    headers: {
+                        'Content-type': 'application/json'
+                    }
+                });
+            } else {
+                console.log('missing parameters');
+            }
         };
     }
 }
