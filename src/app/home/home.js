@@ -8,7 +8,7 @@ import items from './items/items';
 
 
 class Home {
-    constructor(apiService, $state) {
+    constructor(apiService, authService, $state) {
         this.getResource = () => {
             apiService.getResource().then((response) => {
                 console.log(response)
@@ -19,6 +19,10 @@ class Home {
 
         this.isHome = () => {
             return $state.is(moduleName);
+        };
+
+        this.isLoggedIn = () => {
+            return authService.isUserAuthenticated();
         }
     }
 }

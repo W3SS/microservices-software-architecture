@@ -66,6 +66,17 @@ class ApiService {
             }
         ];
 
+        let latestItems = [
+            {
+                title: "Ball",
+                category: "Volleyball"
+            },
+            {
+                title: "Shorts",
+                category: "Basketball"
+            }
+        ];
+
         this.fetchSportsList = () => {
             /*return $q((resolve) => {
                 $timeout(() => {
@@ -99,7 +110,7 @@ class ApiService {
         this.fetchLatestItems = () => {
             return $q((resolve) => {
                 $timeout(() => {
-                    resolve(items);
+                    resolve(latestItems);
                 }, 500);
             });
         };

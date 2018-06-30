@@ -1,6 +1,11 @@
 <md-card>
     <md-list>
-        <md-subheader style="background-color: white">Category Items</md-subheader>
+        <div layout-gt-sm="row">
+            <md-subheader style="background-color: white">Category Items</md-subheader>
+            <div ng-show="$ctrl.isLoggedIn()">
+                <md-button style="left: 139px">Add Item</md-button>
+            </div>
+        </div>
         <md-divider></md-divider>
         <md-list-item
                 ui-sref="item({itemId: sport.title, categoryTitle: $ctrl.categoryTitle})"

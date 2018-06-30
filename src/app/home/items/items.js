@@ -6,8 +6,10 @@ import './items.css';
 
 
 class Items {
-    constructor() {
-
+    constructor(authService) {
+        this.isLoggedIn = () => {
+            return authService.isUserAuthenticated();
+        }
     }
 }
 

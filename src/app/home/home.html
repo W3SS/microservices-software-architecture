@@ -1,7 +1,9 @@
-<md-content class="md-padding home" layout-xs="column" layout-align="center" layout="row">
+<md-content class="md-padding home" layout-xs="column" layout-align="center"
+            layout="row">
     <md-card flex-gt-sm="10" flex-gt-md="30">
         <md-list>
-            <md-subheader style="background-color: white">Categories</md-subheader>
+            <md-subheader style="background-color: white">Categories
+            </md-subheader>
             <md-divider></md-divider>
             <md-list-item ui-sref="items({categoryTitle: sport.title})"
                           ng-repeat="sport in $ctrl.sportsList">
@@ -14,22 +16,27 @@
     </md-card>
     <div flex-xs flex-gt-xs="10" flex-gt-md="30">
         <ui-view></ui-view>
-        <div id="rightView" ng-show="$ctrl.isHome()">
+        <div ng-show="$ctrl.isHome()">
             <md-card>
-    <md-list>
-        <md-subheader style="background-color: white">Latest items</md-subheader>
-        <md-divider></md-divider>
-        <md-list-item
-                ui-sref="item({itemId: sport.title, categoryTitle: $ctrl.categoryTitle})"
-                ng-repeat="sport in $ctrl.items">
-            <div class="md-list-item-text">
-                <p2>{{sport.title}}</p2>
-            </div>
-            <div class="md-secondary-container"></div>
-            <md-divider ng-if="!$last"></md-divider>
-        </md-list-item>
-    </md-list>
-</md-card>
+                <md-list>
+                    <div layout-gt-sm="row">
+                        <md-subheader style="background-color: white">Latest items</md-subheader>
+                        <div ng-show="$ctrl.isLoggedIn()">
+                            <md-button style="left: 156px">Add Item</md-button>
+                        </div>
+                    </div>
+                    <md-divider></md-divider>
+                    <md-list-item
+                            ng-repeat="item in $ctrl.items"
+                            ui-sref="item({itemId: item.title, categoryTitle: item.category})">
+                        <div class="md-list-item-text">
+                            <p2>{{item.title}}</p2>
+                        </div>
+                        <div class="md-secondary-container"></div>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-card>
         </div>
     </div>
 </md-content>
