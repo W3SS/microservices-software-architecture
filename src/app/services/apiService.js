@@ -96,6 +96,14 @@ class ApiService {
             });
         };
 
+        this.fetchLatestItems = () => {
+            return $q((resolve) => {
+                $timeout(() => {
+                    resolve(items);
+                }, 500);
+            });
+        };
+
         this.fetchCategoryItemDescription = (itemId) => {
             return $q((resolve) => {
                 $timeout(() => {

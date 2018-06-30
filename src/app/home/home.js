@@ -8,13 +8,17 @@ import items from './items/items';
 
 
 class Home {
-    constructor(apiService) {
+    constructor(apiService, $state) {
         this.getResource = () => {
             apiService.getResource().then((response) => {
                 console.log(response)
             }).catch((error) => {
                 console.log(error)
             })
+        };
+
+        this.isHome = () => {
+            return $state.is(moduleName);
         }
     }
 }
@@ -28,6 +32,9 @@ const homeModule = angular.module(moduleName, [uiRouter, items]).config(["$state
         resolve: {
             sportsList: function (apiService) {
                 return apiService.fetchSportsList();
+            },
+            items: function (apiService) {
+                return apiService.fetchLatestItems();
             }
         }
     });
@@ -38,7 +45,8 @@ const homeModule = angular.module(moduleName, [uiRouter, items]).config(["$state
 homeModule.component("homeComponent", {
     template,
     bindings: {
-        sportsList: "<"
+        sportsList: "<",
+        items: "<"
     },
     controller: Home
 });
