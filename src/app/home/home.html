@@ -1,15 +1,18 @@
-<md-content class="md-padding" layout-xs="column" layout-align="center" layout="row">
-    <md-card flex-gt-sm="50" flex-gt-md="33">
+<md-content class="md-padding home" layout-xs="column" layout-align="center" layout="row">
+    <md-card flex-gt-sm="10" flex-gt-md="30">
         <md-list>
-            <md-list-item ui-sref="items({categoryTitle: sport.title})" class="md-3-line" ng-repeat="sport in $ctrl.sportsList">
+            <md-subheader style="background-color: white">Categories</md-subheader>
+            <md-divider></md-divider>
+            <md-list-item ui-sref="items({categoryTitle: sport.title})"
+                          ng-repeat="sport in $ctrl.sportsList">
                 <div class="md-list-item-text">
-                    <a>{{sport.title}}</a>
+                    <p2>{{sport.title}}</p2>
                 </div>
                 <md-divider ng-if="!$last"></md-divider>
             </md-list-item>
         </md-list>
     </md-card>
-    <div flex-xs flex-gt-xs="50" flex-gt-md="33">
+    <div flex-xs flex-gt-xs="10" flex-gt-md="30">
         <ui-view></ui-view>
     </div>
-  </md-content>
+</md-content>
