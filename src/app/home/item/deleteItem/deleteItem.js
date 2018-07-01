@@ -6,9 +6,21 @@ import './deleteItem.css';
 
 
 class DeleteItem {
-    constructor($state, $stateParams) {
-        this.submit = () => {
-            $state.go('home');
+    constructor($state, $stateParams, $mdDialog) {
+        this.submit = (ev) => {
+            let dialog = $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .textContent('Item has been deleted.')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('ok')
+                .targetEvent(ev);
+
+            $mdDialog.show(dialog).then((result) => {
+                $state.go('home');
+            }).catch(() => {
+                $state.go('home');
+            });
         };
 
         this.cancel = () => {
@@ -16,7 +28,7 @@ class DeleteItem {
                 categoryTitle: $stateParams.category,
                 itemId: $stateParams.itemId
             });
-        }
+        };
     }
 }
 

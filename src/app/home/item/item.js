@@ -6,7 +6,7 @@ import './item.css';
 
 
 class Item {
-    constructor($state, authService, $mdDialog, $stateParams) {
+    constructor($state, authService, $stateParams) {
         this.editItem = () => {
             $state.go('editItem', {
                 itemId: $stateParams.itemId,
@@ -23,22 +23,6 @@ class Item {
 
         this.isAccessible = () => {
             return !authService.isUserAuthenticated();
-        };
-
-        this.showNotification = (ev) => {
-            let dialog = $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
-                .clickOutsideToClose(true)
-                .textContent('Item has been deleted.')
-                .ariaLabel('Alert Dialog Demo')
-                .ok('ok')
-                .targetEvent(ev);
-
-            $mdDialog.show(dialog).then((result) => {
-                $state.go('items', { categoryTitle: $stateParams.categoryTitle });
-            }).catch(() => {
-                $state.go('items', { categoryTitle: $stateParams.categoryTitle });
-            });
         };
     }
 }

@@ -12,7 +12,6 @@ class EditItem {
         };
 
         this.cancel = () => {
-            console.log($stateParams);
             $state.go('item', {
                 categoryTitle: $stateParams.category,
                 itemId: $stateParams.itemId
