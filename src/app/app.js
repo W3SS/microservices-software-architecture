@@ -15,6 +15,7 @@ import authService from './services/authService';
 
 import 'angular-cookies';
 import 'angularjs-social-login';
+import 'angular-messages';
 
 
 class AppCtrl {

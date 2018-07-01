@@ -5,7 +5,19 @@ import template from './createItem.html';
 import './createItem.css';
 
 const moduleName = "createItem";
-const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvider", function ($stateProvider) {
+const createModule = angular.module(moduleName, [uiRouter, 'ngMaterial', 'ngMessages']);
+
+class CreateItem {
+    constructor() {
+        this.project = {
+            description: 'Nuclear Missile Defense System',
+            rate: 500,
+            special: true
+        }
+    }
+}
+
+createModule.config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
         name: 'createItem',
         url: '/catalog/item/create',
@@ -13,11 +25,9 @@ const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvid
     });
 }]);
 
-loginModule.component("createItemComponent", {
+createModule.component("createItemComponent", {
     template,
-    controller: function ($state) {
-
-    }
+    controller: CreateItem
 });
 
 export default moduleName;

@@ -19,10 +19,10 @@
         <div ng-show="$ctrl.isHome()">
             <md-card>
                 <md-list>
-                    <div layout-gt-sm="row">
-                        <md-subheader style="background-color: white">Latest items</md-subheader>
-                        <div ng-show="$ctrl.isLoggedIn()">
-                            <md-button ui-sref="createItem" style="left: 156px">Add Item</md-button>
+                    <div layout="row">
+                        <md-subheader flex="50" style="background-color: white">Latest items</md-subheader>
+                        <div flex="50" ng-show="$ctrl.isLoggedIn()">
+                            <md-button layout="column" ui-sref="createItem">Add Item</md-button>
                         </div>
                     </div>
                     <md-divider></md-divider>

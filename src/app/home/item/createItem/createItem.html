@@ -1,1 +1,50 @@
-createItem
+<div layout="row" layout-align="center" class="create" style="margin-top: 50px">
+    <md-card flex-gt-md="40" class="create-form">
+        <md-toolbar class="toolbar-login">
+            <div class="md-toolbar-tools">
+                <h2><span>Add New Item</span></h2>
+            </div>
+        </md-toolbar>
+
+        <md-content layout-padding>
+            <form name="projectForm">
+
+                <md-input-container class="md-block">
+                    <label>Item Name</label>
+                    <input required name="clientName"
+                           ng-model="project.clientName">
+                    <div ng-messages="projectForm.clientName.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container style="top: -14px" class="md-block">
+                    <label>Category</label>
+                    <md-select name="type" ng-model="project.type" required>
+                        <md-option value="app">Application</md-option>
+                        <md-option value="web">Website</md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Description</label>
+                    <textarea ng-model="$ctrl.biography" required name="description2" md-maxlength="100"
+                              rows="3" md-select-on-focus>
+                    </textarea>
+                    <div ng-messages="projectForm.description2.$error">
+                        <div ng-message="required">Description is required.</div>
+                        <div ng-message="md-maxlength">The description must be
+                            less than 100 characters long.
+                        </div>
+                    </div>
+                </md-input-container>
+                <div class="md-toolbar-tools">
+                    <md-button class="md-raised" type="submit">Cancel</md-button>
+                    <span flex></span>
+                    <md-button class="md-raised" ng-disabled="!projectForm.$valid" type="submit">Save</md-button>
+                </div>
+
+            </form>
+        </md-content>
+    </md-card>
+</div>

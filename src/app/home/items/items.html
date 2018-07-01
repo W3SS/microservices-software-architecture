@@ -1,9 +1,9 @@
 <md-card>
     <md-list>
-        <div layout-gt-sm="row">
-            <md-subheader style="background-color: white">Category Items</md-subheader>
-            <div ng-show="$ctrl.isLoggedIn()">
-                <md-button ui-sref="createItem" style="left: 139px">Add Item</md-button>
+        <div layout="row">
+            <md-subheader flex="50" style="background-color: white">Category Items</md-subheader>
+            <div flex="50" ng-show="$ctrl.isLoggedIn()">
+                <md-button layout="column" ui-sref="createItem">Add Item</md-button>
             </div>
         </div>
         <md-divider></md-divider>
