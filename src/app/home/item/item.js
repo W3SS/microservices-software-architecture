@@ -30,7 +30,7 @@ class Item {
 
             $mdDialog.show(dialog).then((result) => {
                 $state.go('items', { categoryTitle: $stateParams.categoryTitle });
-            }, (reject)=> {
+            }).catch(() => {
                 $state.go('items', { categoryTitle: $stateParams.categoryTitle });
             });
         };

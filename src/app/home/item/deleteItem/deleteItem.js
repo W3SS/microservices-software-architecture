@@ -1,30 +1,30 @@
 import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 
-import template from './editItem.html';
-import './editItem.css';
+import template from './deleteItem.html';
+import './deleteItem.css';
 
 
-class EditItem {
+class DeleteItem {
     constructor($state, $stateParams) {
-        this.home = () => {
+        /*this.home = () => {
             $state.go('home');
         };
 
         this.cancel = () => {
             $state.go('items', { categoryTitle: $stateParams.category });
-        }
+        }*/
     }
 }
 
-const moduleName = "editItem";
+const moduleName = "deleteItem";
 const loginModule = angular.module(moduleName, [uiRouter, 'ngMaterial']);
 
 loginModule.config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
-        name: 'editItem',
-        url: '/catalog/:itemId/edit',
-        component: 'editItemComponent',
+        name: 'deleteItem',
+        url: '/catalog/:itemId/delete',
+        component: 'deleteItemComponent',
         resolve: {
             itemDescription: function (apiService) {
                 return apiService.fetchCategoryItemDescription();
@@ -33,12 +33,12 @@ loginModule.config(["$stateProvider", function ($stateProvider) {
     });
 }]);
 
-loginModule.component("editItemComponent", {
+loginModule.component("deleteItemComponent", {
     template,
     bindings: {
         itemDescription: "<"
     },
-    controller: EditItem
+    controller: DeleteItem
 });
 
 export default moduleName;

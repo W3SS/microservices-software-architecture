@@ -4,17 +4,17 @@
       <md-card flex-gt-sm="50" flex-gt-md="30">
         <md-card-title>
           <md-card-title-text>
-            <span class="md-headline">Item</span>
+            <span class="md-headline">Delete Item</span>
           </md-card-title-text>
         </md-card-title>
         <md-card-content>
           <p>
-            Description
+            Are you sure you want to delete ?
           </p>
         </md-card-content>
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button ng-hide="$ctrl.isAccessible()" class="md-raised" ng-click="$ctrl.editItem()" >Edit</md-button>
-          <md-button ng-hide="$ctrl.isAccessible()" class="md-raised" ng-click="$ctrl.deleteItem()">Delete</md-button>
+        <md-card-actions layout="row" layout-align="left">
+          <md-button class="md-raised">Submit</md-button>
+          <md-button class="md-raised">Cancel</md-button>
         </md-card-actions>
       </md-card>
   </md-content>

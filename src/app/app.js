@@ -7,6 +7,7 @@ import homeModule from './home/home';
 import itemModule from './home/item/item';
 import editItemModule from './home/item/editItem/editItem';
 import createItemModule from './home/item/createItem/createItem';
+import deleteItemModule from './home/item/deleteItem/deleteItem';
 import userRegisterModule from './register/register';
 
 import apiService from './services/apiService';
@@ -54,6 +55,7 @@ angular.module(MODULE_NAME, [
     itemModule,
     editItemModule,
     createItemModule,
+    deleteItemModule,
     'socialLogin'
 ]).component('app', app);
 
