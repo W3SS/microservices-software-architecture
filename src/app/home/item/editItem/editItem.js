@@ -6,8 +6,10 @@ import './editItem.css';
 
 
 class EditItem {
-    constructor() {
-
+    constructor($state) {
+        this.home = () => {
+            $state.go('home');
+        }
     }
 }
 

@@ -8,11 +8,15 @@ const moduleName = "createItem";
 const createModule = angular.module(moduleName, [uiRouter, 'ngMaterial', 'ngMessages']);
 
 class CreateItem {
-    constructor() {
+    constructor($state) {
         this.project = {
             description: 'Nuclear Missile Defense System',
             rate: 500,
             special: true
+        };
+
+        this.home = () => {
+            $state.go('home');
         }
     }
 }
