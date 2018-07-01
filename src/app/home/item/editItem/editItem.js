@@ -12,7 +12,11 @@ class EditItem {
         };
 
         this.cancel = () => {
-            $state.go('items', { categoryTitle: $stateParams.category });
+            console.log($stateParams);
+            $state.go('item', {
+                categoryTitle: $stateParams.category,
+                itemId: $stateParams.itemId
+            });
         }
     }
 }
@@ -25,6 +29,9 @@ loginModule.config(["$stateProvider", function ($stateProvider) {
         name: 'editItem',
         url: '/catalog/:itemId/edit',
         component: 'editItemComponent',
+        params: {
+            category: null
+        },
         resolve: {
             itemDescription: function (apiService) {
                 return apiService.fetchCategoryItemDescription();
