@@ -28,7 +28,9 @@ class Home {
 }
 
 const moduleName = "home";
-const homeModule = angular.module(moduleName, [uiRouter, items]).config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
+const homeModule = angular.module(moduleName, [uiRouter, items]);
+
+homeModule.config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
         name: 'home',
         url: '/catalog',

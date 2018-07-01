@@ -9,20 +9,12 @@ const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvid
     $stateProvider.state({
         name: 'createItem',
         url: '/catalog/item/create',
-        component: 'createItemComponent',
-        resolve: {
-            test: function (apiService) {
-                return apiService.fetchCategoryItemDescription();
-            }
-        }
+        component: 'createItemComponent'
     });
 }]);
 
 loginModule.component("createItemComponent", {
     template,
-    bindings: {
-        test: "<"
-    },
     controller: function ($state) {
 
     }
