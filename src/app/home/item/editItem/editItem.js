@@ -4,8 +4,17 @@ import uiRouter from '@uirouter/angularjs';
 import template from './editItem.html';
 import './editItem.css';
 
+
+class EditItem {
+    constructor() {
+
+    }
+}
+
 const moduleName = "editItem";
-const loginModule = angular.module(moduleName, [uiRouter]).config(["$stateProvider", function ($stateProvider) {
+const loginModule = angular.module(moduleName, [uiRouter, 'ngMaterial']);
+
+loginModule.config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
         name: 'editItem',
         url: '/catalog/:itemId/edit',
@@ -23,9 +32,7 @@ loginModule.component("editItemComponent", {
     bindings: {
         itemDescription: "<"
     },
-    controller: function ($state) {
-
-    }
+    controller: EditItem
 });
 
 export default moduleName;

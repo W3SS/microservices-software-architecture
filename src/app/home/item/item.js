@@ -6,18 +6,34 @@ import './item.css';
 
 
 class Item {
-    constructor($state, authService) {
+    constructor($state, authService, $mdDialog, $stateParams) {
         this.editItem = () => {
-            $state.go('editItem', { itemId: this.itemId });
+            $state.go('editItem', { itemId: $stateParams.itemId });
         };
 
         this.deleteItem = () => {
-            $state.go('deleteItem', { itemId: this.itemId });
+            $state.go('deleteItem', { itemId: $stateParams.itemId });
         };
 
         this.isAccessible = () => {
             return !authService.isUserAuthenticated();
-        }
+        };
+
+        this.showNotification = (ev) => {
+            let dialog = $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .textContent('Item has been deleted.')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('ok')
+                .targetEvent(ev);
+
+            $mdDialog.show(dialog).then((result) => {
+                $state.go('items', { categoryTitle: $stateParams.categoryTitle });
+            }, (reject)=> {
+                $state.go('items', { categoryTitle: $stateParams.categoryTitle });
+            });
+        };
     }
 }
 
@@ -32,9 +48,6 @@ loginModule.config(["$stateProvider", function ($stateProvider) {
         resolve: {
             itemDescription: function (apiService) {
                 return apiService.fetchCategoryItemDescription();
-            },
-            itemId: function ($stateParams) {
-                return $stateParams.itemId;
             }
         }
     });
@@ -43,8 +56,7 @@ loginModule.config(["$stateProvider", function ($stateProvider) {
 loginModule.component("itemComponent", {
     template,
     bindings: {
-        itemDescription: "<",
-        itemId: "<"
+        itemDescription: "<"
     },
     controller: Item
 });

@@ -14,7 +14,7 @@
         </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
           <md-button ng-hide="$ctrl.isAccessible()" class="md-raised" ng-click="$ctrl.editItem()" >Edit</md-button>
-          <md-button ng-hide="$ctrl.isAccessible()" class="md-raised" ng-click="$ctrl.deleteItem()">Delete</md-button>
+          <md-button ng-hide="$ctrl.isAccessible()" class="md-raised" ng-click="$ctrl.showNotification($event)">Delete</md-button>
         </md-card-actions>
       </md-card>
   </md-content>
