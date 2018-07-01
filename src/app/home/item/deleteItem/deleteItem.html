@@ -1,5 +1,5 @@
 <div ng-cloak>
-  <md-content class="md-padding" layout-align="center"layout="row">
+  <md-content class="md-padding" layout-align="center" layout="row">
 
       <md-card flex-gt-sm="50" flex-gt-md="30">
         <md-card-title>
@@ -13,8 +13,8 @@
           </p>
         </md-card-content>
         <md-card-actions layout="row" layout-align="left">
-          <md-button class="md-raised">Submit</md-button>
-          <md-button class="md-raised">Cancel</md-button>
+          <md-button ng-click="$ctrl.submit()" class="md-raised">Submit</md-button>
+          <md-button ng-click="$ctrl.cancel()" class="md-raised">Cancel</md-button>
         </md-card-actions>
       </md-card>
   </md-content>

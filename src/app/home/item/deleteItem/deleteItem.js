@@ -7,13 +7,16 @@ import './deleteItem.css';
 
 class DeleteItem {
     constructor($state, $stateParams) {
-        /*this.home = () => {
+        this.submit = () => {
             $state.go('home');
         };
 
         this.cancel = () => {
-            $state.go('items', { categoryTitle: $stateParams.category });
-        }*/
+            $state.go('item', {
+                categoryTitle: $stateParams.category,
+                itemId: $stateParams.itemId
+            });
+        }
     }
 }
 
@@ -25,6 +28,9 @@ loginModule.config(["$stateProvider", function ($stateProvider) {
         name: 'deleteItem',
         url: '/catalog/:itemId/delete',
         component: 'deleteItemComponent',
+        params: {
+            category: null
+        },
         resolve: {
             itemDescription: function (apiService) {
                 return apiService.fetchCategoryItemDescription();

@@ -8,11 +8,17 @@ import './item.css';
 class Item {
     constructor($state, authService, $mdDialog, $stateParams) {
         this.editItem = () => {
-            $state.go('editItem', { itemId: $stateParams.itemId });
+            $state.go('editItem', {
+                itemId: $stateParams.itemId,
+                category: $stateParams.categoryTitle
+            });
         };
 
         this.deleteItem = () => {
-            $state.go('deleteItem', { itemId: $stateParams.itemId });
+            $state.go('deleteItem', {
+                itemId: $stateParams.itemId,
+                category: $stateParams.categoryTitle
+            });
         };
 
         this.isAccessible = () => {
