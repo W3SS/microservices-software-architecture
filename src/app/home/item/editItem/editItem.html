@@ -12,7 +12,8 @@
                 <md-input-container class="md-block">
                     <label>Item Name</label>
                     <input required name="clientName"
-                           ng-model="project.clientName">
+                           ng-model="project.clientName"
+                           ng-disabled="!$ctrl.isUserLoggedIn()">
                     <div ng-messages="projectForm.clientName.$error">
                         <div ng-message="required">This is required.</div>
                     </div>
@@ -20,7 +21,7 @@
 
                 <md-input-container style="top: -14px" class="md-block">
                     <label>Category</label>
-                    <md-select name="type" ng-model="project.type" required>
+                    <md-select name="type" ng-model="project.type" required ng-disabled="!$ctrl.isUserLoggedIn()">
                         <md-option value="app">Application</md-option>
                         <md-option value="web">Website</md-option>
                     </md-select>
@@ -29,7 +30,7 @@
                 <md-input-container class="md-block">
                     <label>Description</label>
                     <textarea ng-model="$ctrl.biography" required name="description2" md-maxlength="100"
-                              rows="3" md-select-on-focus>
+                              rows="3" md-select-on-focus ng-disabled="!$ctrl.isUserLoggedIn()">
                     </textarea>
                     <div ng-messages="projectForm.description2.$error">
                         <div ng-message="required">Description is required.</div>
@@ -42,7 +43,7 @@
                 <div class="md-toolbar-tools">
                     <md-button class="md-raised" ng-click="$ctrl.cancel()" type="submit">Cancel</md-button>
                     <span flex></span>
-                    <md-button class="md-raised" ng-disabled="!projectForm.$valid" type="submit">Save</md-button>
+                    <md-button class="md-raised" ng-disabled="!projectForm.$valid || !$ctrl.isUserLoggedIn()" type="submit">Save</md-button>
                 </div>
 
             </form>

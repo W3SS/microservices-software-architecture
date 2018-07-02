@@ -6,7 +6,7 @@ import './editItem.css';
 
 
 class EditItem {
-    constructor($state, $stateParams) {
+    constructor($state, $stateParams, authService) {
         this.home = () => {
             $state.go('home');
         };
@@ -16,6 +16,10 @@ class EditItem {
                 categoryTitle: $stateParams.category,
                 itemId: $stateParams.itemId
             });
+        };
+
+        this.isUserLoggedIn = () => {
+            return authService.isUserAuthenticated();
         }
     }
 }
