@@ -9,7 +9,7 @@ import datetime
 import time
 import json
 
-from models import Base, User
+from models import Base, User, Category
 from flask_jwt_extended import (
     JWTManager, jwt_required, create_access_token, get_raw_jwt
 )
@@ -161,6 +161,14 @@ def get_user(id):
 @jwt_required
 def protected():
     return jsonify({'hello': 'world'}), 200
+
+
+@app.route('/categories', methods=['GET'])
+def get_categories():
+    # list = session.query(Category).all()
+    # return json.dumps(session.query(Category).one())
+    json_list = session.query(Category).all()
+    return jsonify(json_list=session.query(Category).all()), 200
 
 
 if __name__ == '__main__':

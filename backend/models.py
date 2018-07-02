@@ -24,21 +24,18 @@ class User(Base):
         return pwd_context.verify(password, self.password_hash)
 
 
-class Product(Base):
-    __tablename__ = 'product'
+class Category(Base):
+    __tablename__ = 'category'
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    category = Column(String)
-    price = Column(String)
 
     @property
     def serialize(self):
         """Return object data in easily serializeable format"""
         return {
-        'name' : self.name,
-        'category' : self.category,
-        'price' : self.price
-            }
+            'id': self.id,
+            'name' : self.name
+        }
 
 engine = create_engine('sqlite:///catalogApp.db')
  

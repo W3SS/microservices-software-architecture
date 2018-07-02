@@ -77,7 +77,7 @@ class ApiService {
             }
         ];
 
-        this.fetchSportsList = () => {
+        this.fetchCategories = () => {
             /*return $q((resolve) => {
                 $timeout(() => {
                     resolve(sportsList);

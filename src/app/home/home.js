@@ -37,7 +37,7 @@ homeModule.config(["$stateProvider", "$urlRouterProvider", function ($stateProvi
         component: 'homeComponent',
         resolve: {
             sportsList: function (apiService) {
-                return apiService.fetchSportsList();
+                return apiService.fetchCategories();
             },
             items: function (apiService) {
                 return apiService.fetchLatestItems();
