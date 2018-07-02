@@ -8,7 +8,7 @@ const moduleName = "createItem";
 const createModule = angular.module(moduleName, [uiRouter, 'ngMaterial', 'ngMessages']);
 
 class CreateItem {
-    constructor($state) {
+    constructor($state, authService) {
         this.project = {
             description: 'Nuclear Missile Defense System',
             rate: 500,
@@ -17,6 +17,10 @@ class CreateItem {
 
         this.home = () => {
             $state.go('home');
+        };
+
+        this.isUserLoggedIn = () => {
+            return authService.isUserAuthenticated();
         }
     }
 }

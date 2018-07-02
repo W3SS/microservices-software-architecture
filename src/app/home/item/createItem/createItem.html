@@ -41,7 +41,7 @@
                 <div class="md-toolbar-tools">
                     <md-button class="md-raised" ng-click="$ctrl.home()" type="submit">Cancel</md-button>
                     <span flex></span>
-                    <md-button class="md-raised" ng-disabled="!projectForm.$valid" type="submit">Save</md-button>
+                    <md-button class="md-raised" ng-disabled="!projectForm.$valid || !$ctrl.isUserLoggedIn()" type="submit">Save</md-button>
                 </div>
 
             </form>
