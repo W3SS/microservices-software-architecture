@@ -2,6 +2,8 @@ from sqlalchemy import Column,Integer,String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from passlib.apps import custom_app_context as pwd_context
+from marshmallow_sqlalchemy import ModelSchema
+
 import random
 import string
 
@@ -29,15 +31,11 @@ class Category(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
 
-    @property
-    def serialize(self):
-        """Return object data in easily serializeable format"""
-        return {
-            'id': self.id,
-            'name' : self.name
-        }
+
+class CategorySchema(ModelSchema):
+    class Meta:
+        model = Category
+
 
 engine = create_engine('sqlite:///catalogApp.db')
- 
-
 Base.metadata.create_all(engine)

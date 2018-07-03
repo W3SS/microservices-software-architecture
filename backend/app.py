@@ -4,18 +4,18 @@ from sqlalchemy.orm import relationship, sessionmaker
 from email_validator import validate_email, EmailNotValidError
 from sqlalchemy import create_engine
 
+
 import httplib2
 import datetime
 import time
 import json
 
-from models import Base, User, Category
+from models import Base, User, Category, CategorySchema
 from flask_jwt_extended import (
     JWTManager, jwt_required, create_access_token, get_raw_jwt
 )
 
 engine = create_engine('sqlite:///catalogApp.db')
-
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
@@ -23,6 +23,12 @@ session = DBSession()
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'super-secret'  # Change this!
 jwt = JWTManager(app)
+
+
+# class CategorySchema(ModelSchema):
+#     class Meta:
+#         model = Category
+#         sqla_session = session
 
 
 # Set Access Control for the client
@@ -165,10 +171,10 @@ def protected():
 
 @app.route('/categories', methods=['GET'])
 def get_categories():
-    # list = session.query(Category).all()
-    # return json.dumps(session.query(Category).one())
-    json_list = session.query(Category).all()
-    return jsonify(json_list=session.query(Category).all()), 200
+    category = session.query(Category).first()
+    category_schema = CategorySchema()
+    data = category_schema.dump(category).data
+    return jsonify({'category' : data}), 200
 
 
 if __name__ == '__main__':
