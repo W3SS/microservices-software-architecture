@@ -1,4 +1,4 @@
-from sqlalchemy import Column,Integer,String
+from sqlalchemy import Column, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from passlib.apps import custom_app_context as pwd_context
@@ -35,6 +35,19 @@ class Category(Base):
 class CategorySchema(ModelSchema):
     class Meta:
         model = Category
+
+
+class Item(Base):
+    __tablename__ = 'item'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    cat_id = Column(Integer)
+    description = Column(Text)
+
+
+class ItemSchema(ModelSchema):
+    class Meta:
+        model = Item
 
 
 engine = create_engine('sqlite:///catalogApp.db')

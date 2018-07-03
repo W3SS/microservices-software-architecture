@@ -164,10 +164,10 @@ def protected():
 
 @app.route('/categories', methods=['GET'])
 def get_categories():
-    category = session.query(Category).first()
-    category_schema = CategorySchema()
-    data = category_schema.dump(category).data
-    return jsonify(data), 200
+    categories = session.query(Category).all()
+    category_schema = CategorySchema(many=True)
+    data = category_schema.dump(categories).data
+    return jsonify({'category': data}), 200
 
 
 if __name__ == '__main__':
