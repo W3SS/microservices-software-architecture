@@ -4,7 +4,6 @@ from sqlalchemy.orm import relationship, sessionmaker
 from email_validator import validate_email, EmailNotValidError
 from sqlalchemy import create_engine
 
-
 import httplib2
 import datetime
 import time
@@ -23,12 +22,6 @@ session = DBSession()
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'super-secret'  # Change this!
 jwt = JWTManager(app)
-
-
-# class CategorySchema(ModelSchema):
-#     class Meta:
-#         model = Category
-#         sqla_session = session
 
 
 # Set Access Control for the client
@@ -174,7 +167,7 @@ def get_categories():
     category = session.query(Category).first()
     category_schema = CategorySchema()
     data = category_schema.dump(category).data
-    return jsonify({'category' : data}), 200
+    return jsonify(data), 200
 
 
 if __name__ == '__main__':
