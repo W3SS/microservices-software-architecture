@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from flask import Flask, jsonify, request, abort
-from sqlalchemy.orm import relationship, sessionmaker
+from sqlalchemy.orm import sessionmaker
 from email_validator import validate_email, EmailNotValidError
 from sqlalchemy import create_engine
 
@@ -9,12 +9,12 @@ import datetime
 import time
 import json
 
-from models import Base, User, Category, CategorySchema
+from models import Base, User, Category, CategorySchema, Item, ItemSchema
 from flask_jwt_extended import (
     JWTManager, jwt_required, create_access_token, get_raw_jwt
 )
 
-engine = create_engine('sqlite:///catalogApp.db')
+engine = create_engine('sqlite:///database.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
@@ -167,7 +167,15 @@ def get_categories():
     categories = session.query(Category).all()
     category_schema = CategorySchema(many=True)
     data = category_schema.dump(categories).data
-    return jsonify({'category': data}), 200
+    return jsonify({'Category': data}), 200
+
+
+@app.route('/items', methods=['GET'])
+def get_items():
+    items = session.query(Item).all()
+    item_schema = ItemSchema(many=True)
+    data = item_schema.dump(items).data
+    return jsonify({'Item': data}), 200
 
 
 if __name__ == '__main__':

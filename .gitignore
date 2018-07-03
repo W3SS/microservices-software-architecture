@@ -1,4 +1,4 @@
 .idea
 node_modules/
 backend/models.pyc
-/catalogApp.db
+/database.db

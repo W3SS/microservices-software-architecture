@@ -1,8 +1,9 @@
-from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy import Column, Integer, String, Text, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from passlib.apps import custom_app_context as pwd_context
 from marshmallow_sqlalchemy import ModelSchema
+from sqlalchemy.orm import relationship
 
 import random
 import string
@@ -41,8 +42,9 @@ class Item(Base):
     __tablename__ = 'item'
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    cat_id = Column(Integer)
+    cat_id = Column(Integer, ForeignKey('category.id'))
     description = Column(Text)
+    category = relationship('Category', backref='items')
 
 
 class ItemSchema(ModelSchema):
@@ -50,5 +52,5 @@ class ItemSchema(ModelSchema):
         model = Item
 
 
-engine = create_engine('sqlite:///catalogApp.db')
+engine = create_engine('sqlite:///database.db')
 Base.metadata.create_all(engine)
