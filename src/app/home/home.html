@@ -5,10 +5,10 @@
             <md-subheader style="background-color: white">Categories
             </md-subheader>
             <md-divider></md-divider>
-            <md-list-item ui-sref="items({categoryTitle: sport.title})"
-                          ng-repeat="sport in $ctrl.sportsList">
+            <md-list-item ui-sref="items({categoryTitle: category.name})"
+                          ng-repeat="category in $ctrl.categories">
                 <div class="md-list-item-text">
-                    <p2>{{sport.title}}</p2>
+                    <p2>{{category.name}}</p2>
                 </div>
                 <md-divider ng-if="!$last"></md-divider>
             </md-list-item>

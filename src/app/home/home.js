@@ -36,8 +36,17 @@ homeModule.config(["$stateProvider", "$urlRouterProvider", function ($stateProvi
         url: '/catalog',
         component: 'homeComponent',
         resolve: {
-            sportsList: function (apiService) {
-                return apiService.fetchCategories();
+            categories: function (apiService) {
+                return apiService.fetchCategories().then((response)=>{
+                    if (response.data.categories) {
+                        return response.data.categories;
+                    } else {
+                        return [];
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                    return [];
+                })
             },
             items: function (apiService) {
                 return apiService.fetchLatestItems();
@@ -51,7 +60,7 @@ homeModule.config(["$stateProvider", "$urlRouterProvider", function ($stateProvi
 homeModule.component("homeComponent", {
     template,
     bindings: {
-        sportsList: "<",
+        categories: "<",
         items: "<"
     },
     controller: Home

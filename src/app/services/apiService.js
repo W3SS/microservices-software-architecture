@@ -23,13 +23,13 @@ class ApiService {
     constructor($http, $q, $timeout) {
         let sportsList = [
             {
-                title: "Volleyball"
+                name: "Volleyball"
             },
             {
-                title: "Basketball"
+                name: "Basketball"
             },
             {
-                title: "Snowboarding"
+                name: "Snowboarding"
             }
         ];
 
@@ -78,12 +78,12 @@ class ApiService {
         ];
 
         this.fetchCategories = () => {
-            /*return $q((resolve) => {
-                $timeout(() => {
-                    resolve(sportsList);
-                }, 1000);
-            });*/
-            return sportsList;
+            return $http({
+                method: 'GET',
+                url: baseUrl + '/categories'
+            });
+
+            //return sportsList;
         };
 
         this.fetchCategoryItems = (categoryId) => {
