@@ -21,33 +21,6 @@ const apiService = angular.module(moduleName, ['ngCookies'])
 
 class ApiService {
     constructor($http, $q, $timeout) {
-        let items = [
-            {
-                title: "Ball"
-            },
-            {
-                title: "Shorts"
-            }
-        ];
-
-        let items2 = [
-            {
-                title: "Ball2"
-            },
-            {
-                title: "Shorts2"
-            }
-        ];
-
-        let items3 = [
-            {
-                title: "Snowboard"
-            },
-            {
-                title: "Goggles"
-            }
-        ];
-
         let categoryDescription = [
             {
                 description: "This is a description"
