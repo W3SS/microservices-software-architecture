@@ -45,10 +45,18 @@ class ApiService {
             });
         };
 
-        this.fetchCategoryItems = (categoryId) => {
+        this.fetchCategoryItemsById = (categoryId) => {
             return $http({
                 method: 'GET',
-                params: {id: categoryId},
+                params: {categoryId: categoryId},
+                url: baseUrl + '/categoryItems'
+            });
+        };
+
+        this.fetchCategoryItemsByName = (categoryName) => {
+            return $http({
+                method: 'GET',
+                params: {categoryName: categoryName},
                 url: baseUrl + '/categoryItems'
             });
         };

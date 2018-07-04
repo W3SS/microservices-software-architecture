@@ -204,8 +204,18 @@ def get_items():
 
 @app.route('/categoryItems', methods=['GET'])
 def get_category_items():
-    id = request.args.get('id')
-    items = session.query(Item).filter_by(cat_id=id)
+    category_id = request.args.get('categoryId')
+    category_name = request.args.get('categoryName')
+    items = None
+
+    if category_id is not None:
+        items = session.query(Item).filter_by(cat_id=category_id)
+    elif category_name is not None:
+        category = session.query(Category).filter_by(name=category_name).one()
+        items = session.query(Item).filter_by(cat_id=category.id)
+    else:
+        return jsonify({'msg': 'parameters are missing'}), 400
+
     item_schema = ItemSchema(many=True)
     data = item_schema.dump(items).data
     return jsonify({'items': data}), 200

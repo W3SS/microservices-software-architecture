@@ -29,16 +29,29 @@ itemsModule.config(["$stateProvider", function ($stateProvider) {
         },
         resolve: {
             items: function (apiService, $stateParams) {
-                return apiService.fetchCategoryItems($stateParams.categoryId).then((response)=> {
-                    if (response.data.items) {
-                        return response.data.items;
-                    } else {
+                if ($stateParams.categoryId) {
+                    return apiService.fetchCategoryItemsById($stateParams.categoryId).then((response)=> {
+                        if (response.data.items) {
+                            return response.data.items;
+                        } else {
+                            return [];
+                        }
+                    }).catch((error) => {
+                        console.log(error);
                         return [];
-                    }
-                }).catch((error) => {
-                    console.log(error);
-                    return [];
-                })
+                    })
+                } else {
+                    return apiService.fetchCategoryItemsByName($stateParams.categoryName).then((response)=> {
+                        if (response.data.items) {
+                            return response.data.items;
+                        } else {
+                            return [];
+                        }
+                    }).catch((error) => {
+                        console.log(error);
+                        return [];
+                    })
+                }
             },
             categoryName: function ($stateParams) {
                 return $stateParams.categoryName;
