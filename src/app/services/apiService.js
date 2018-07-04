@@ -21,18 +21,6 @@ const apiService = angular.module(moduleName, ['ngCookies'])
 
 class ApiService {
     constructor($http, $q, $timeout) {
-        let sportsList = [
-            {
-                name: "Volleyball"
-            },
-            {
-                name: "Basketball"
-            },
-            {
-                name: "Snowboarding"
-            }
-        ];
-
         let items = [
             {
                 title: "Ball"
@@ -82,8 +70,6 @@ class ApiService {
                 method: 'GET',
                 url: baseUrl + '/categories'
             });
-
-            //return sportsList;
         };
 
         this.fetchCategoryItems = (categoryId) => {
