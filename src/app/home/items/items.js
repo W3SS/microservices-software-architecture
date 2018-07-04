@@ -40,8 +40,8 @@ itemsModule.config(["$stateProvider", function ($stateProvider) {
                     return [];
                 })
             },
-            categoryTitle: function ($stateParams) {
-                return $stateParams.categoryTitle;
+            categoryName: function ($stateParams) {
+                return $stateParams.categoryName;
             }
         }
     });
@@ -51,7 +51,7 @@ itemsModule.component("itemsComponent", {
     template,
     bindings: {
         items: "<",
-        categoryTitle: "<"
+        categoryName: "<"
     },
     controller: Items
 });

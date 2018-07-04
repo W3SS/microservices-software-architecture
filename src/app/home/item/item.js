@@ -7,21 +7,23 @@ import './item.css';
 
 class Item {
     constructor($state, authService, $stateParams) {
-        this.editItem = () => {
+        const ctrl = this;
+
+        ctrl.editItem = () => {
             $state.go('editItem', {
                 itemId: $stateParams.itemId,
                 category: $stateParams.categoryTitle
             });
         };
 
-        this.deleteItem = () => {
+        ctrl.deleteItem = () => {
             $state.go('deleteItem', {
                 itemId: $stateParams.itemId,
                 category: $stateParams.categoryTitle
             });
         };
 
-        this.isAccessible = () => {
+        ctrl.isAccessible = () => {
             return !authService.isUserAuthenticated();
         };
     }
@@ -33,7 +35,7 @@ const loginModule = angular.module(moduleName, [uiRouter]);
 loginModule.config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
         name: 'item',
-        url: '/catalog/:categoryTitle/:itemId',
+        url: '/catalog/:categoryName/:itemName',
         component: 'itemComponent',
         resolve: {
             itemDescription: function (apiService) {
