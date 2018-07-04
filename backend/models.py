@@ -42,9 +42,9 @@ class Item(Base):
     __tablename__ = 'item'
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    cat_id = Column(Integer, ForeignKey('category.id'))
+    cat_id = Column(Integer)#, ForeignKey('category.id'))
     description = Column(Text)
-    category = relationship('Category', backref='items')
+    # category = relationship('Category', backref='items')
 
 
 class ItemSchema(ModelSchema):

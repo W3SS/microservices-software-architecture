@@ -162,12 +162,36 @@ def protected():
     return jsonify({'hello': 'world'}), 200
 
 
+@app.route('/all', methods=['GET'])
+def get_all():
+    items_raw = session.query(Item).all()
+    item_schema = ItemSchema(many=True)
+    items = item_schema.dump(items_raw).data
+
+    categories_raw = session.query(Category).all()
+    category_schema = CategorySchema(many=True)
+    categories = category_schema.dump(categories_raw).data
+
+    items_dict = dict()
+    for item in items:
+        if item['cat_id'] in items_dict.keys():
+            items_dict[item['cat_id']].append(item)
+        else:
+            items_dict[item['cat_id']] = [item]
+
+    for category in categories:
+        if category['id'] in items_dict.keys():
+            category['item'] = items_dict[category['id']]
+
+    return jsonify({'category': categories}), 200
+
+
 @app.route('/categories', methods=['GET'])
 def get_categories():
-    categories = session.query(Category).all()
+    categories_raw = session.query(Category).all()
     category_schema = CategorySchema(many=True)
-    data = category_schema.dump(categories).data
-    return jsonify({'Category': data}), 200
+    categories = category_schema.dump(categories_raw).data
+    return jsonify({'category': categories}), 200
 
 
 @app.route('/items', methods=['GET'])
@@ -175,7 +199,7 @@ def get_items():
     items = session.query(Item).all()
     item_schema = ItemSchema(many=True)
     data = item_schema.dump(items).data
-    return jsonify({'Item': data}), 200
+    return jsonify({'item': data}), 200
 
 
 if __name__ == '__main__':
