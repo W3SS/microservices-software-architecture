@@ -9,7 +9,9 @@ import items from './items/items';
 
 class Home {
     constructor(apiService, authService, $state) {
-        this.getResource = () => {
+        const ctrl = this;
+
+        ctrl.getResource = () => {
             apiService.getResource().then((response) => {
                 console.log(response)
             }).catch((error) => {
@@ -17,11 +19,11 @@ class Home {
             })
         };
 
-        this.isHome = () => {
+        ctrl.isHome = () => {
             return $state.is(moduleName);
         };
 
-        this.isLoggedIn = () => {
+        ctrl.isLoggedIn = () => {
             return authService.isUserAuthenticated();
         }
     }
