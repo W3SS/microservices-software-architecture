@@ -7,14 +7,18 @@ import './items.css';
 
 class Items {
     constructor(authService) {
-        this.isLoggedIn = () => {
+        const ctrl = this;
+
+        ctrl.isLoggedIn = () => {
             return authService.isUserAuthenticated();
         }
     }
 }
 
 const moduleName = "items";
-const itemsModule = angular.module(moduleName, [uiRouter]).config(["$stateProvider", function ($stateProvider) {
+const itemsModule = angular.module(moduleName, [uiRouter]);
+
+itemsModule.config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
         name: moduleName,
         url: "/{categoryName:string}/items",

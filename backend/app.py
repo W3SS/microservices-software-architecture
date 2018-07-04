@@ -202,5 +202,14 @@ def get_items():
     return jsonify({'items': data}), 200
 
 
+# @app.route('/item/<string:id>', methods=['GET'])
+# def get_user(id):
+#     user = session.query(User).filter_by(id=id).one()
+#
+#     if not user:
+#         abort(400)
+#     return jsonify({'username': user.username})
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
