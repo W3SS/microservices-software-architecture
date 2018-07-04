@@ -73,24 +73,6 @@ class ApiService {
         };
 
         this.fetchCategoryItems = (categoryId) => {
-            /*return $q((resolve) => {
-                $timeout(() => {
-                    switch (categoryId) {
-                        case 'Volleyball':
-                            resolve(items);
-                            break;
-                        case 'Basketball':
-                            resolve(items2);
-                            break;
-                        case 'Snowboarding':
-                            resolve(items3);
-                            break;
-                        default:
-                            console.log("wrong id = " + categoryId);
-                    }
-                    resolve(items);
-                }, 500);
-            });*/
             return $http({
                 method: 'GET',
                 params: {id: categoryId},
