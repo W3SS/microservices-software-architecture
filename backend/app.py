@@ -191,7 +191,7 @@ def get_categories():
     categories_raw = session.query(Category).all()
     category_schema = CategorySchema(many=True)
     categories = category_schema.dump(categories_raw).data
-    return jsonify({'category': categories}), 200
+    return jsonify({'categories': categories}), 200
 
 
 @app.route('/items', methods=['GET'])
@@ -199,7 +199,7 @@ def get_items():
     items = session.query(Item).all()
     item_schema = ItemSchema(many=True)
     data = item_schema.dump(items).data
-    return jsonify({'item': data}), 200
+    return jsonify({'items': data}), 200
 
 
 if __name__ == '__main__':
