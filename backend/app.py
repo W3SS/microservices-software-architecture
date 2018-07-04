@@ -202,13 +202,13 @@ def get_items():
     return jsonify({'items': data}), 200
 
 
-# @app.route('/item/<string:id>', methods=['GET'])
-# def get_user(id):
-#     user = session.query(User).filter_by(id=id).one()
-#
-#     if not user:
-#         abort(400)
-#     return jsonify({'username': user.username})
+@app.route('/categoryItems', methods=['GET'])
+def get_category_items():
+    id = request.args.get('id')
+    items = session.query(Item).filter_by(cat_id=id)
+    item_schema = ItemSchema(many=True)
+    data = item_schema.dump(items).data
+    return jsonify({'items': data}), 200
 
 
 if __name__ == '__main__':

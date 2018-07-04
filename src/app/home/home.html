@@ -5,7 +5,7 @@
             <md-subheader style="background-color: white">Categories
             </md-subheader>
             <md-divider></md-divider>
-            <md-list-item ui-sref="items({categoryName: category.name})"
+            <md-list-item ui-sref="items({categoryName: category.name, categoryId: category.id})"
                           ng-repeat="category in $ctrl.categories">
                 <div class="md-list-item-text">
                     <p2>{{category.name}}</p2>

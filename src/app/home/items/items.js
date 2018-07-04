@@ -24,9 +24,21 @@ itemsModule.config(["$stateProvider", function ($stateProvider) {
         url: "/{categoryName:string}/items",
         parent: "home",
         component: "itemsComponent",
+        params: {
+            categoryId: null
+        },
         resolve: {
             items: function (apiService, $stateParams) {
-                return apiService.fetchCategoryItems($stateParams.categoryName);
+                return apiService.fetchCategoryItems($stateParams.categoryId).then((response)=> {
+                    if (response.data.items) {
+                        return response.data.items;
+                    } else {
+                        return [];
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                    return [];
+                })
             },
             categoryTitle: function ($stateParams) {
                 return $stateParams.categoryTitle;
