@@ -8,7 +8,11 @@
         </div>
         <md-divider></md-divider>
         <md-list-item
-                ui-sref="item({itemName: item.name, categoryName: $ctrl.categoryName})"
+                ui-sref="item({
+                    itemName: item.name,
+                    itemId: item.id,
+                    categoryName: $ctrl.categoryName
+                })"
                 ng-repeat="item in $ctrl.items">
             <div class="md-list-item-text">
                 <p2>{{item.name}}</p2>

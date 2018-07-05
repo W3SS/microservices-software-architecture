@@ -37,9 +37,23 @@ loginModule.config(["$stateProvider", function ($stateProvider) {
         name: 'item',
         url: '/catalog/:categoryName/:itemName',
         component: 'itemComponent',
+        params: {
+            itemId: null
+        },
         resolve: {
-            itemDescription: function (apiService) {
-                return apiService.fetchCategoryItemDescription();
+            item: function (apiService, $stateParams) {
+                if ($stateParams.itemId) {
+                    apiService.fetchItemById($stateParams.itemId).then((response) => {
+                        if (response.data.item) {
+                            return response.data.item;
+                        } else {
+                            return [];
+                        }
+                    }).catch((error) => {
+                        console.log(error);
+                        return [];
+                    })
+                }
             }
         }
     });
@@ -48,7 +62,7 @@ loginModule.config(["$stateProvider", function ($stateProvider) {
 loginModule.component("itemComponent", {
     template,
     bindings: {
-        itemDescription: "<"
+        item: "<"
     },
     controller: Item
 });

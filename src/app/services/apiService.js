@@ -21,12 +21,6 @@ const apiService = angular.module(moduleName, ['ngCookies'])
 
 class ApiService {
     constructor($http, $q, $timeout) {
-        let categoryDescription = [
-            {
-                description: "This is a description"
-            }
-        ];
-
         let latestItems = [
             {
                 title: "Ball",
@@ -69,11 +63,11 @@ class ApiService {
             });
         };
 
-        this.fetchCategoryItemDescription = (itemId) => {
-            return $q((resolve) => {
-                $timeout(() => {
-                    resolve(categoryDescription);
-                }, 100);
+        this.fetchItemById = (itemId) => {
+            return $http({
+                method: 'GET',
+                params: {itemId: itemId},
+                url: baseUrl + '/item'
             });
         };
 

@@ -194,14 +194,6 @@ def get_categories():
     return jsonify({'categories': categories}), 200
 
 
-@app.route('/items', methods=['GET'])
-def get_items():
-    items = session.query(Item).all()
-    item_schema = ItemSchema(many=True)
-    data = item_schema.dump(items).data
-    return jsonify({'items': data}), 200
-
-
 @app.route('/categoryItems', methods=['GET'])
 def get_category_items():
     category_id = request.args.get('categoryId')
@@ -219,6 +211,23 @@ def get_category_items():
     item_schema = ItemSchema(many=True)
     data = item_schema.dump(items).data
     return jsonify({'items': data}), 200
+
+
+@app.route('/items', methods=['GET'])
+def get_items():
+    items = session.query(Item).all()
+    item_schema = ItemSchema(many=True)
+    data = item_schema.dump(items).data
+    return jsonify({'items': data}), 200
+
+
+@app.route('/item', methods=['GET'])
+def get_item():
+    item_id = request.args.get('itemId')
+    item = session.query(Item).filter_by(id=item_id).one()
+    item_schema = ItemSchema()
+    data = item_schema.dump(item).data
+    return jsonify({'item': data}), 200
 
 
 if __name__ == '__main__':

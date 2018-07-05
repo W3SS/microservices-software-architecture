@@ -11,6 +11,9 @@
           <p>
             Description
           </p>
+          <p>
+            {{$ctrl.item.description}}
+          </p>
         </md-card-content>
         <md-card-actions layout="row" layout-align="left">
           <md-button ng-hide="$ctrl.isAccessible()" class="md-raised" ng-click="$ctrl.editItem()" >Edit</md-button>
