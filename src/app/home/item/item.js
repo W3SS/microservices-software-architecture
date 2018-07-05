@@ -10,11 +10,7 @@ class Item {
         const ctrl = this;
 
         ctrl.editItem = () => {
-            /*$state.go('editItem', {
-                itemId: $stateParams.itemId,
-                category: $stateParams.categoryTitle
-            });*/
-            console.log(ctrl);
+            $state.go('editItem', { itemName: ctrl.item.name });
         };
 
         ctrl.deleteItem = () => {
