@@ -239,5 +239,24 @@ def get_item():
     return jsonify({'item': data}), 200
 
 
+@app.route('/item', methods=['PUT'])
+def update_item():
+    content = request.get_json()
+    # item_id = request.args.get('itemId')
+    # item_name = request.args.get('itemName')
+    # item = None
+    #
+    # if item_id is not None:
+    #     item = session.query(Item).filter_by(id=item_id).one()
+    # elif item_name is not None:
+    #     item = session.query(Item).filter_by(name=item_name).one()
+    # else:
+    #     return jsonify({'msg': 'parameters are missing'}), 400
+    #
+    # item_schema = ItemSchema()
+    # data = item_schema.dump(item).data
+    return jsonify({'item': 'data'}), 200
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

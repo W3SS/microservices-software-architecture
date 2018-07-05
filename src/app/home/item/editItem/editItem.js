@@ -31,6 +31,10 @@ class EditItem {
         ctrl.isUserLoggedIn = () => {
             return authService.isUserAuthenticated();
         };
+
+        ctrl.save= () => {
+
+        }
     }
 }
 

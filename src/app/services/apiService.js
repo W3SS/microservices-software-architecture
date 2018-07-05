@@ -166,6 +166,25 @@ class ApiService {
                 console.log('missing parameters');
             }
         };
+
+        this.updateItem = (item) => {
+            if (item) {
+                return $http({
+                    method: 'PUT',
+                    url: baseUrl + '/item',
+                    data: JSON.stringify({
+                        id: item.id,
+                        description: item.description,
+                        email: user.email
+                    }),
+                    headers: {
+                        'Content-type': 'application/json'
+                    }
+                });
+            } else {
+                console.log('item is missing');
+            }
+        }
     }
 }
 
