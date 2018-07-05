@@ -38,14 +38,26 @@ const loginModule = angular.module(moduleName, [uiRouter, 'ngMaterial']);
 loginModule.config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
         name: 'deleteItem',
-        url: '/catalog/:itemId/delete',
+        url: '/catalog/:itemName/delete',
         component: 'deleteItemComponent',
         params: {
             category: null
         },
         resolve: {
-            itemDescription: function (apiService) {
-                return apiService.fetchCategoryItemDescription();
+            itemDescription: function (apiService, $stateParams) {
+                console.log($stateParams);
+                if ($stateParams.name) {
+                    return apiService.fetchCategoryItemsByName($stateParams.categoryName).then((response)=> {
+                        if (response.data.items) {
+                            return response.data.items;
+                        } else {
+                            return [];
+                        }
+                    }).catch((error) => {
+                        console.log(error);
+                        return [];
+                    })
+                }
             }
         }
     });

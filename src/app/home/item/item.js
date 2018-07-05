@@ -14,10 +14,7 @@ class Item {
         };
 
         ctrl.deleteItem = () => {
-            $state.go('deleteItem', {
-                itemId: $stateParams.itemId,
-                category: $stateParams.categoryTitle
-            });
+            $state.go('deleteItem', { itemName: ctrl.item.name });
         };
 
         ctrl.isAccessible = () => {
