@@ -224,7 +224,16 @@ def get_items():
 @app.route('/item', methods=['GET'])
 def get_item():
     item_id = request.args.get('itemId')
-    item = session.query(Item).filter_by(id=item_id).one()
+    item_name = request.args.get('itemName')
+    item = None
+
+    if item_id is not None:
+        item = session.query(Item).filter_by(id=item_id).one()
+    elif item_name is not None:
+        item = session.query(Item).filter_by(name=item_name).one()
+    else:
+        return jsonify({'msg': 'parameters are missing'}), 400
+
     item_schema = ItemSchema()
     data = item_schema.dump(item).data
     return jsonify({'item': data}), 200

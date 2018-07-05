@@ -71,6 +71,14 @@ class ApiService {
             });
         };
 
+        this.fetchItemByName = (itemName) => {
+            return $http({
+                method: 'GET',
+                params: {itemName: itemName},
+                url: baseUrl + '/item'
+            });
+        };
+
         this.fetchToken = (userName, password) => {
             return $http({
                 method: 'POST',

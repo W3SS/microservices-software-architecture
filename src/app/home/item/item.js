@@ -42,19 +42,26 @@ loginModule.config(["$stateProvider", function ($stateProvider) {
             itemId: null
         },
         resolve: {
-            item: function (apiService, $stateParams) {
-                if ($stateParams.itemId) {
-                    apiService.fetchItemById($stateParams.itemId).then((response) => {
-                        if (response.data.item) {
-                            return response.data.item;
-                        } else {
-                            return [];
-                        }
-                    }).catch((error) => {
-                        console.log(error);
-                        return [];
-                    })
-                }
+            item: function (apiService, $stateParams, $q) {
+                return $q(function (resolve) {
+                    if ($stateParams.itemId) {
+                        apiService.fetchItemById($stateParams.itemId).then((response) => {
+                            resolve(response.data.item);
+                        }).catch((error) => {
+                            console.log(error);
+                            reject();
+                        })
+                    } else if ($stateParams.itemName) {
+                        apiService.fetchItemByName($stateParams.itemName).then((response) => {
+                            resolve(response.data.item);
+                        }).catch((error) => {
+                            console.log(error);
+                            reject();
+                        })
+                    } else {
+                        resolve(null);
+                    }
+                });
             }
         }
     });
