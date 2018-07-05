@@ -44,8 +44,7 @@ loginModule.config(["$stateProvider", function ($stateProvider) {
             category: null
         },
         resolve: {
-            itemDescription: function (apiService, $stateParams) {
-                console.log($stateParams);
+            item: function (apiService, $stateParams) {
                 if ($stateParams.name) {
                     return apiService.fetchCategoryItemsByName($stateParams.categoryName).then((response)=> {
                         if (response.data.items) {
@@ -66,7 +65,7 @@ loginModule.config(["$stateProvider", function ($stateProvider) {
 loginModule.component("deleteItemComponent", {
     template,
     bindings: {
-        itemDescription: "<"
+        item: "<"
     },
     controller: DeleteItem
 });

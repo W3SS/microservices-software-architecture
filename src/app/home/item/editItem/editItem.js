@@ -7,15 +7,18 @@ import './editItem.css';
 
 class EditItem {
     constructor($state, $stateParams, authService) {
-        this.home = () => {
+        const ctrl = this;
+
+        ctrl.home = () => {
             $state.go('home');
         };
 
-        this.cancel = () => {
-            $state.go('item', {
+        ctrl.cancel = () => {
+            console.log(ctrl)
+            /*$state.go('item', {
                 categoryTitle: $stateParams.category,
                 itemId: $stateParams.itemId
-            });
+            });*/
         };
 
         this.isUserLoggedIn = () => {
@@ -36,10 +39,9 @@ loginModule.config(["$stateProvider", function ($stateProvider) {
             category: null
         },
         resolve: {
-            itemDescription: function (apiService, $stateParams) {
-                console.log($stateParams);
-                if ($stateParams.name) {
-                    return apiService.fetchCategoryItemsByName($stateParams.categoryName).then((response)=> {
+            item: function (apiService, $stateParams) {
+                if ($stateParams.itemName) {
+                    return apiService.fetchItemByName($stateParams.itemName).then((response)=> {
                         if (response.data.items) {
                             return response.data.items;
                         } else {
@@ -50,6 +52,18 @@ loginModule.config(["$stateProvider", function ($stateProvider) {
                         return [];
                     })
                 }
+            },
+            categories: function (apiService) {
+                return apiService.fetchCategories().then((response)=> {
+                    if (response.data.categories) {
+                        return response.data.categories;
+                    } else {
+                        return [];
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                    return [];
+                })
             }
         }
     });
@@ -58,7 +72,8 @@ loginModule.config(["$stateProvider", function ($stateProvider) {
 loginModule.component("editItemComponent", {
     template,
     bindings: {
-        itemDescription: "<"
+        item: "<",
+        categories: "<"
     },
     controller: EditItem
 });
