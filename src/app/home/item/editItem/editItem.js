@@ -9,6 +9,13 @@ class EditItem {
     constructor($state, $stateParams, authService) {
         const ctrl = this;
 
+        ctrl.$onInit = () => {
+            ctrl.item.currentCategory = 'Football';
+            ctrl.states = ctrl.categories
+                .map((category) => { return category.name })
+                .map((state) => { return {abbrev: state} });
+        };
+
         ctrl.home = () => {
             $state.go('home');
         };
@@ -21,9 +28,9 @@ class EditItem {
             });*/
         };
 
-        this.isUserLoggedIn = () => {
+        ctrl.isUserLoggedIn = () => {
             return authService.isUserAuthenticated();
-        }
+        };
     }
 }
 
@@ -42,8 +49,8 @@ loginModule.config(["$stateProvider", function ($stateProvider) {
             item: function (apiService, $stateParams) {
                 if ($stateParams.itemName) {
                     return apiService.fetchItemByName($stateParams.itemName).then((response)=> {
-                        if (response.data.items) {
-                            return response.data.items;
+                        if (response.data.item) {
+                            return response.data.item;
                         } else {
                             return [];
                         }

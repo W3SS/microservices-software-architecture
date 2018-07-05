@@ -6,7 +6,7 @@ import './item.css';
 
 
 class Item {
-    constructor($state, authService, $stateParams) {
+    constructor($state, authService) {
         const ctrl = this;
 
         ctrl.editItem = () => {
