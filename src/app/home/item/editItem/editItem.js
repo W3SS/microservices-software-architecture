@@ -2,11 +2,12 @@ import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 
 import template from './editItem.html';
+import toastTemplate from './toastTemlate.html';
 import './editItem.css';
 
 
 class EditItem {
-    constructor($state, $stateParams, authService, apiService) {
+    constructor($state, $stateParams, authService, apiService, $mdToast) {
         const ctrl = this;
         ctrl.states = [];
 
@@ -30,7 +31,9 @@ class EditItem {
         };
 
         ctrl.cancel = () => {
-            console.log(ctrl)
+            console.log(ctrl);
+            $state.go('home');
+            ctrl.showCustomToast();
             /*$state.go('item', {
                 categoryTitle: $stateParams.category,
                 itemId: $stateParams.itemId
@@ -51,11 +54,29 @@ class EditItem {
             }
 
             apiService.updateItem(ctrl.item).then(()=> {
-                console.log('item updated');
-                //$state.go('home');
+                $state.go('home');
             }).catch((error) => {
                 console.log(error);
             })
+        };
+
+        ctrl.showCustomToast = () => {
+            $mdToast.show({
+                hideDelay   : 2500,
+                position    : 'top right',
+                // controller  : function ($mdToast) {
+                //     // this.closeToast = function() {
+                //     //     //if (isDlgOpen) return;
+                //     //
+                //     //     $mdToast
+                //     //       .hide()
+                //     //       .then(function() {
+                //     //         isDlgOpen = false;
+                //     //       });
+                //     //   };
+                // },
+                templateUrl : toastTemplate
+            });
         };
     }
 }
