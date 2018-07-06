@@ -242,20 +242,29 @@ def get_item():
 @app.route('/item', methods=['PUT'])
 def update_item():
     content = request.get_json()
-    # item_id = request.args.get('itemId')
-    # item_name = request.args.get('itemName')
-    # item = None
-    #
-    # if item_id is not None:
-    #     item = session.query(Item).filter_by(id=item_id).one()
-    # elif item_name is not None:
-    #     item = session.query(Item).filter_by(name=item_name).one()
-    # else:
-    #     return jsonify({'msg': 'parameters are missing'}), 400
-    #
-    # item_schema = ItemSchema()
-    # data = item_schema.dump(item).data
-    return jsonify({'item': 'data'}), 200
+    id = content['id']
+    name = content['name']
+    description = content['description']
+    cat_id = content['cat_id']
+
+    if id is not None:
+        item = session.query(Item).filter_by(id=id).one()
+
+        if item is not None:
+            if name is not None:
+                item.name = name
+            if description is not None:
+                item.description = description
+            if cat_id is not None:
+                item.cat_id = cat_id
+
+            session.commit()
+        else:
+            return jsonify({'msg': 'parameters are missing'}), 400
+    else:
+        return jsonify({'msg': 'parameters are missing'}), 400
+
+    return jsonify({'msg': 'successfully updated'}), 200
 
 
 if __name__ == '__main__':

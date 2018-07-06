@@ -175,7 +175,8 @@ class ApiService {
                     data: JSON.stringify({
                         id: item.id,
                         description: item.description,
-                        email: user.email
+                        name: item.name,
+                        cat_id: item.cat_id
                     }),
                     headers: {
                         'Content-type': 'application/json'

@@ -6,12 +6,21 @@ import './editItem.css';
 
 
 class EditItem {
-    constructor($state, $stateParams, authService) {
+    constructor($state, $stateParams, authService, apiService) {
         const ctrl = this;
+        ctrl.states = [];
 
         ctrl.$onInit = () => {
-            ctrl.item.currentCategory = 'Football';
-            ctrl.states = ctrl.categories
+            angular.copy(ctrl.categories, ctrl.states);
+
+            ctrl.item.currentCategory = ctrl.states
+                .find((state)=> { return state.id === ctrl.item.cat_id });
+
+            if (ctrl.item.currentCategory) {
+                ctrl.item.cat_id = ctrl.item.currentCategory.id
+            }
+
+            ctrl.states = ctrl.states
                 .map((category) => { return category.name })
                 .map((state) => { return {abbrev: state} });
         };
@@ -32,9 +41,22 @@ class EditItem {
             return authService.isUserAuthenticated();
         };
 
-        ctrl.save= () => {
+        ctrl.save = () => {
+            let category = ctrl.categories.find((cat) => {
+                return cat.name === ctrl.item.currentCategory.name
+            });
 
-        }
+            if (category) {
+                ctrl.item.cat_id = category.id;
+            }
+
+            apiService.updateItem(ctrl.item).then(()=> {
+                console.log('item updated');
+                //$state.go('home');
+            }).catch((error) => {
+                console.log(error);
+            })
+        };
     }
 }
 

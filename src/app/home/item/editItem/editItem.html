@@ -21,8 +21,8 @@
 
                 <md-input-container style="top: -14px" class="md-block">
                     <label>Category</label>
-                    <md-select name="type" ng-model="$ctrl.item.currentCategory" required ng-disabled="!$ctrl.isUserLoggedIn()">
-                        <md-option ng-repeat="state in $ctrl.states" value="{{state.abbrev}}">
+                    <md-select name="type" ng-model="$ctrl.item.currentCategory.name" required ng-disabled="!$ctrl.isUserLoggedIn()">
+                        <md-option ng-click="" ng-repeat="state in $ctrl.states" value="{{state.abbrev}}">
                             {{state.abbrev}}
                         </md-option>
                     </md-select>
