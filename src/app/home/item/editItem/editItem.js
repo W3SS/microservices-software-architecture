@@ -26,19 +26,6 @@ class EditItem {
                 .map((state) => { return {abbrev: state} });
         };
 
-        ctrl.home = () => {
-            $state.go('home');
-        };
-
-        ctrl.cancel = () => {
-            //$state.go('home');
-            ctrl.showCustomToast();
-            /*$state.go('item', {
-                categoryTitle: $stateParams.category,
-                itemId: $stateParams.itemId
-            });*/
-        };
-
         ctrl.isUserLoggedIn = () => {
             return authService.isUserAuthenticated();
         };
@@ -53,19 +40,35 @@ class EditItem {
             }
 
             apiService.updateItem(ctrl.item).then(()=> {
-                $state.go('home');
+                ctrl.showCustomToast();
             }).catch((error) => {
                 console.log(error);
             })
         };
 
-        ctrl.showCustomToast = () => {
-            $mdToast.show({
-                hideDelay   : 2500,
-                position    : 'top right',
-                template : toastTemplate,
-                parent: $element[0].querySelector('#card')
+        ctrl.cancel = () => {
+            $state.go('item', {
+                categoryName: ctrl.item.currentCategory.name,
+                itemName: $stateParams.itemName
             });
+        };
+
+        ctrl.showCustomToast = () => {
+            const toast = $mdToast.simple()
+                .textContent('Item has been successfully updated')
+                .action('Go Back')
+                .parent($element[0].querySelector('#card'))
+                .highlightAction(true)
+                .highlightClass('md-accent')
+                .hideDelay(4000)
+                .position('top right');
+
+            $mdToast.show(toast).then(function(response) {
+                if (response === 'ok') {
+                    console.log($stateParams);
+                    $state.go('home');
+                }
+            })
         };
     }
 }
@@ -120,5 +123,6 @@ loginModule.component("editItemComponent", {
     },
     controller: EditItem
 });
+
 
 export default moduleName;
