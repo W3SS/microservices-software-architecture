@@ -6,27 +6,31 @@ import './deleteItem.css';
 
 
 class DeleteItem {
-    constructor($state, $stateParams, $mdDialog, apiService) {
+    constructor($state, $stateParams, $mdToast, apiService, $element) {
         const ctrl = this;
+        ctrl.isItemDeleted = false;
 
         ctrl.submit = (ev) => {
-            let dialog = $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
-                .clickOutsideToClose(true)
-                .textContent('Item has been deleted.')
-                .ariaLabel('Alert Dialog Demo')
-                .ok('ok')
-                .targetEvent(ev);
+            apiService.deleleItemById(ctrl.item.id).then(() => {
+                ctrl.isItemDeleted = true;
 
-            $mdDialog.show(dialog).then((result) => {
+                const toast = $mdToast.simple()
+                .textContent('Item has been successfully deleted')
+                .action('OK')
+                .parent($element[0].querySelector('#card'))
+                .highlightAction(true)
+                .highlightClass('md-accent')
+                .hideDelay(4000)
+                .position('top');
+
+                $mdToast.show(toast);
                 $state.go('home');
-            }).catch(() => {
-                $state.go('home');
+            }).catch((error) => {
+                console.log(error)
             });
         };
 
         ctrl.cancel = () => {
-            console.log(ctrl);
             apiService.fetchCategoryById(ctrl.item.cat_id).then((response) => {
                 $state.go('item', {
                     categoryName: response.data.category.name,

@@ -283,7 +283,7 @@ def update_item():
 
 @app.route('/item', methods=['DELETE'])
 def delete_item():
-    id = request.args.get('itemId')
+    id = request.args.get('id')
 
     if id is not None:
         item = session.query(Item).filter_by(id=id).one()\
@@ -292,7 +292,7 @@ def delete_item():
     else:
         return jsonify({'msg': 'parameters are missing'}), 400
 
-    return jsonify({'msg': 'successfully updated'}), 200
+    return jsonify({'msg': 'successfully deleted'}), 200
 
 
 if __name__ == '__main__':

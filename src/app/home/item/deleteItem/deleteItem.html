@@ -1,8 +1,8 @@
 <div ng-cloak>
   <md-content class="md-padding" layout-align="center" layout="row">
 
-      <md-card flex-gt-sm="50" flex-gt-md="30">
-        <md-card-title>
+      <md-card flex-gt-sm="50" flex-gt-md="30" id="card">
+        <md-card-title >
           <md-card-title-text>
             <span class="md-headline">Delete Item</span>
           </md-card-title-text>
@@ -13,8 +13,8 @@
           </p>
         </md-card-content>
         <md-card-actions layout="row" layout-align="left">
-          <md-button ng-click="$ctrl.submit($event)" class="md-raised">Submit</md-button>
-          <md-button ng-click="$ctrl.cancel()" class="md-raised">Cancel</md-button>
+          <md-button ng-disabled="$ctrl.isItemDeleted" ng-click="$ctrl.submit($event)" class="md-raised">Submit</md-button>
+          <md-button ng-disabled="$ctrl.isItemDeleted" ng-click="$ctrl.cancel()" class="md-raised">Cancel</md-button>
         </md-card-actions>
       </md-card>
   </md-content>

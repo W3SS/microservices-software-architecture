@@ -193,6 +193,18 @@ class ApiService {
             } else {
                 console.log('item is missing');
             }
+        };
+
+        this.deleleItemById = (id) => {
+            if (id) {
+                return $http({
+                    method: 'DELETE',
+                    params: {id: id},
+                    url: baseUrl + '/item',
+                });
+            } else {
+                console.log('no item id');
+            }
         }
     }
 }
