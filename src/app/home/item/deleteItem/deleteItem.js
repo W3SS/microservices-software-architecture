@@ -6,8 +6,10 @@ import './deleteItem.css';
 
 
 class DeleteItem {
-    constructor($state, $stateParams, $mdDialog) {
-        this.submit = (ev) => {
+    constructor($state, $stateParams, $mdDialog, apiService) {
+        const ctrl = this;
+
+        ctrl.submit = (ev) => {
             let dialog = $mdDialog.alert()
                 .parent(angular.element(document.querySelector('#popupContainer')))
                 .clickOutsideToClose(true)
@@ -23,11 +25,16 @@ class DeleteItem {
             });
         };
 
-        this.cancel = () => {
-            $state.go('item', {
-                categoryTitle: $stateParams.category,
-                itemId: $stateParams.itemId
-            });
+        ctrl.cancel = () => {
+            console.log(ctrl);
+            apiService.fetchCategoryById(ctrl.item.cat_id).then((response) => {
+                $state.go('item', {
+                    categoryName: response.data.category.name,
+                    itemName: $stateParams.itemName
+                });
+            }).catch((error) => {
+                console.log(error)
+            })
         };
     }
 }
@@ -45,16 +52,16 @@ loginModule.config(["$stateProvider", function ($stateProvider) {
         },
         resolve: {
             item: function (apiService, $stateParams) {
-                if ($stateParams.name) {
-                    return apiService.fetchCategoryItemsByName($stateParams.categoryName).then((response)=> {
-                        if (response.data.items) {
-                            return response.data.items;
+                if ($stateParams.itemName) {
+                    return apiService.fetchItemByName($stateParams.itemName).then((response)=> {
+                        if (response.data.item) {
+                            return response.data.item;
                         } else {
-                            return [];
+                            return null;
                         }
                     }).catch((error) => {
                         console.log(error);
-                        return [];
+                        return null;
                     })
                 }
             }

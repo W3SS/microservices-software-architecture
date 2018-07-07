@@ -194,6 +194,20 @@ def get_categories():
     return jsonify({'categories': categories}), 200
 
 
+@app.route('/category', methods=['GET'])
+def get_category():
+    id = request.args.get('id')
+
+    if id is not None:
+        category_raw = session.query(Category).filter_by(id=id).one()
+    else:
+        return jsonify({'msg': 'parameters are missing'}), 400
+
+    category_schema = CategorySchema()
+    category = category_schema.dump(category_raw).data
+    return jsonify({'category': category}), 200
+
+
 @app.route('/categoryItems', methods=['GET'])
 def get_category_items():
     category_id = request.args.get('categoryId')
@@ -261,6 +275,20 @@ def update_item():
             session.commit()
         else:
             return jsonify({'msg': 'parameters are missing'}), 400
+    else:
+        return jsonify({'msg': 'parameters are missing'}), 400
+
+    return jsonify({'msg': 'successfully updated'}), 200
+
+
+@app.route('/item', methods=['DELETE'])
+def delete_item():
+    id = request.args.get('itemId')
+
+    if id is not None:
+        item = session.query(Item).filter_by(id=id).one()\
+            # .delete()
+        # session.commit()
     else:
         return jsonify({'msg': 'parameters are missing'}), 400
 
