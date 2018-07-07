@@ -21,7 +21,7 @@ class DeleteItem {
                 .highlightAction(true)
                 .highlightClass('md-accent')
                 .hideDelay(4000)
-                .position('top');
+                .position('bottom');
 
                 $mdToast.show(toast);
                 $state.go('home');
