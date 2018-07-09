@@ -35,7 +35,7 @@ const homeModule = angular.module(moduleName, [uiRouter, items]);
 homeModule.config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
         name: 'home',
-        url: '/catalog',
+        url: '/',
         component: 'homeComponent',
         resolve: {
             categories: function (apiService) {

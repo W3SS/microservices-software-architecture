@@ -21,7 +21,7 @@ const itemsModule = angular.module(moduleName, [uiRouter]);
 itemsModule.config(["$stateProvider", function ($stateProvider) {
     $stateProvider.state({
         name: moduleName,
-        url: "/{categoryName:string}/items",
+        url: "{categoryName:string}/items",
         parent: "home",
         component: "itemsComponent",
         params: {
