@@ -39,7 +39,7 @@ homeModule.config(["$stateProvider", "$urlRouterProvider", function ($stateProvi
         component: 'homeComponent',
         resolve: {
             categories: function (apiService) {
-                return apiService.fetchCategories().then((response)=>{
+                return apiService.fetchCategories().then((response) => {
                     if (response.data.categories) {
                         return response.data.categories;
                     } else {
@@ -51,7 +51,16 @@ homeModule.config(["$stateProvider", "$urlRouterProvider", function ($stateProvi
                 })
             },
             items: function (apiService) {
-                return apiService.fetchLatestItems();
+                return apiService.fetchLatestItems().then((response) => {
+                    if (response.data.items) {
+                        return response.data.items;
+                    } else {
+                        return [];
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                    return [];
+                })
             }
         }
     });

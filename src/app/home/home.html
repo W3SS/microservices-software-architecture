@@ -30,7 +30,7 @@
                             ng-repeat="item in $ctrl.items"
                             ui-sref="item({itemId: item.title, categoryTitle: item.category})">
                         <div class="md-list-item-text">
-                            <p2>{{item.title}}</p2>
+                            <p2>{{item.name}}</p2>
                         </div>
                         <div class="md-secondary-container"></div>
                         <md-divider ng-if="!$last"></md-divider>

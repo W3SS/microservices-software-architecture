@@ -212,7 +212,6 @@ def get_category():
 def get_category_items():
     category_id = request.args.get('categoryId')
     category_name = request.args.get('categoryName')
-    items = None
 
     if category_id is not None:
         items = session.query(Item).filter_by(cat_id=category_id)
@@ -229,7 +228,13 @@ def get_category_items():
 
 @app.route('/items', methods=['GET'])
 def get_items():
-    items = session.query(Item).all()
+    latest = request.args.get('latest')
+
+    if latest == u'true':
+        items = session.query(Item).group_by(Item.id).limit(6).all()
+    else:
+        items = session.query(Item).all()
+
     item_schema = ItemSchema(many=True)
     data = item_schema.dump(items).data
     return jsonify({'items': data}), 200
@@ -239,7 +244,6 @@ def get_items():
 def get_item():
     item_id = request.args.get('itemId')
     item_name = request.args.get('itemName')
-    item = None
 
     if item_id is not None:
         item = session.query(Item).filter_by(id=item_id).one()
