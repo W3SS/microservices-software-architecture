@@ -65,7 +65,6 @@ class EditItem {
 
             $mdToast.show(toast).then(function(response) {
                 if (response === 'ok') {
-                    console.log($stateParams);
                     $state.go('home');
                 }
             })

@@ -195,7 +195,7 @@ class ApiService {
             }
         };
 
-        this.deleleItemById = (id) => {
+        this.deleteItemById = (id) => {
             if (id) {
                 return $http({
                     method: 'DELETE',
@@ -204,6 +204,25 @@ class ApiService {
                 });
             } else {
                 console.log('no item id');
+            }
+        };
+
+        this.addItem = (item) => {
+            if (item) {
+                return $http({
+                    method: 'POST',
+                    url: baseUrl + '/item',
+                    data: JSON.stringify({
+                        description: item.description,
+                        name: item.name,
+                        cat_id: item.cat_id
+                    }),
+                    headers: {
+                        'Content-type': 'application/json'
+                    }
+                });
+            } else {
+                console.log('no item')
             }
         }
     }

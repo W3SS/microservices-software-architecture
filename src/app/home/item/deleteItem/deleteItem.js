@@ -11,7 +11,7 @@ class DeleteItem {
         ctrl.isItemDeleted = false;
 
         ctrl.submit = (ev) => {
-            apiService.deleleItemById(ctrl.item.id).then(() => {
+            apiService.deleteItemById(ctrl.item.id).then(() => {
                 ctrl.isItemDeleted = true;
 
                 const toast = $mdToast.simple()

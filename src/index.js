@@ -11,5 +11,5 @@ const crud = angular.module("crud", [angularMaterial, uiRouter, appModule, 'soci
 crud.config(["$compileProvider","socialProvider", '$locationProvider' , function ($compileProvider, socialProvider, $locationProvider) {
       $compileProvider.debugInfoEnabled(false);
       socialProvider.setGoogleKey("625020750188-hvvue2ajm8mbt1efq74sf51ethkl2g5f.apps.googleusercontent.com");
-      $locationProvider.html5Mode(true);
+      //$locationProvider.html5Mode(true);
 }]);

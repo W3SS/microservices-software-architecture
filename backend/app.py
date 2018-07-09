@@ -286,13 +286,33 @@ def delete_item():
     id = request.args.get('id')
 
     if id is not None:
-        item = session.query(Item).filter_by(id=id).one()\
-            # .delete()
-        # session.commit()
+        session.query(Item).filter_by(id=id).delete()
+        session.commit()
     else:
         return jsonify({'msg': 'parameters are missing'}), 400
 
     return jsonify({'msg': 'successfully deleted'}), 200
+
+
+@app.route('/item', methods=['POST'])
+def add_item():
+    content = request.get_json()
+    name = content['name']
+    description = content['description']
+    cat_id = content['cat_id']
+
+    if name is None or description is None or cat_id is None:
+        return jsonify({'msg': 'parameters are missing'}), 400
+
+    category = session.query(Category).filter_by(id=cat_id).one()
+
+    if category is None:
+        return jsonify({'msg': 'parameters are missing'}), 400
+
+    item = Item(name=name, description=description, cat_id=cat_id)
+    session.add(item)
+    session.commit()
+    return jsonify({'msg': 'successfully added'}), 201
 
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 <div layout="row" layout-align="center" class="create" style="margin-top: 50px">
-    <md-card flex-gt-md="40" class="create-form">
+    <md-card flex-gt-md="40" class="create-form" id="card">
         <md-toolbar class="toolbar-login">
             <div class="md-toolbar-tools">
                 <h2><span>Add New Item</span></h2>
@@ -12,7 +12,7 @@
                 <md-input-container class="md-block">
                     <label>Item Name</label>
                     <input required name="clientName"
-                           ng-model="project.clientName">
+                           ng-model="$ctrl.item.name">
                     <div ng-messages="projectForm.clientName.$error">
                         <div ng-message="required">This is required.</div>
                     </div>
@@ -20,15 +20,16 @@
 
                 <md-input-container style="top: -14px" class="md-block">
                     <label>Category</label>
-                    <md-select name="type" ng-model="project.type" required>
-                        <md-option value="app">Application</md-option>
-                        <md-option value="web">Website</md-option>
+                    <md-select name="type" ng-model="$ctrl.item.categoryName" required>
+                        <md-option ng-click="" ng-repeat="state in $ctrl.states" value="{{state.abbrev}}">
+                            {{state.abbrev}}
+                        </md-option>
                     </md-select>
                 </md-input-container>
 
                 <md-input-container class="md-block">
                     <label>Description</label>
-                    <textarea ng-model="$ctrl.biography" required name="description2" md-maxlength="100"
+                    <textarea ng-model="$ctrl.item.description" required name="description2" md-maxlength="100"
                               rows="3" md-select-on-focus>
                     </textarea>
                     <div ng-messages="projectForm.description2.$error">
@@ -41,7 +42,7 @@
                 <div class="md-toolbar-tools">
                     <md-button class="md-raised" ng-click="$ctrl.home()" type="submit">Cancel</md-button>
                     <span flex></span>
-                    <md-button class="md-raised" ng-disabled="!projectForm.$valid || !$ctrl.isUserLoggedIn()" type="submit">Save</md-button>
+                    <md-button class="md-raised" ng-click="$ctrl.save()" ng-disabled="!projectForm.$valid || !$ctrl.isUserLoggedIn()" type="submit">Save</md-button>
                 </div>
 
             </form>
