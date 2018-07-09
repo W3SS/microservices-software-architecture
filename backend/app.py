@@ -231,13 +231,29 @@ def get_items():
     latest = request.args.get('latest')
 
     if latest == u'true':
-        items = session.query(Item).order_by(desc(Item.id)).limit(6).all()
+        categories_raw = session.query(Category).all()
+        category_schema = CategorySchema(many=True)
+        categories = category_schema.dump(categories_raw).data
+
+        items_raw = session.query(Item).order_by(desc(Item.id)).limit(6).all()
+        item_schema = ItemSchema(many=True)
+        items = item_schema.dump(items_raw).data
+        categories_dict = dict()
+
+        for category in categories:
+            if category['id'] in categories_dict.keys():
+                categories_dict[category['id']].append(category)
+            else:
+                categories_dict[category['id']] = category
+
+        for item in items:
+            if item['cat_id'] in categories_dict.keys():
+                item['categoryName'] = categories_dict[item['cat_id']]['name']
+
     else:
         items = session.query(Item).all()
 
-    item_schema = ItemSchema(many=True)
-    data = item_schema.dump(items).data
-    return jsonify({'items': data}), 200
+    return jsonify({'items': items}), 200
 
 
 @app.route('/item', methods=['GET'])

@@ -2,8 +2,7 @@
             layout="row">
     <md-card flex-gt-sm="10" flex-gt-md="30">
         <md-list>
-            <md-subheader style="background-color: white">Categories
-            </md-subheader>
+            <md-subheader style="background-color: white">Categories</md-subheader>
             <md-divider></md-divider>
             <md-list-item ui-sref="items({categoryName: category.name, categoryId: category.id})"
                           ng-repeat="category in $ctrl.categories">
@@ -28,9 +27,9 @@
                     <md-divider></md-divider>
                     <md-list-item
                             ng-repeat="item in $ctrl.items"
-                            ui-sref="item({itemId: item.title, categoryTitle: item.category})">
+                            ui-sref="item({categoryName: item.categoryName, itemName: item.name})">
                         <div class="md-list-item-text">
-                            <p2>{{item.name}}</p2>
+                            <p2>{{item.name}} ({{item.categoryName}})</p2>
                         </div>
                         <div class="md-secondary-container"></div>
                         <md-divider ng-if="!$last"></md-divider>
