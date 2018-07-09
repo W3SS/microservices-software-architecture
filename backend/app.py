@@ -2,7 +2,7 @@
 from flask import Flask, jsonify, request, abort
 from sqlalchemy.orm import sessionmaker
 from email_validator import validate_email, EmailNotValidError
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, desc
 
 import httplib2
 import datetime
@@ -231,7 +231,7 @@ def get_items():
     latest = request.args.get('latest')
 
     if latest == u'true':
-        items = session.query(Item).group_by(Item.id).limit(6).all()
+        items = session.query(Item).order_by(desc(Item.id)).limit(6).all()
     else:
         items = session.query(Item).all()
 
