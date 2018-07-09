@@ -254,6 +254,7 @@ def get_item():
 
 
 @app.route('/item', methods=['PUT'])
+@jwt_required
 def update_item():
     content = request.get_json()
     id = content['id']
@@ -282,6 +283,7 @@ def update_item():
 
 
 @app.route('/item', methods=['DELETE'])
+@jwt_required
 def delete_item():
     id = request.args.get('id')
 
@@ -295,6 +297,7 @@ def delete_item():
 
 
 @app.route('/item', methods=['POST'])
+@jwt_required
 def add_item():
     content = request.get_json()
     name = content['name']
