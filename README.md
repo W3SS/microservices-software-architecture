@@ -33,7 +33,6 @@ Run the backend and start using the app
 ```
 python backend/python app.py
 ```
-The client is running on http://localhost:8000/
 
 Home: http://localhost:8000/#!/
 ![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/app.png "Home")
