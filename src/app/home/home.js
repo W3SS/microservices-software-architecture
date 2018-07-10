@@ -11,14 +11,6 @@ class Home {
     constructor(apiService, authService, $state) {
         const ctrl = this;
 
-        ctrl.getResource = () => {
-            apiService.getResource().then((response) => {
-                console.log(response)
-            }).catch((error) => {
-                console.log(error)
-            })
-        };
-
         ctrl.isHome = () => {
             return $state.is(moduleName);
         };
