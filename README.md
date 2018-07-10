@@ -8,7 +8,7 @@ Home: http://localhost:8000/#!/
 Login: http://localhost:8000/#!/login
 ![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/login.png "Login")
 
-Edit: http://localhost:8000/#!/login
+Edit: http://localhost:8000/#!/catalog/Racket/edit
 ![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/edit.png "Edit")
 
 ### Nodejs
