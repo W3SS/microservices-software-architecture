@@ -19,8 +19,10 @@ import 'angular-messages';
 
 
 class AppCtrl {
-    constructor($transitions, $rootScope, $cookies, authService) {
-        this.url = 'https://github.com/preboot/angular-webpack';
+    constructor($transitions, $rootScope, $cookies, authService, $state) {
+        const ctrl = this;
+
+        ctrl.url = 'https://github.com/preboot/angular-webpack';
 
         $transitions.onBefore("*", (TransitionService) => {
             $rootScope.isLoading = true;
@@ -29,12 +31,16 @@ class AppCtrl {
                 .finally(() => { $rootScope.isLoading = false; });
         });
 
-        this.logout = () => {
+        ctrl.logout = () => {
             authService.logout();
         };
 
-        this.isAuthenticated = () => {
+        ctrl.isAuthenticated = () => {
             return authService.isUserAuthenticated();
+        };
+
+        ctrl.home = () => {
+            $state.go('home');
         };
     }
 }
