@@ -2,10 +2,10 @@
 
 Crud angularjs application
 
-Home: http://localhost:9000/#!/
+Home: http://localhost:8000/#!/
 ![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/app.png "Home")
 
-Login: http://localhost:9000/#!/login
+Login: http://localhost:8000/#!/login
 ![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/login.png "Login")
 
 ### Nodejs
@@ -39,7 +39,7 @@ Run the backend and start using the app
 ```
 python backend/python app.py
 ```
-The client is running on http://localhost:9000/
+The client is running on http://localhost:8000/
 
  ### License
 
