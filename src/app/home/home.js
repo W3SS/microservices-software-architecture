@@ -65,7 +65,7 @@ homeModule.config(["$stateProvider", "$urlRouterProvider", function ($stateProvi
         }
     });
 
-    $urlRouterProvider.otherwise('/catalog');
+    $urlRouterProvider.otherwise('/');
 }]);
 
 homeModule.component("homeComponent", {
