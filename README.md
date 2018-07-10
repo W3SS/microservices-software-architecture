@@ -8,6 +8,9 @@ Home: http://localhost:8000/#!/
 Login: http://localhost:8000/#!/login
 ![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/login.png "Login")
 
+Edit: http://localhost:8000/#!/login
+![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/edit.png "Edit")
+
 ### Nodejs
 The app is based on npm packaging, to run the app you need nodejs to be installed
 
