@@ -3,7 +3,7 @@
 Crud angularjs application
 
 Image:
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/app.png "Logo Title Text 1")
 
 
 ### Nodejs
