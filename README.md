@@ -2,15 +2,6 @@
 
 Crud angularjs application
 
-Home: http://localhost:8000/#!/
-![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/app.png "Home")
-
-Login: http://localhost:8000/#!/login
-![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/login.png "Login")
-
-Edit: http://localhost:8000/#!/catalog/Racket/edit
-![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/edit.png "Edit")
-
 ### Nodejs
 The app is based on npm packaging, to run the app you need nodejs to be installed
 
@@ -43,6 +34,15 @@ Run the backend and start using the app
 python backend/python app.py
 ```
 The client is running on http://localhost:8000/
+
+Home: http://localhost:8000/#!/
+![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/app.png "Home")
+
+Login: http://localhost:8000/#!/login
+![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/login.png "Login")
+
+Edit: http://localhost:8000/#!/catalog/Racket/edit
+![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/edit.png "Edit")
 
  ### License
 
