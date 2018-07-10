@@ -2,7 +2,7 @@
 
 Crud angularjs application
 
-Image:
+Home page:
 ![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/app.png "Logo Title Text 1")
 
 
