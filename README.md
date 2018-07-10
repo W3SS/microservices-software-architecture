@@ -2,9 +2,11 @@
 
 Crud angularjs application
 
-Home page: http://localhost:9000/#!/
-![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/app.png "Logo Title Text 1")
+Home: http://localhost:9000/#!/
+![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/app.png "Home")
 
+Login: http://localhost:9000/#!/login
+![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/login.png "Login")
 
 ### Nodejs
 The app is based on npm packaging, to run the app you need nodejs to be installed
