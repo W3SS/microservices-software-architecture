@@ -15,7 +15,7 @@ https://nodejs.org/en/download/package-manager
 ### Setup
 
 ```
-git clone https://github.com/modulus100/angularjs-material.git  # Clone the repository
+git clone https://github.com/modulus100/angularjs-material.git  #clone the repository
 ```
 Go to repo
 ```
