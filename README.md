@@ -1,7 +1,8 @@
 # Catalog App (Udacity project)
 
 CRUD web application which is based on python-flask, Angularjs, SQLite.
-The app uses REST API to make communication possible between client and server code.
+The app uses REST API to make communication possible between the client and the server code.
+
 
 ### Nodejs
 The app is based on npm packaging, to run the app you need nodejs to be installed
