@@ -12,12 +12,10 @@ The app is based on npm packaging, to run the app you need nodejs to be installe
 
 https://nodejs.org/en/download/package-manager
 
-### Usage
-
-Clone the repository
+### Setup
 
 ```
-git clone https://github.com/modulus100/angularjs-material.git
+git clone https://github.com/modulus100/angularjs-material.git  # Clone the repository
 ```
 Go to repo
 ```
