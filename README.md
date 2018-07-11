@@ -32,6 +32,9 @@ vagrant ssh  #go to vagrant
 cd /vagrant
 ```
 ```
+cd angularjs-material   #go to repo
+```
+```
 npm install    #build the client app
 ```
 ```
