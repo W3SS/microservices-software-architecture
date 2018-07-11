@@ -12,29 +12,25 @@ The app is based on npm packaging, to run the app you need nodejs to be installe
 
 https://nodejs.org/en/download/package-manager
 
-### Setup
+### Setup steps
 
 ```
 git clone https://github.com/modulus100/angularjs-material.git  #clone the repository
 ```
-Go to repo
 ```
-cd angularjs-material
+cd angularjs-material   #go to repo
 ```
-Build the app
 ```
-npm install
+npm install    #build the client app
 ```
-
-Run the app
 ```
-npm run server
+npm run server  #run the client app
 ```
-
-Run the backend and start using the app
-
 ```
-python backend/python app.py
+python cd backend   #go to backed repo
+```
+```
+python app.py   #run the backend and start using the app
 ```
 
 Home: http://localhost:8000
