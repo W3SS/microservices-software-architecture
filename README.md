@@ -23,7 +23,13 @@ cd angularjs-material   #go to repo
 ```
 There is vagrant file which has all needed dependencies
 ```
-vagrant ssh   #install vagrant
+vagrant up  #run vagrant
+```
+```
+vagrant ssh  #go to vagrant
+```
+```
+cd /vagrant
 ```
 ```
 npm install    #build the client app
