@@ -1,7 +1,8 @@
 # Catalog App (Udacity project)
 
 CRUD web application which is based on python-flask, Angularjs, SQLite, Webpack.
-The app uses REST API to make the communication possible between the client and the server code.
+The app uses REST API to make the communication possible between the client and the server code,
+JWT to make API calls secure.
 To add, update, delete items, a user has to be logged in, there are two ways to log in,
 Google login or register an account using register form, there is the test account as well.
  username: test, password: test.
@@ -19,6 +20,10 @@ git clone https://github.com/modulus100/angularjs-material.git  #clone the repos
 ```
 ```
 cd angularjs-material   #go to repo
+```
+There is vagrant file which has all needed dependencies
+```
+vagrant ssh   #install vagrant
 ```
 ```
 npm install    #build the client app
