@@ -14,7 +14,7 @@ from flask_jwt_extended import (
     JWTManager, jwt_required, create_access_token, get_raw_jwt
 )
 
-engine = create_engine('sqlite:///database.db')
+engine = create_engine('sqlite:///database.db', connect_args={'check_same_thread': False})
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
@@ -339,4 +339,4 @@ def add_item():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, threaded=True)
