@@ -4,7 +4,7 @@ CRUD web application which is based on python-flask, Angularjs, SQLite, Webpack.
 The app uses REST API to make the communication possible between the client and the server code,
 JWT to make API calls secure.
 To add, update, delete items, a user has to be logged in, there are two ways to log in,
-Google login or register an account using register form, there is the test account as well.
+whether to use Google login or register an account using register form, there is the test account as well.
  username: test, password: test.
 
 
