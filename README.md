@@ -8,11 +8,6 @@ whether to use Google login or register an account using register form, there is
  username: test, password: test.
 
 
-### Nodejs
-The app is based on npm packaging, to run the app you need nodejs to be installed
-
-https://nodejs.org/en/download/package-manager
-
 ### Setup steps
 
 ```
