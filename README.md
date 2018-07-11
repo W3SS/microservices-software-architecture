@@ -36,7 +36,7 @@ npm install    #build the client app
 npm run server  #run the client app
 ```
 ```
-cd backend   #go to backed repo
+cd backend   #go to backend repo
 ```
 ```
 python app.py   #run the backend and start using the app
