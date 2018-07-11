@@ -1,4 +1,4 @@
-# angularjs-material
+# Catalog App (Udacity project)
 
 Crud angularjs application
 
