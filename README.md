@@ -21,7 +21,7 @@ git clone https://github.com/modulus100/angularjs-material.git  #clone the repos
 ```
 cd angularjs-material   #go to repo
 ```
-There is vagrant file which has all needed dependencies
+There is the vagrant file which has all needed dependencies
 ```
 vagrant up  #run vagrant
 ```
