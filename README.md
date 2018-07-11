@@ -33,8 +33,9 @@ cd angularjs-material   #go to repo
 npm install    #build the client app
 ```
 ```
-npm run server  #run the client app
+npm run server  #run the client app, wait until compilation is done
 ```
+Open the second terminal and go again to angularjs-material repo by repeating 4, 5 and 6 steps.
 ```
 cd backend   #go to backend repo
 ```
