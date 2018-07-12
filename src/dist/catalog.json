@@ -1,0 +1,82 @@
+{
+  "category": [
+    {
+      "id": 1,
+      "item": [
+        {
+          "cat_id": 1,
+          "description": "Football boots, called cleats or soccer shoes in North America, are an item of footwear worn when playing football.",
+          "id": 1,
+          "name": "Football boots"
+        }
+      ],
+      "name": "Football"
+    },
+    {
+      "id": 2,
+      "item": [
+        {
+          "cat_id": 2,
+          "description": "A backboard is a piece of basketball equipment. It is a raised vertical board with an attached basket consisting of a net suspended from a hoop.",
+          "id": 2,
+          "name": "Backboard"
+        }
+      ],
+      "name": "Basketball"
+    },
+    {
+      "id": 3,
+      "item": [
+        {
+          "cat_id": 3,
+          "description": "An ice hockey stick is a piece of equipment used in ice hockey to shoot, pass, and carry the puck across the ice.",
+          "id": 3,
+          "name": "Ice hockey stick"
+        },
+        {
+          "cat_id": 3,
+          "description": "Ice skates are boots with blades attached to the bottom, used to propel the bearer across a sheet of ice while ice skating.",
+          "id": 7,
+          "name": "Ice skate"
+        }
+      ],
+      "name": "Hockey"
+    },
+    {
+      "id": 4,
+      "item": [
+        {
+          "cat_id": 4,
+          "description": "MMA gloves or grappling gloves are small, open-fingered gloves used in mixed martial arts bouts.",
+          "id": 4,
+          "name": "MMA gloves"
+        }
+      ],
+      "name": "MMA"
+    },
+    {
+      "id": 5,
+      "item": [
+        {
+          "cat_id": 5,
+          "description": "A longboard is a type of sports equipment similar to, but not the same as, a skateboard. ",
+          "id": 5,
+          "name": "Longboard"
+        }
+      ],
+      "name": "Skating"
+    },
+    {
+      "id": 6,
+      "item": [
+        {
+          "cat_id": 6,
+          "description": "A racket or racquet is a sports implement consisting of a handled frame with an open hoop across which a network of strings or catgut is stretched tightly.",
+          "id": 6,
+          "name": "Racket"
+        }
+      ],
+      "name": "Tennis"
+    }
+  ]
+}
