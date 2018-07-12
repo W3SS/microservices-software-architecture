@@ -53,6 +53,12 @@ Login: http://localhost:8000/#!/login
 Edit: http://localhost:8000/#!/catalog/Racket/edit
 ![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/edit.png "Edit")
 
+Data: http://localhost:8000/catalog.json
+![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/catalog.png "Data")
+
+Or\
+http://localhost:5000/all
+
  ### License
 
  The MIT License https://opensource.org/licenses/MIT
