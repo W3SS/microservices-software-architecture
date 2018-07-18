@@ -1,9 +1,13 @@
 #!/usr/bin/env python
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request, abort
 from backend.database_service.database_service import DatabaseService
-from flask_jwt_extended import (
-    JWTManager
-)
+from flask_jwt_extended import JWTManager, jwt_required, create_access_token, \
+    get_raw_jwt
+
+import httplib2
+import datetime
+import time
+import json
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'super-secret'  # Change this!
@@ -11,42 +15,43 @@ jwt = JWTManager(app)
 
 
 # Set Access Control for the client
-# @app.after_request
-# def apply_caching(response):
-#     response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8000'
-#     response.headers['Access-Control-Allow-Headers'] = \
-#         'Content-Type, Authorization'
-#     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-#     return response
-#
-#
-# # Using the expired_token_loader decorator, we will now call
-# # this function whenever an expired but otherwise valid access
-# # token attempts to access an endpoint
-# @jwt.expired_token_loader
-# def my_expired_token_callback():
-#     return jsonify({
-#         'status': 401,
-#         'sub_status': 42,
-#         'msg': 'The token has expired'
-#     }), 401
-#
-#
-# @app.route('/login', methods=['POST'])
-# def login():
-#     username = request.json.get('username', None)
-#     password = request.json.get('password', None)
-#     user = session.query(User).filter_by(username=username).first()
-#
-#     if not user or not user.verify_password(password):
-#         return jsonify({"msg": "Bad username or password"}), 401
-#
-#     expires = datetime.timedelta(minutes=30)
-#     exp_time = int(round(time.time())) + expires.total_seconds()
-#     token = create_access_token(username, expires_delta=expires)
-#     return jsonify({'token': token, 'exp': exp_time}), 200
-#
-#
+@app.after_request
+def apply_caching(response):
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8000'
+    response.headers['Access-Control-Allow-Headers'] = \
+        'Content-Type, Authorization'
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+    return response
+
+
+# Using the expired_token_loader decorator, we will now call
+# this function whenever an expired but otherwise valid access
+# token attempts to access an endpoint
+@jwt.expired_token_loader
+def my_expired_token_callback():
+    return jsonify({
+        'status': 401,
+        'sub_status': 42,
+        'msg': 'The token has expired'
+    }), 401
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.json.get('username', None)
+    password = request.json.get('password', None)
+    db_service = DatabaseService()
+    user = db_service.get_user_by_username(username)
+
+    if not user or not user.verify_password(password):
+        return jsonify({"msg": "Bad username or password"}), 401
+
+    expires = datetime.timedelta(minutes=30)
+    exp_time = int(round(time.time())) + expires.total_seconds()
+    token = create_access_token(username, expires_delta=expires)
+    return jsonify({'token': token, 'exp': exp_time}), 200
+
+
 # # Endpoint for revoking the current users access token
 # @app.route('/logout', methods=['DELETE'])
 # @jwt_required

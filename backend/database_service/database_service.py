@@ -24,3 +24,7 @@ class DatabaseService(object):
         category_schema = CategorySchema(many=True)
         categories = category_schema.dump(categories_raw).data
         return categories
+
+    def get_user_by_username(self, username):
+        user = self.session.query(User).filter_by(username=username).first()
+        return user
