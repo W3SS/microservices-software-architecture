@@ -2,6 +2,7 @@
 from flask import Flask, jsonify, request, abort
 from backend.database_service.database_service import DatabaseService
 from email_validator import validate_email, EmailNotValidError
+from database_service.models.item import Item
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, \
     get_raw_jwt
 
@@ -239,7 +240,6 @@ def get_category_items():
     """
     category_id = request.args.get('categoryId')
     category_name = request.args.get('categoryName')
-    db_service = None
 
     if category_id is not None:
         db_service = DatabaseService()
@@ -302,7 +302,6 @@ def get_item():
     """
     item_id = request.args.get('itemId')
     item_name = request.args.get('itemName')
-    db_service = None
 
     if item_id is not None:
         db_service = DatabaseService()
@@ -324,35 +323,27 @@ def get_item():
         return jsonify({'msg': 'parameters are missing'}), 400
 
 
-# @app.route('/item', methods=['PUT'])
-# @jwt_required
-# def update_item():
-#     content = request.get_json()
-#     id = content['id']
-#     name = content['name']
-#     description = content['description']
-#     cat_id = content['cat_id']
-#
-#     if id is not None:
-#         item = session.query(Item).filter_by(id=id).one()
-#
-#         if item is not None:
-#             if name is not None:
-#                 item.name = name
-#             if description is not None:
-#                 item.description = description
-#             if cat_id is not None:
-#                 item.cat_id = cat_id
-#
-#             session.commit()
-#         else:
-#             return jsonify({'msg': 'parameters are missing'}), 400
-#     else:
-#         return jsonify({'msg': 'parameters are missing'}), 400
-#
-#     return jsonify({'msg': 'successfully updated'}), 200
-#
-#
+@app.route('/item', methods=['PUT'])
+@jwt_required
+def update_item():
+    content = request.get_json()
+    id = content['id']
+    name = content['name']
+    description = content['description']
+    cat_id = content['cat_id']
+    item = Item(id=id, name=name, description=description, cat_id=cat_id)
+
+    if id is not None:
+        db_service = DatabaseService()
+
+        if db_service.update_item_by_id(item) is True:
+            return jsonify({'msg': 'successfully updated'}), 200
+        else:
+            return jsonify({'msg': 'parameters are missing'}), 400
+    else:
+        return jsonify({'msg': 'parameters are missing'}), 400
+
+
 # @app.route('/item', methods=['DELETE'])
 # @jwt_required
 # def delete_item():
