@@ -8,7 +8,7 @@ whether to use Google login or register an account using register form, there is
  username: test, password: test.
 
 
-### Setup
+## Setup
 
 ### Node js
 Node js must be installed to run the client code. If
