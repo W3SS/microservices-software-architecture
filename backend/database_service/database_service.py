@@ -27,7 +27,13 @@ class DatabaseService(object):
         self.session = DBSession()
 
     def get_all_categories(self):
-        categories_raw = self.session.query(Category).all()
+        try:
+            categories_raw = self.session.query(Category).all()
+        except Exception:
+            self.session.rollback()
+            raise
+        finally:
+            self.session.close()
         category_schema = CategorySchema(many=True)
         categories = category_schema.dump(categories_raw).data
         return categories
