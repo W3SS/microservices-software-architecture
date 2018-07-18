@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from flask import Flask, jsonify
-from database_service import DatabaseService
+from backend.database_service.database_service import DatabaseService
 from flask_jwt_extended import (
     JWTManager
 )
