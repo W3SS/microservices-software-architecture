@@ -305,7 +305,7 @@ def get_item():
 
     if item_id is not None:
         db_service = DatabaseService()
-        item = db_service.get_item_by_id(id)
+        item = db_service.get_item_by_id(item_id)
 
         if item is not None:
             return jsonify({'item': item}), 200

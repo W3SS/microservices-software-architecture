@@ -230,15 +230,13 @@ class DatabaseService(object):
 
     def save_new_item(self, item):
         try:
-            if isinstance(item, Item):
-                item = self.get_item_by_id(item.id)
-                if item is not None:
-                    return None
-                else:
-                    self.session.add(item)
-                    self.session.commit()
-            else:
+            db_item = self.get_item_by_id(item.id)
+            if db_item is not None:
                 return None
+            else:
+                self.session.add(item)
+                self.session.commit()
+
         except Exception:
             self.session.rollback()
             return None

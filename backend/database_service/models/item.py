@@ -5,9 +5,10 @@ from marshmallow_sqlalchemy import ModelSchema
 
 class Item(Model):
     """
-    Catalog app's item, each item associated with category,
+    Catalog app's item, each item associated with a category,
     stored in database.db
     """
+    __table_args__ = {'extend_existing': True}
     id = Column(Integer, primary_key=True)
     name = Column(String)
     cat_id = Column(Integer)
@@ -15,5 +16,8 @@ class Item(Model):
 
 
 class ItemSchema(ModelSchema):
+    """
+    Item serializer
+    """
     class Meta:
         model = Item
