@@ -1,20 +1,9 @@
 #!/usr/bin/env python
 from flask import Flask, jsonify
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
-
-from models import Base, Category, CategorySchema
+from database_service import DatabaseService
 from flask_jwt_extended import (
     JWTManager
 )
-
-engine = create_engine('sqlite:///database.db', connect_args={'check_same_thread': False})
-Base.metadata.bind = engine
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
-
-# dao = Dao('sqlite:///database.db')
-
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'super-secret'  # Change this!
@@ -185,9 +174,8 @@ jwt = JWTManager(app)
 
 @app.route('/categories', methods=['GET'])
 def get_categories():
-    categories_raw = session.query(Category).all()
-    category_schema = CategorySchema(many=True)
-    categories = category_schema.dump(categories_raw).data
+    db_service = DatabaseService()
+    categories = db_service.get_all_categories()
     return jsonify({'categories': categories}), 200
 
 
