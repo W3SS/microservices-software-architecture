@@ -18,7 +18,7 @@ class DatabaseService(object):
         """
         Establishes a database connection
         """
-        engine = create_engine('sqlite:///database.db',
+        engine = create_engine('sqlite:///database_service/database.db',
                                connect_args={'check_same_thread': False})
 
         Base = declarative_base()
