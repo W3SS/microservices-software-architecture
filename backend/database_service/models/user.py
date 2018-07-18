@@ -19,7 +19,13 @@ class User(Model):
     email = Column(String(254))
 
     def hash_password(self, password):
+        """
+        User password encryption
+        """
         self.password_hash = pwd_context.encrypt(password)
 
     def verify_password(self, password):
+        """
+        User password verification
+        """
         return pwd_context.verify(password, self.password_hash)
