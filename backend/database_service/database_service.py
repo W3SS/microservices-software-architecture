@@ -216,3 +216,32 @@ class DatabaseService(object):
         finally:
             self.session.close()
         return True
+
+    def delete_item_by_id(self, id):
+        try:
+            self.session.query(Item).filter_by(id=id).delete()
+            self.session.commit()
+        except Exception:
+            self.session.rollback()
+            return None
+        finally:
+            self.session.close()
+        return True
+
+    def save_new_item(self, item):
+        try:
+            if isinstance(item, Item):
+                item = self.get_item_by_id(item.id)
+                if item is not None:
+                    return None
+                else:
+                    self.session.add(item)
+                    self.session.commit()
+            else:
+                return None
+        except Exception:
+            self.session.rollback()
+            return None
+        finally:
+            self.session.close()
+        return True

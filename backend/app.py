@@ -326,6 +326,14 @@ def get_item():
 @app.route('/item', methods=['PUT'])
 @jwt_required
 def update_item():
+    """
+    Endpoint updates existing item
+    :param id: item id
+    :param itemName: item name
+    :param description: item description
+    :param cat_id: item category id
+    :return: success message
+    """
     content = request.get_json()
     id = content['id']
     name = content['name']
@@ -344,40 +352,50 @@ def update_item():
         return jsonify({'msg': 'parameters are missing'}), 400
 
 
-# @app.route('/item', methods=['DELETE'])
-# @jwt_required
-# def delete_item():
-#     id = request.args.get('id')
-#
-#     if id is not None:
-#         session.query(Item).filter_by(id=id).delete()
-#         session.commit()
-#     else:
-#         return jsonify({'msg': 'parameters are missing'}), 400
-#
-#     return jsonify({'msg': 'successfully deleted'}), 200
-#
-#
-# @app.route('/item', methods=['POST'])
-# @jwt_required
-# def add_item():
-#     content = request.get_json()
-#     name = content['name']
-#     description = content['description']
-#     cat_id = content['cat_id']
-#
-#     if name is None or description is None or cat_id is None:
-#         return jsonify({'msg': 'parameters are missing'}), 400
-#
-#     category = session.query(Category).filter_by(id=cat_id).one()
-#
-#     if category is None:
-#         return jsonify({'msg': 'parameters are missing'}), 400
-#
-#     item = Item(name=name, description=description, cat_id=cat_id)
-#     session.add(item)
-#     session.commit()
-#     return jsonify({'msg': 'successfully added'}), 201
+@app.route('/item', methods=['DELETE'])
+@jwt_required
+def delete_item():
+    """
+    Endpoint deletes item
+    :param id: item id
+    :return: success message
+    """
+    id = request.args.get('id')
+
+    if id is not None:
+        db_service = DatabaseService()
+
+        if db_service.delete_item_by_id(id) is True:
+            return jsonify({'msg': 'successfully deleted'}), 200
+    else:
+        return jsonify({'msg': 'parameters are missing'}), 400
+
+
+@app.route('/item', methods=['POST'])
+@jwt_required
+def add_item():
+    """
+    Endpoint creates a new item
+    :param name: item name
+    :param description: item description
+    :param cat_id: item category id
+    :return: success message
+    """
+    content = request.get_json()
+    name = content['name']
+    description = content['description']
+    cat_id = content['cat_id']
+
+    if name is None or description is None or cat_id is None:
+        return jsonify({'msg': 'parameters are missing'}), 400
+
+    item = Item(name=name, description=description, cat_id=cat_id)
+    db_service = DatabaseService()
+
+    if db_service.save_new_item(item) is True:
+        return jsonify({'msg': 'successfully added'}), 201
+    else:
+        return jsonify({'msg': 'exception while saving a new item'}), 400
 
 
 if __name__ == '__main__':
