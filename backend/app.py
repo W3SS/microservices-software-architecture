@@ -172,116 +172,158 @@ def new_user():
     return jsonify({'msg': 'user successfully created'}), 201
 
 
-# @app.route('/all', methods=['GET'])
-# def get_all():
-#     items_raw = session.query(Item).all()
-#     item_schema = ItemSchema(many=True)
-#     items = item_schema.dump(items_raw).data
-#
-#     categories_raw = session.query(Category).all()
-#     category_schema = CategorySchema(many=True)
-#     categories = category_schema.dump(categories_raw).data
-#
-#     items_dict = dict()
-#     for item in items:
-#         if item['cat_id'] in items_dict.keys():
-#             items_dict[item['cat_id']].append(item)
-#         else:
-#             items_dict[item['cat_id']] = [item]
-#
-#     for category in categories:
-#         if category['id'] in items_dict.keys():
-#             category['item'] = items_dict[category['id']]
-#
-#     return jsonify({'category': categories}), 200
+@app.route('/all', methods=['GET'])
+def get_all():
+    """
+    Endpoint provides all categories with associated items
+    :return: categories with items in json
+    """
+    db_service = DatabaseService()
+    items = db_service.get_all_items()
+    categories = db_service.get_all_categories()
+
+    items_dict = dict()
+    for item in items:
+        if item['cat_id'] in items_dict.keys():
+            items_dict[item['cat_id']].append(item)
+        else:
+            items_dict[item['cat_id']] = [item]
+
+    for category in categories:
+        if category['id'] in items_dict.keys():
+            category['item'] = items_dict[category['id']]
+
+    return jsonify({'category': categories}), 200
 
 
 @app.route('/categories', methods=['GET'])
 def get_categories():
+    """
+    Endpoint provides all categories
+    :return: all categories in json
+    """
     db_service = DatabaseService()
     categories = db_service.get_all_categories()
     return jsonify({'categories': categories}), 200
 
 
-# @app.route('/category', methods=['GET'])
-# def get_category():
-#     id = request.args.get('id')
-#
-#     if id is not None:
-#         category_raw = session.query(Category).filter_by(id=id).one()
-#     else:
-#         return jsonify({'msg': 'parameters are missing'}), 400
-#
-#     category_schema = CategorySchema()
-#     category = category_schema.dump(category_raw).data
-#     return jsonify({'category': category}), 200
-#
-#
-# @app.route('/categoryItems', methods=['GET'])
-# def get_category_items():
-#     category_id = request.args.get('categoryId')
-#     category_name = request.args.get('categoryName')
-#
-#     if category_id is not None:
-#         items = session.query(Item).filter_by(cat_id=category_id)
-#     elif category_name is not None:
-#         category = session.query(Category).filter_by(name=category_name).one()
-#         items = session.query(Item).filter_by(cat_id=category.id)
-#     else:
-#         return jsonify({'msg': 'parameters are missing'}), 400
-#
-#     item_schema = ItemSchema(many=True)
-#     data = item_schema.dump(items).data
-#     return jsonify({'items': data}), 200
-#
-#
-# @app.route('/items', methods=['GET'])
-# def get_items():
-#     latest = request.args.get('latest')
-#
-#     if latest == u'true':
-#         categories_raw = session.query(Category).all()
-#         category_schema = CategorySchema(many=True)
-#         categories = category_schema.dump(categories_raw).data
-#
-#         items_raw = session.query(Item).order_by(desc(Item.id)).limit(6).all()
-#         item_schema = ItemSchema(many=True)
-#         items = item_schema.dump(items_raw).data
-#         categories_dict = dict()
-#
-#         for category in categories:
-#             if category['id'] in categories_dict.keys():
-#                 categories_dict[category['id']].append(category)
-#             else:
-#                 categories_dict[category['id']] = category
-#
-#         for item in items:
-#             if item['cat_id'] in categories_dict.keys():
-#                 item['categoryName'] = categories_dict[item['cat_id']]['name']
-#
-#     else:
-#         items = session.query(Item).all()
-#
-#     return jsonify({'items': items}), 200
-#
-#
-# @app.route('/item', methods=['GET'])
-# def get_item():
-#     item_id = request.args.get('itemId')
-#     item_name = request.args.get('itemName')
-#
-#     if item_id is not None:
-#         item = session.query(Item).filter_by(id=item_id).one()
-#     elif item_name is not None:
-#         item = session.query(Item).filter_by(name=item_name).one()
-#     else:
-#         return jsonify({'msg': 'parameters are missing'}), 400
-#
-#     item_schema = ItemSchema()
-#     data = item_schema.dump(item).data
-#     return jsonify({'item': data}), 200
-#
-#
+@app.route('/category', methods=['GET'])
+def get_category():
+    """
+    Endpoint returns a requested category by id
+    :param id: category id
+    :return: category in json
+    """
+    id = request.args.get('id')
+
+    if id is not None:
+        db_service = DatabaseService()
+        category = db_service.get_category_by_id(id)
+
+        if category is not None:
+            return jsonify({'category': category}), 200
+        else:
+            return jsonify({'msg': 'parameters are missing'}), 400
+    else:
+        return jsonify({'msg': 'parameters are missing'}), 400
+
+
+@app.route('/categoryItems', methods=['GET'])
+def get_category_items():
+    """
+    Endpoint returns items associated with a certain category
+    by category id or category name
+    :param categoryId: category id
+    :param categoryName: category name
+    :return: items in json
+    """
+    category_id = request.args.get('categoryId')
+    category_name = request.args.get('categoryName')
+    db_service = None
+
+    if category_id is not None:
+        db_service = DatabaseService()
+        items = db_service.get_items_by_category_id(cat_id=category_id)
+
+        if items is not None:
+            return jsonify({'items': items}), 200
+        else:
+            return jsonify({'msg': 'parameters are missing'}), 400
+    elif category_name is not None:
+        db_service = DatabaseService()
+        items = db_service.get_items_by_category_name(category_name)
+
+        if items is not None:
+            return jsonify({'items': items}), 200
+        else:
+            return jsonify({'msg': 'parameters are missing'}), 400
+    else:
+        return jsonify({'msg': 'parameters are missing'}), 400
+
+
+@app.route('/items', methods=['GET'])
+def get_items():
+    """
+    Endpoint returns all items or latest added items if 'latest' is true
+    :param latest: boolean value
+    :return: items in json
+    """
+    latest = request.args.get('latest')
+    db_service = DatabaseService()
+
+    if latest == u'true':
+        categories = db_service.get_all_categories()
+        items = db_service.get_latest_items(6)
+        categories_dict = dict()
+
+        for category in categories:
+            if category['id'] in categories_dict.keys():
+                categories_dict[category['id']].append(category)
+            else:
+                categories_dict[category['id']] = category
+
+        for item in items:
+            if item['cat_id'] in categories_dict.keys():
+                item['categoryName'] = categories_dict[item['cat_id']]['name']
+
+    else:
+        items = db_service.get_all_items()
+
+    return jsonify({'items': items}), 200
+
+
+@app.route('/item', methods=['GET'])
+def get_item():
+    """
+    Endpoint returns an item by id or by name
+    :param itemId: item id
+    :param itemName: item name
+    :return: item in json
+    """
+    item_id = request.args.get('itemId')
+    item_name = request.args.get('itemName')
+    db_service = None
+
+    if item_id is not None:
+        db_service = DatabaseService()
+        item = db_service.get_item_by_id(id)
+
+        if item is not None:
+            return jsonify({'item': item}), 200
+        else:
+            return jsonify({'msg': 'item does not exist'}), 400
+    elif item_name is not None:
+        db_service = DatabaseService()
+        item = db_service.get_item_by_name(item_name)
+
+        if item is not None:
+            return jsonify({'item': item}), 200
+        else:
+            return jsonify({'msg': 'item does not exist'}), 400
+    else:
+        return jsonify({'msg': 'parameters are missing'}), 400
+
+
 # @app.route('/item', methods=['PUT'])
 # @jwt_required
 # def update_item():
