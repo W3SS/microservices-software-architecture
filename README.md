@@ -24,16 +24,15 @@ npm install    #install all dependencies for the client code
 ```
 npm run server  #run the client app, wait until compilation is done
 ```
-Open the second terminal and go again to angularjs-material repo by repeating 4, 5 and 6 steps.
+Open the second terminal and go again to angularjs-material repo.
 ```
-cd backend   #go to backend repo
+pip install -r requirements.txt #install dependencies for the backend code
 ```
 ```
 python app.py   #run the backend and start using the app
 ```
-P.S. If you don't want to use vagrant, just run the app locally or in IDE.
 
-Home: http://localhost:8000
+Client code is running on: http://localhost:8000
 ![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/app.png "Home")
 
 Login: http://localhost:8000/#!/login
