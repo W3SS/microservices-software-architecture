@@ -4,6 +4,9 @@ from marshmallow_sqlalchemy import ModelSchema
 
 
 class Item(Model):
+    """
+    Catalog app's item, each item associated with category, stored database.db
+    """
     id = Column(Integer, primary_key=True)
     name = Column(String)
     cat_id = Column(Integer)
