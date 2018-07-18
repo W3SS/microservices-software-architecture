@@ -33,6 +33,7 @@ Vagrant.configure("2") do |config|
     pip install email_validator
     pip install -U marshmallow-sqlalchemy
     pip install Flask-JWT-Extended
+    pip install sqlalchemy-dao
 
     # nodejs to run the client code
     sudo apt-get update && sudo apt-get install curl
