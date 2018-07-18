@@ -18,21 +18,8 @@ git clone https://github.com/modulus100/angularjs-material.git  #clone the repos
 ```
 cd angularjs-material   #go to repo
 ```
-There is the vagrant file which has all needed dependencies
 ```
-vagrant up  #run vagrant
-```
-```
-vagrant ssh  #go to vagrant
-```
-```
-cd /vagrant
-```
-```
-cd angularjs-material   #go to repo
-```
-```
-npm install    #build the client app
+npm install    #install all dependencies for the client code
 ```
 ```
 npm run server  #run the client app, wait until compilation is done
