@@ -7,20 +7,11 @@ To add, update, delete items, a user has to be logged in, there are two ways to 
 whether to use Google login or register an account using register form, there is the test account as well.
  username: test, password: test.
 
-
-## Setup
-
-### Node js
+## Node js
 Node js must be installed to run the client code. If
 you have not Node js installed, go through the guide bellow. https://nodejs.org/en/download/package-manager
 
-### Python requirements
-Required dependencies must be installed to run the backend code.
-
-```
-pip install -r requirements.txt
-```
-
+### Setup steps
 ```
 git clone https://github.com/modulus100/angularjs-material.git  #clone the repository
 ```
