@@ -10,7 +10,7 @@ from sqlalchemy.ext.declarative import declarative_base
 class DatabaseService(object):
     """
     Provides a layer which has an access to a database.
-    Serves all data operations.
+    Serves all the data operations.
     """
     session = None
 
