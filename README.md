@@ -19,7 +19,7 @@ git clone https://github.com/modulus100/angularjs-material.git  #clone the repos
 cd angularjs-material   #go to repo
 ```
 ```
-npm install    #install all dependencies for the client code
+npm install    #install dependencies for the client code
 ```
 ```
 npm run server  #run the client app, wait until compilation is done
