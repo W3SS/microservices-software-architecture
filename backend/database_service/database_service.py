@@ -1,7 +1,10 @@
 #!/usr/bin/env
-from models . models import Base, Category, CategorySchema
+from models . category import Category, CategorySchema
+from models . user import User
+from models . item import Item, ItemSchema
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
 
 
 class DatabaseService(object):
@@ -11,6 +14,7 @@ class DatabaseService(object):
         engine = create_engine('sqlite:///database.db',
                                connect_args={'check_same_thread': False})
 
+        Base = declarative_base()
         Base.metadata.bind = engine
         DBSession = sessionmaker(bind=engine)
         self.session = DBSession()
