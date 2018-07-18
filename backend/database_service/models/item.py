@@ -5,7 +5,8 @@ from marshmallow_sqlalchemy import ModelSchema
 
 class Item(Model):
     """
-    Catalog app's item, each item associated with category, stored database.db
+    Catalog app's item, each item associated with category,
+    stored in database.db
     """
     id = Column(Integer, primary_key=True)
     name = Column(String)

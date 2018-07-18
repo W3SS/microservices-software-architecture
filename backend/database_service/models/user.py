@@ -1,6 +1,12 @@
-from sqlalchemy import Column, Integer, String
 from sqlalchemy_dao import Model
+from sqlalchemy import Column, Integer, String
 from passlib.apps import custom_app_context as pwd_context
+
+import random
+import string
+
+secret_key = ''.join(random.choice(string.ascii_uppercase +
+                                   string.digits) for x in xrange(32))
 
 
 class User(Model):
