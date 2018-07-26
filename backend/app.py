@@ -21,7 +21,7 @@ def apply_caching(response):
     """
     Set Access Control for the client code
     """
-    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8000'
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Access-Control-Allow-Headers'] = \
         'Content-Type, Authorization'
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
