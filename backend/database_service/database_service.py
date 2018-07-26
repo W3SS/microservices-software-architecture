@@ -19,18 +19,18 @@ class DatabaseService(object):
         """
         Establishes a database connection
         """
-        engine = None
+        conn_args = {'check_same_thread': False}
 
         if database_exists('sqlite:///backend/database_service/database.db'):
             engine = create_engine(
                 'sqlite:///backend/database_service/database.db',
-                connect_args={'check_same_thread': False})
+                connect_args=conn_args)
         elif database_exists('sqlite:///database_service/database.db'):
             engine = create_engine(
                 'sqlite:///database_service/database.db',
-                connect_args={'check_same_thread': False})
+                connect_args=conn_args)
         else:
-            raise Exception('No database')
+            raise Exception('No database file')
 
         Base = declarative_base()
         Base.metadata.bind = engine
