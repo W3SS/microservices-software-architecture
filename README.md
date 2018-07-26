@@ -12,7 +12,7 @@ Node js must be installed to run the client code. If
 you have not Node js installed, go through the guide bellow. https://nodejs.org/en/download/package-manager
 
 ## Docker
-This application can be run with docker containers. https://docs.docker.com/
+This application can be run with docker containers. Docs: https://docs.docker.com/
 
 ### Setup steps
 ```
