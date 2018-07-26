@@ -1,0 +1,9 @@
+vesrion: '3'
+
+services:
+  product-service:
+    build: ./product
+    volumes:
+      - ./angularjs-material:/
+    ports:
+      - 5000:80

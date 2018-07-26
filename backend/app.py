@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 from flask import Flask, jsonify, request
-from backend.database_service.database_service import DatabaseService
+from database_service.database_service import DatabaseService
 from email_validator import validate_email, EmailNotValidError
-from backend.database_service.models.item import Item
+from database_service.models.item import Item
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, \
     get_raw_jwt
 

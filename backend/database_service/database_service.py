@@ -5,6 +5,7 @@ from models.item import Item, ItemSchema
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine, desc
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy_utils import database_exists
 
 
 class DatabaseService(object):
@@ -18,9 +19,18 @@ class DatabaseService(object):
         """
         Establishes a database connection
         """
-        engine = create_engine(
-            'sqlite:///backend/database_service/database.db',
-            connect_args={'check_same_thread': False})
+        engine = None
+
+        if database_exists('sqlite:///backend/database_service/database.db'):
+            engine = create_engine(
+                'sqlite:///backend/database_service/database.db',
+                connect_args={'check_same_thread': False})
+        elif database_exists('sqlite:///database_service/database.db'):
+            engine = create_engine(
+                'sqlite:///database_service/database.db',
+                connect_args={'check_same_thread': False})
+        else:
+            raise Exception('No database')
 
         Base = declarative_base()
         Base.metadata.bind = engine
