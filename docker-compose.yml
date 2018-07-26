@@ -1,9 +1,12 @@
-vesrion: '3'
+version: '3'
 
 services:
-  product-service:
-    build: ./product
+  api-service:
+    build: ./backend
     volumes:
-      - ./angularjs-material:/
+      - ./backend:/usr/src/backend
     ports:
-      - 5000:80
+     - "5000:80"
+
+  client-service:
+    build
