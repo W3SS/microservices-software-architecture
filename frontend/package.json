@@ -4,7 +4,7 @@
   "description": "Client app as microservice",
   "main": "index.js",
   "scripts": {
-    "server": "node_modules/.bin/webpack-dev-server"
+    "start": "node_modules/.bin/webpack-dev-server"
   },
   "keywords": [],
   "author": "Aleksandr Madisson <aleksandr.madisson@linnsystems.com>",

@@ -6,7 +6,14 @@ services:
     volumes:
       - ./backend:/usr/src/backend
     ports:
-     - "5000:80"
+     - "5000:5000"
 
   client-service:
-    build
+    build: ./frontend
+    volumes:
+      - ./frontend:/usr/src/frontend
+    ports:
+     - "8080:8080"
+    depends_on:
+      - api-service
+

@@ -65,7 +65,7 @@ module.exports = function makeWebpackConfig() {
   config.devServer = {
     contentBase: './src/dist/',
       host: '0.0.0.0', // To run the app in vagrant
-      port: 8000
+      port: 8080
   };
 
   return config;
