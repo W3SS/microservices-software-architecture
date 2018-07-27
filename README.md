@@ -7,10 +7,6 @@ To add, update, delete items, a user has to be logged in, there are two ways to 
 whether to use Google login or register an account using register form, there is the test account as well.
  username: test, password: test.
 
-## Node js
-Node js must be installed to run the client code. If
-you have not Node js installed, go through the guide bellow. https://nodejs.org/en/download/package-manager
-
 ## Docker
 This application can be run with docker containers as well. Docs: https://docs.docker.com
 ### Steps to run with docker
@@ -26,6 +22,9 @@ docker-compose up #run the backend and the frontend as microservices
 ```
 Client code is running on: http://localhost:8080
 
+## Node js
+Node js must be installed to run the client code without docker. If
+you have not Node js installed, go through the guide bellow. https://nodejs.org/en/download/package-manager
 
 ### Setup steps
 ```
