@@ -1,6 +1,6 @@
 # Catalog App (Udacity project)
 
-CRUD web application is based on python-flask, Angularjs, SQLite, Webpack, OAuth2.
+CRUD web application is based on python-flask, Angularjs, SQLite, Webpack, OAuth2, Docker containers.
 The app uses REST API to make the communication possible between the client and the server code,
 JWT to make API calls secure.
 To add, update, delete items, a user has to be logged in, there are two ways to log in,
@@ -12,7 +12,20 @@ Node js must be installed to run the client code. If
 you have not Node js installed, go through the guide bellow. https://nodejs.org/en/download/package-manager
 
 ## Docker
-This application can be run with docker containers as well. Docs: https://docs.docker.com/
+This application can be run with docker containers as well. Docs: https://docs.docker.com/ \
+Steps to run with docker
+
+```
+git clone https://github.com/modulus100/angularjs-material.git  #clone the repository
+```
+```
+cd angularjs-material   #go to repo
+```
+```
+docker-compose up #run backend and frontend as different services
+```
+Client code is running on: http://localhost:8080
+
 
 ### Setup steps
 ```
