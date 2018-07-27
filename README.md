@@ -8,7 +8,7 @@ whether to use Google login or register an account using register form, there is
  username: test, password: test.
 
 ## Docker
-This application can be run with docker containers as well. Docs: https://docs.docker.com
+This application can be run with docker containers. Docs: https://docs.docker.com
 ### Steps to run with docker
 
 ```
