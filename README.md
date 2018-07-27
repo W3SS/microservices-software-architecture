@@ -13,7 +13,7 @@ you have not Node js installed, go through the guide bellow. https://nodejs.org/
 
 ## Docker
 This application can be run with docker containers as well. Docs: https://docs.docker.com/ \
-Steps to run with docker
+### Steps to run with docker
 
 ```
 git clone https://github.com/modulus100/angularjs-material.git  #clone the repository
