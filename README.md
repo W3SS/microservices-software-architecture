@@ -19,20 +19,20 @@ This application can be run with docker containers as well. Docs: https://docs.d
 git clone https://github.com/modulus100/angularjs-material.git  #clone the repository
 ```
 ```
-cd angularjs-material   #go to repo
+cd angularjs-material/frontend   #go to client repo
 ```
 ```
 npm install    #install dependencies for the client code
 ```
 ```
-npm run server  #run the client app, wait until compilation is done
+npm start  #run the client app, wait until compilation is done
 ```
 Open the second terminal and go again to angularjs-material repo.
 ```
 pip install -r requirements.txt #install dependencies for the backend code
 ```
 ```
-python app.py   #run the backend and start using the app
+python backend/app.py   #run the backend and start using the app
 ```
 
 Client code is running on: http://localhost:8080
