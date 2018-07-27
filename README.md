@@ -22,7 +22,7 @@ git clone https://github.com/modulus100/angularjs-material.git  #clone the repos
 cd angularjs-material   #go to repo
 ```
 ```
-docker-compose up #run backend and frontend as different services
+docker-compose up #run the backend and the frontend as microservices
 ```
 Client code is running on: http://localhost:8080
 
