@@ -2,3 +2,4 @@
 node_modules/
 backend/models.pyc
 .vagrant
+frontend/node_modules

@@ -56,7 +56,7 @@ class AuthService {
                     $cookies.remove('providerToken');
                     console.log('User signed out.');
                 }).catch((error) => {
-                    console.log('oauth logout error on the backend');
+                    console.log('oauth logout error on the api-gateway');
                     console.log(error);
                 });
             });

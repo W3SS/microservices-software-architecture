@@ -2,16 +2,16 @@ version: '3'
 
 services:
   api-service:
-    build: ./backend
+    build: api-gateway
     volumes:
-      - ./backend:/usr/src/backend
+      - ./api-gateway:/usr/src/api-gateway
     ports:
      - "5000:5000"
 
   client-service:
-    build: ./frontend
+    build: client
     volumes:
-      - ./frontend:/usr/src/frontend
+      - ./client:/usr/src/client
     ports:
      - "8080:8080"
     depends_on:

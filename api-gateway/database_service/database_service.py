@@ -21,9 +21,9 @@ class DatabaseService(object):
         """
         conn_args = {'check_same_thread': False}
 
-        if database_exists('sqlite:///backend/database_service/database.db'):
+        if database_exists('sqlite:///api-gateway/database_service/database.db'):
             engine = create_engine(
-                'sqlite:///backend/database_service/database.db',
+                'sqlite:///api-gateway/database_service/database.db',
                 connect_args=conn_args)
         elif database_exists('sqlite:///database_service/database.db'):
             engine = create_engine(
