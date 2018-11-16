@@ -1,14 +1,14 @@
 version: '3'
 
 services:
-  api-service:
+  api-gateway:
     build: api-gateway
     volumes:
       - ./api-gateway:/usr/src/api-gateway
     ports:
      - "5000:5000"
 
-  client-service:
+  client:
     build: client
     volumes:
       - ./client:/usr/src/client
