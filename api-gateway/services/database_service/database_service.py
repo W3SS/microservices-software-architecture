@@ -21,13 +21,13 @@ class DatabaseService(object):
         """
         conn_args = {'check_same_thread': False}
 
-        if database_exists('sqlite:///api-gateway/database_service/database.db'):
+        if database_exists('sqlite:///api-gateway/services/database_service/database.db'):
             engine = create_engine(
-                'sqlite:///api-gateway/database_service/database.db',
+                'sqlite:///api-gateway/services/database_service/database.db',
                 connect_args=conn_args)
-        elif database_exists('sqlite:///database_service/database.db'):
+        elif database_exists('sqlite:///services/database_service/database.db'):
             engine = create_engine(
-                'sqlite:///database_service/database.db',
+                'sqlite:///services/database_service/database.db',
                 connect_args=conn_args)
         else:
             raise Exception('No database file')

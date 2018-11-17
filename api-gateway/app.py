@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 from flask import Flask, jsonify, request
-from database_service.database_service import DatabaseService
+from services.database_service.database_service import DatabaseService
+from services.service_factory import ServiceFactory, ServiceTypes
 from email_validator import validate_email, EmailNotValidError
-from database_service.models.item import Item
+from services.database_service.models.item import Item
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, \
     get_raw_jwt
 
@@ -179,6 +180,9 @@ def get_all():
     Endpoint provides all categories with associated items
     :return: categories with items in json
     """
+    inventory_service = ServiceFactory().get_service(ServiceTypes.inventory)
+    result = inventory_service.get_category_by_id()
+
     db_service = DatabaseService()
     items = db_service.get_all_items()
     categories = db_service.get_all_categories()
