@@ -1,4 +1,4 @@
-# Catalog App (Udacity project)
+# Microservices (Software Architecture project)
 
 CRUD web application is based on python-flask, Angularjs, SQLite, Webpack, OAuth2, Docker containers.
 The app uses REST API to make the communication possible between the client and the server code,
