@@ -2,10 +2,6 @@
 from flask import Flask, jsonify, request
 from functools import wraps
 
-import httplib2
-import datetime
-import time
-import json
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'super-secret'  # Change this!
