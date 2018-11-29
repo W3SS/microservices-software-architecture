@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 from flask import Flask, jsonify, request
-from services.database_service.database_service import DatabaseService
+from repository.user_dao import UserDao
 from services.service_factory import ServiceFactory, ServiceTypes
 from email_validator import validate_email, EmailNotValidError
-from services.database_service.models.item import Item
+from repository.models.item import Item
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, \
     get_raw_jwt
 
@@ -54,8 +54,8 @@ def login():
     """
     username = request.json.get('username', None)
     password = request.json.get('password', None)
-    db_service = DatabaseService()
-    user = db_service.get_user_by_username(username)
+    user_dao = UserDao()
+    user = user_dao.get_user_by_username(username)
 
     if not user or not user.verify_password(password):
         return jsonify({"msg": "Bad username or password"}), 401
@@ -102,11 +102,11 @@ def oauth_login():
             error_message = json.dumps(result.get('error'))
             return jsonify({'msg': error_message.strip('\"')}), 500
 
-        db_service = DatabaseService()
-        user = db_service.get_user_by_email(user_email)
+        user_dao = UserDao()
+        user = user_dao.get_user_by_email(user_email)
 
         if not user:
-            db_service.save_new_user_by_email(user_email)
+            user_dao.save_new_user_by_email(user_email)
 
         expires = datetime.timedelta(seconds=result.get('expires_in'))
         exp_time = int(round(time.time())) + expires.total_seconds()
@@ -165,12 +165,12 @@ def new_user():
     if username is None or password is None or email is None:
         return jsonify({'msg': 'missing arguments'}), 400
 
-    db_service = DatabaseService()
+    user_dao = UserDao()
 
-    if db_service.is_username_exists(username):
+    if user_dao.is_username_exists(username):
         return jsonify({'msg': 'user already exists'}), 200
 
-    db_service.save_new_user(username=username, password=password, email=email)
+    user_dao.save_new_user(username=username, password=password, email=email)
     return jsonify({'msg': 'user successfully created'}), 201
 
 
@@ -183,9 +183,9 @@ def get_all():
     inventory_service = ServiceFactory().get_service(ServiceTypes.inventory)
     result = inventory_service.get_category_by_id()
 
-    db_service = DatabaseService()
-    items = db_service.get_all_items()
-    categories = db_service.get_all_categories()
+    user_dao = UserDao()
+    items = user_dao.get_all_items()
+    categories = user_dao.get_all_categories()
 
     items_dict = dict()
     for item in items:
@@ -207,8 +207,8 @@ def get_categories():
     Endpoint provides all categories
     :return: all categories in json
     """
-    db_service = DatabaseService()
-    categories = db_service.get_all_categories()
+    user_dao = UserDao()
+    categories = user_dao.get_all_categories()
     return jsonify({'categories': categories}), 200
 
 
@@ -222,8 +222,8 @@ def get_category():
     id = request.args.get('id')
 
     if id is not None:
-        db_service = DatabaseService()
-        category = db_service.get_category_by_id(id)
+        user_dao = UserDao()
+        category = user_dao.get_category_by_id(id)
 
         if category is not None:
             return jsonify({'category': category}), 200
@@ -246,16 +246,16 @@ def get_category_items():
     category_name = request.args.get('categoryName')
 
     if category_id is not None:
-        db_service = DatabaseService()
-        items = db_service.get_items_by_category_id(cat_id=category_id)
+        user_dao = UserDao()
+        items = user_dao.get_items_by_category_id(cat_id=category_id)
 
         if items is not None:
             return jsonify({'items': items}), 200
         else:
             return jsonify({'msg': 'parameters are missing'}), 400
     elif category_name is not None:
-        db_service = DatabaseService()
-        items = db_service.get_items_by_category_name(category_name)
+        user_dao = UserDao()
+        items = user_dao.get_items_by_category_name(category_name)
 
         if items is not None:
             return jsonify({'items': items}), 200
@@ -273,11 +273,11 @@ def get_items():
     :return: items in json
     """
     latest = request.args.get('latest')
-    db_service = DatabaseService()
+    user_dao = UserDao()
 
     if latest == u'true':
-        categories = db_service.get_all_categories()
-        items = db_service.get_latest_items(6)
+        categories = user_dao.get_all_categories()
+        items = user_dao.get_latest_items(6)
         categories_dict = dict()
 
         for category in categories:
@@ -291,7 +291,7 @@ def get_items():
                 item['categoryName'] = categories_dict[item['cat_id']]['name']
 
     else:
-        items = db_service.get_all_items()
+        items = user_dao.get_all_items()
 
     return jsonify({'items': items}), 200
 
@@ -308,16 +308,16 @@ def get_item():
     item_name = request.args.get('itemName')
 
     if item_id is not None:
-        db_service = DatabaseService()
-        item = db_service.get_item_by_id(item_id)
+        user_dao = UserDao()
+        item = user_dao.get_item_by_id(item_id)
 
         if item is not None:
             return jsonify({'item': item}), 200
         else:
             return jsonify({'msg': 'item does not exist'}), 400
     elif item_name is not None:
-        db_service = DatabaseService()
-        item = db_service.get_item_by_name(item_name)
+        user_dao = UserDao()
+        item = user_dao.get_item_by_name(item_name)
 
         if item is not None:
             return jsonify({'item': item}), 200
@@ -346,9 +346,9 @@ def update_item():
     item = Item(id=id, name=name, description=description, cat_id=cat_id)
 
     if id is not None:
-        db_service = DatabaseService()
+        user_dao = UserDao()
 
-        if db_service.update_item_by_id(item) is True:
+        if user_dao.update_item_by_id(item) is True:
             return jsonify({'msg': 'successfully updated'}), 200
         else:
             return jsonify({'msg': 'parameters are missing'}), 400
@@ -367,9 +367,9 @@ def delete_item():
     id = request.args.get('id')
 
     if id is not None:
-        db_service = DatabaseService()
+        user_dao = UserDao()
 
-        if db_service.delete_item_by_id(id) is True:
+        if user_dao.delete_item_by_id(id) is True:
             return jsonify({'msg': 'successfully deleted'}), 200
     else:
         return jsonify({'msg': 'parameters are missing'}), 400
@@ -394,9 +394,9 @@ def add_item():
         return jsonify({'msg': 'parameters are missing'}), 400
 
     item = Item(name=name, description=description, cat_id=cat_id)
-    db_service = DatabaseService()
+    user_dao = UserDao()
 
-    if db_service.save_new_item(item) is True:
+    if user_dao.save_new_item(item) is True:
         return jsonify({'msg': 'successfully added'}), 201
     else:
         return jsonify({'msg': 'exception while saving a new item'}), 400

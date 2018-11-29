@@ -8,7 +8,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy_utils import database_exists
 
 
-class DatabaseService(object):
+class UserDao(object):
     """
     Provides a layer which has an access to a database.
     Serves all the data operations.
@@ -21,13 +21,13 @@ class DatabaseService(object):
         """
         conn_args = {'check_same_thread': False}
 
-        if database_exists('sqlite:///api-gateway/services/database_service/database.db'):
+        if database_exists('sqlite:///api-gateway/repository/database.db'):
             engine = create_engine(
-                'sqlite:///api-gateway/services/database_service/database.db',
+                'sqlite:///api-gateway/repository/database.db',
                 connect_args=conn_args)
-        elif database_exists('sqlite:///services/database_service/database.db'):
+        elif database_exists('sqlite:///repository/database.db'):
             engine = create_engine(
-                'sqlite:///services/database_service/database.db',
+                'sqlite:///repository/database.db',
                 connect_args=conn_args)
         else:
             raise Exception('No database file')
