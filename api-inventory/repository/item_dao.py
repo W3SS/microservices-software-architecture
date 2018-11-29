@@ -36,18 +36,6 @@ class ItemDao(object):
         DBSession = sessionmaker(bind=engine)
         self.session = DBSession()
 
-    def get_all_categories(self):
-        try:
-            categories_raw = self.session.query(Category).all()
-        except Exception:
-            self.session.rollback()
-            return None
-        finally:
-            self.session.close()
-        category_schema = CategorySchema(many=True)
-        categories = category_schema.dump(categories_raw).data
-        return categories
-
     def get_all_items(self):
         try:
             items_raw = self.session.query(Item).all()
@@ -75,22 +63,6 @@ class ItemDao(object):
         item_schema = ItemSchema(many=True)
         items = item_schema.dump(items_raw).data
         return items
-
-    def get_category_by_id(self, id):
-        try:
-            category_raw = self.session.query(Category).filter_by(id=id).one()
-        except Exception:
-            self.session.rollback()
-            return None
-        finally:
-            self.session.close()
-
-        if category_raw is not None:
-            category_schema = CategorySchema()
-            category = category_schema.dump(category_raw).data
-            return category
-        else:
-            return None
 
     def get_items_by_category_id(self, cat_id):
         try:
