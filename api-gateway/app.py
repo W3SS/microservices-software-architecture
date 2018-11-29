@@ -395,6 +395,8 @@ def add_item():
 
     item = Item(name=name, description=description, cat_id=cat_id)
     user_dao = UserDao()
+    inventory = ServiceFactory().get_service(ServiceTypes.inventory)
+    inventory.add_item(item)
 
     if user_dao.save_new_item(item) is True:
         return jsonify({'msg': 'successfully added'}), 201
