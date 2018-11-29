@@ -1,5 +1,5 @@
 #!/usr/bin/env
-from models.category import Category, CategorySchema
+from models.category import Category
 from models.item import Item, ItemSchema
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine, desc
