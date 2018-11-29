@@ -20,9 +20,9 @@ class ItemDao(object):
         """
         conn_args = {'check_same_thread': False}
 
-        if database_exists('sqlite:///api-gateway/repository/database.db'):
+        if database_exists('sqlite:///api-inventory/repository/database.db'):
             engine = create_engine(
-                'sqlite:///api-gateway/repository/database.db',
+                'sqlite:///api-inventory/repository/database.db',
                 connect_args=conn_args)
         elif database_exists('sqlite:///repository/database.db'):
             engine = create_engine(
