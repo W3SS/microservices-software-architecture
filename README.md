@@ -31,31 +31,6 @@ cd microservices-software-architecture
 pytest
 ```
 
-## Node js
-Node js must be installed to run the client code without docker. If
-you have not Node js installed, go through the guide bellow. https://nodejs.org/en/download/package-manager
-
-### Setup steps
-```
-git clone https://github.com/modulus100/microservices-software-architecture.git  #clone the repository
-```
-```
-cd angularjs-material/frontend   #go to client repo
-```
-```
-npm install    #install dependencies for the client code
-```
-```
-npm start  #run the client app, wait until compilation is done
-```
-Open the second terminal and go again to angularjs-material repo.
-```
-pip install -r requirements.txt #install dependencies for the backend code
-```
-```
-python backend/app.py   #run the backend and start using the app
-```
-
 Client code is running on: http://localhost:8080
 ![alt text](https://github.com/modulus100/angularjs-material/blob/master/images/app.png "Home")
 
