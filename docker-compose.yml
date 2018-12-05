@@ -8,6 +8,15 @@ services:
     ports:
      - "5000:5000"
 
+  api-inventory:
+    build: api-inventory
+    volumes:
+      - ./api-inventory:/usr/src/api-inventory
+    ports:
+      - "5001:5001"
+    depends_on:
+      - api-gateway
+
   client:
     build: client
     volumes:
@@ -15,5 +24,5 @@ services:
     ports:
      - "8080:8080"
     depends_on:
-      - api-service
+      - api-gateway
 

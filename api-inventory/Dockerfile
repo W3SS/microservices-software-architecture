@@ -1,6 +1,5 @@
 FROM python:2.7
-MAINTAINER Aleksandr Madisson "aleksandr.madisson@linnsystems.com"
-ADD . /api-gateway
-WORKDIR /api-gateway
+ADD . /api-inventory
+WORKDIR /api-inventory
 RUN pip install -r requirements.txt
-CMD ["python", "app.py"]
+CMD ["python", "inventory_api.py"]
