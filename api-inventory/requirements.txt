@@ -1,5 +1,5 @@
 passlib==1.7.1
-Flask==0.12.2
+Flask==0.12.3
 httplib2==0.11.3
 email_validator==1.0.3
 Flask_JWT_Extended==3.9.1
