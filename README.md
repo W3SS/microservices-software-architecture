@@ -15,7 +15,7 @@ This application can be run with docker containers. Docs: https://docs.docker.co
 git clone https://github.com/modulus100/microservices-software-architecture.git  #clone the repository
 ```
 ```
-cd angularjs-material   #go to repo
+cd microservices-software-architecture   #go to repo
 ```
 ```
 docker-compose up #run the backend and the frontend as microservices
