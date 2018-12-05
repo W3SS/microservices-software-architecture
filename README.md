@@ -12,7 +12,7 @@ This application can be run with docker containers. Docs: https://docs.docker.co
 ### Steps to run with docker
 
 ```
-git clone https://github.com/modulus100/angularjs-material.git  #clone the repository
+git clone https://github.com/modulus100/microservices-software-architecture.git  #clone the repository
 ```
 ```
 cd angularjs-material   #go to repo
@@ -22,13 +22,22 @@ docker-compose up #run the backend and the frontend as microservices
 ```
 Client code is running on: http://localhost:8080
 
+### Tests
+
+```
+cd microservices-software-architecture
+```
+```
+pytest
+```
+
 ## Node js
 Node js must be installed to run the client code without docker. If
 you have not Node js installed, go through the guide bellow. https://nodejs.org/en/download/package-manager
 
 ### Setup steps
 ```
-git clone https://github.com/modulus100/angularjs-material.git  #clone the repository
+git clone https://github.com/modulus100/microservices-software-architecture.git  #clone the repository
 ```
 ```
 cd angularjs-material/frontend   #go to client repo

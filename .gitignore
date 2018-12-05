@@ -3,3 +3,5 @@ node_modules/
 backend/models.pyc
 .vagrant
 frontend/node_modules
+.pytest_cachce
+client/node_modules
