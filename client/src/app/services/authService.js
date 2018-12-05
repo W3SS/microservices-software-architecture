@@ -9,7 +9,7 @@ class AuthService {
         let self = this;
 
         this.isUserAuthenticated = () => {
-            let expTime = $cookies.get('exp');
+            const expTime = $cookies.get('exp');
 
             if (expTime) {
                 return expTime > (Date.now() / 1000);
@@ -19,8 +19,7 @@ class AuthService {
         };
 
         this.isUserAuthenticatedByGoogle = () => {
-            let googleAuth = $cookies.get('provider');
-
+            const googleAuth = $cookies.get('provider');
             return !!googleAuth;
         };
 
@@ -43,10 +42,10 @@ class AuthService {
             $cookies.remove('exp');
         };
 
-        $rootScope.$on('event:social-sign-out-success', function(event, logoutStatus){
-            let auth2 = gapi.auth2.getAuthInstance();
-            let providerToken = $cookies.get('providerToken');
-            let provider = $cookies.get('provider');
+        $rootScope.$on('event:social-sign-out-success', function(event, logoutStatus) {
+            const auth2 = gapi.auth2.getAuthInstance();
+            const providerToken = $cookies.get('providerToken');
+            const provider = $cookies.get('provider');
 
             auth2.signOut().then(() => {
                 apiService.logoutOauth(providerToken, provider).then((response) => {

@@ -6,7 +6,7 @@ const apiService = angular.module(moduleName, ['ngCookies'])
     .factory('httpRequestInterceptor', function ($cookies) {
         return {
             request: function (config) {
-                let token = $cookies.get('token');
+                const token = $cookies.get('token');
 
                 if (token) {
                    config.headers['Authorization'] = 'Bearer ' + token;
