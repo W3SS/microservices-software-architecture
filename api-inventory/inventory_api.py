@@ -34,7 +34,6 @@ def apply_caching(response):
 
 
 @app.route('/all', methods=['GET'])
-@api_key_required
 def get_all():
     """
     Endpoint provides all categories with associated items
@@ -61,7 +60,6 @@ def get_all():
 
 
 @app.route('/categories', methods=['GET'])
-@api_key_required
 def get_categories():
     """
     Endpoint provides all categories
@@ -73,7 +71,6 @@ def get_categories():
 
 
 @app.route('/category', methods=['GET'])
-@api_key_required
 def get_category():
     """
     Endpoint returns a requested category by id
@@ -95,7 +92,6 @@ def get_category():
 
 
 @app.route('/categoryItems', methods=['GET'])
-@api_key_required
 def get_category_items():
     """
     Endpoint returns items associated with a certain category
@@ -128,7 +124,6 @@ def get_category_items():
 
 
 @app.route('/items', methods=['GET'])
-@api_key_required
 def get_items():
     """
     Endpoint returns all items or latest added items if 'latest' is true
@@ -161,7 +156,6 @@ def get_items():
 
 
 @app.route('/item', methods=['GET'])
-@api_key_required
 def get_item():
     """
     Endpoint returns an item by id or by name
