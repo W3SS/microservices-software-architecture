@@ -2,6 +2,7 @@ import angular from 'angular';
 
 const moduleName = "apiService";
 const baseUrl = 'http://localhost:5000';
+const inventoryURL = 'http://localhost:5001';
 const apiService = angular.module(moduleName, ['ngCookies'])
     .factory('httpRequestInterceptor', function ($cookies) {
         return {
@@ -10,6 +11,7 @@ const apiService = angular.module(moduleName, ['ngCookies'])
 
                 if (token) {
                    config.headers['Authorization'] = 'Bearer ' + token;
+                   config.headers['X-Api-Key'] = 'secret.api.key';
                 }
                 return config;
             }
@@ -24,7 +26,7 @@ class ApiService {
         this.fetchCategories = () => {
             return $http({
                 method: 'GET',
-                url: baseUrl + '/categories'
+                url: inventoryURL + '/categories'
             });
         };
 
@@ -32,7 +34,7 @@ class ApiService {
             return $http({
                 method: 'GET',
                 params: {id: id},
-                url: baseUrl + '/category'
+                url: inventoryURL + '/category'
             });
         };
 
@@ -40,7 +42,7 @@ class ApiService {
             return $http({
                 method: 'GET',
                 params: {categoryId: categoryId},
-                url: baseUrl + '/categoryItems'
+                url: inventoryURL + '/categoryItems'
             });
         };
 
@@ -48,7 +50,7 @@ class ApiService {
             return $http({
                 method: 'GET',
                 params: {categoryName: categoryName},
-                url: baseUrl + '/categoryItems'
+                url: inventoryURL + '/categoryItems'
             });
         };
 
@@ -56,7 +58,7 @@ class ApiService {
             return $http({
                 method: 'GET',
                 params: {latest: true},
-                url: baseUrl + '/items'
+                url: inventoryURL + '/items'
             });
         };
 
@@ -64,7 +66,7 @@ class ApiService {
             return $http({
                 method: 'GET',
                 params: {itemId: itemId},
-                url: baseUrl + '/item'
+                url: inventoryURL + '/item'
             });
         };
 
@@ -72,7 +74,7 @@ class ApiService {
             return $http({
                 method: 'GET',
                 params: {itemName: itemName},
-                url: baseUrl + '/item'
+                url: inventoryURL + '/item'
             });
         };
 
@@ -168,7 +170,7 @@ class ApiService {
             if (item) {
                 return $http({
                     method: 'PUT',
-                    url: baseUrl + '/item',
+                    url: inventoryURL + '/item',
                     data: JSON.stringify({
                         id: item.id,
                         description: item.description,
@@ -189,7 +191,7 @@ class ApiService {
                 return $http({
                     method: 'DELETE',
                     params: {id: id},
-                    url: baseUrl + '/item',
+                    url: inventoryURL + '/item',
                 });
             } else {
                 console.log('no item id');
@@ -200,7 +202,7 @@ class ApiService {
             if (item) {
                 return $http({
                     method: 'POST',
-                    url: baseUrl + '/item',
+                    url: inventoryURL + '/item',
                     data: JSON.stringify({
                         description: item.description,
                         name: item.name,

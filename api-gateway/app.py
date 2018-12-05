@@ -23,7 +23,7 @@ def apply_caching(response):
     """
     response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Access-Control-Allow-Headers'] = \
-        'Content-Type, Authorization'
+        'Content-Type, Authorization, X-Api-Key'
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
     return response
 

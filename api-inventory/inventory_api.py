@@ -14,11 +14,23 @@ key = 'secret.api.key'
 def api_key_required(f):
     @wraps(f)
     def validate_api_key(*args, **kwargs):
-        if request.headers.get('x-api-key') == key:
+        if request.headers.get('X-Api-Key') == key:
             return f()
         else:
             return jsonify({'msg': 'api key required'}), 401
     return validate_api_key
+
+
+@app.after_request
+def apply_caching(response):
+    """
+    Set Access Control for the client code
+    """
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
+    response.headers['Access-Control-Allow-Headers'] = \
+        'Content-Type, Authorization, X-Api-Key'
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+    return response
 
 
 @app.route('/all', methods=['GET'])
