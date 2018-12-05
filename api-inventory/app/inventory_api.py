@@ -8,6 +8,7 @@ from repository.models.item import Item
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'super-secret'  # Change this!
+app.config["JSONIFY_PRETTYPRINT_REGULAR"] = False
 key = 'secret.api.key'
 
 

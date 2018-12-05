@@ -5,6 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine, desc
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy_utils import database_exists
+import os
 
 
 class ItemDao(object):
@@ -19,17 +20,22 @@ class ItemDao(object):
         Establishes a database connection
         """
         conn_args = {'check_same_thread': False}
+        print(os.getcwd())
 
-        if database_exists('sqlite:///api-inventory/repository/database.db'):
+        if database_exists('sqlite:///api-inventory/app/repository/database.db'):
             engine = create_engine(
-                'sqlite:///api-inventory/repository/database.db',
+                'sqlite:///api-inventory/app/repository/database.db',
+                connect_args=conn_args)
+        elif database_exists('sqlite:///app/repository/database.db'):
+            engine = create_engine(
+                'sqlite:///app/repository/database.db',
                 connect_args=conn_args)
         elif database_exists('sqlite:///repository/database.db'):
             engine = create_engine(
                 'sqlite:///repository/database.db',
                 connect_args=conn_args)
         else:
-            raise Exception('No database file')
+            raise Exception(os.getcwd())
 
         Base = declarative_base()
         Base.metadata.bind = engine
