@@ -31,11 +31,17 @@ class InventoryService(object):
         url = self.service_url + 'item'
         try:
             h = httplib2.Http()
-            result = json.loads(h.request(
+            test = h.request(
                 uri=url,
                 method='POST',
-                body=jsonify(item),
-                headers=self.headers)[1])
+                body=json.dumps({
+                    'name': item['name'],
+                    'description': item['description'],
+                    'cat_id': item['cat_id']
+                }),
+                headers=self.headers)
+
+            result = json.loads(test[1])
         except Exception as ex:
             return None
         if result.get('error') is not None:
